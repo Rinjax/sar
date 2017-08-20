@@ -176,6 +176,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+        // project add classes
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Lavary\Menu\ServiceProvider::class,
 
     ],
 
@@ -225,6 +229,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        
+        //Project added
+	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Menu' => Lavary\Menu\Facade::class,
 
     ],
 
