@@ -41,7 +41,13 @@ class LoginController extends Controller
 
     public function redirectToProvider()
     {
-        return Socialite::driver('google')->redirect();
+        if(\App::environment('local')){
+            Auth::loginUsingId(1, true);
+            return redirect()->route('dashboard');
+        }
+        else{
+            return Socialite::driver('google')->redirect();
+            }
     }
 
     public function handleProviderCallback()

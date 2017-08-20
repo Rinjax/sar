@@ -18,7 +18,7 @@ class CreateDogsAssessmentsTable extends Migration
             $table->integer('dog_id');
             $table->integer('location_id');
             $table->date('date');
-            $tabel->string('type');
+            $table->string('type');
             $table->boolean('passed');
             $table->text('comment');
             $table->timestamps();

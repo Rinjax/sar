@@ -19,7 +19,7 @@ class CreateDogsTable extends Migration
             $table->string('name');
             $table->string('breed');
             $table->date('start_program');
-            $tabel->integer('level');
+            $table->integer('level');
             $table->date('op_ticket_exp');
             $table->timestamps();
         });
