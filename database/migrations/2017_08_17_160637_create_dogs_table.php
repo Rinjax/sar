@@ -15,12 +15,12 @@ class CreateDogsTable extends Migration
     {
         Schema::create('dogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('member_id');
+            $table->integer('member_id');
             $table->string('name');
             $table->string('breed');
             $table->date('start_program');
             $table->integer('level');
-            $table->date('op_ticket_exp');
+            $table->date('op_ticket_exp')->nullable();
             $table->timestamps();
         });
     }

@@ -12,23 +12,25 @@
 
                     <!-- Modal content-->
                     <div class="modal-content">
-                        {!! Form::open(array('action' => 'ProfileController@mobileUpdate')) !!}
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Update Mobile Number</h4>
-                        </div>
-                        <div class="modal-body">
-                            
-                            <div class="form-group">
-                                <label for="newMob">Mobile:</label>
-                                <input type="text" class="form-control" id="newMob" name="newMob" placeholder="{{$member->contact}}">
+                        <form action="{!! route('updatemob.post') !!}" method="post">
+                            {!! csrf_field() !!}
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Update Mobile Number</h4>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" value="save" class="btn btn-default">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                        {!! Form::close() !!}
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="newMob">Mobile:</label>
+                                    <input type="text" class="form-control" id="newMob" name="newMob" placeholder="{{$member->contact}}">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" value="save" class="btn btn-default">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
                     </div>
 
                 </div>
@@ -47,7 +49,7 @@
                             <div class="col-sm-12 col-md-8">
                                 <div class="space-bottom-2" style="height: 20rem;">
                                     <div class="pull-left profilepic">
-                                        <img class="img-responsive img-rounded" src=" img/{{$member->name}}.jpg" alt="profile pic"/>
+                                        <img class="img-responsive img-rounded" src="img/{{$member->name}}.jpg" alt="profile pic"/>
                                     </div>
                                     <div class="text-left">
                                         <p>Call Sign: <strong>{{$member->callsign}}</strong></p>

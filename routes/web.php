@@ -31,20 +31,27 @@ Route::get('/kill', function () {
 Route::get('login', 'Auth\LoginController@redirectToProvider');
 Route::get('logging', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/dashboard', 'DashboardController@index') ->middleware('auth','menu')->name('dashboard');
+Route::group(['middleware' => ['auth','menu']], function () {
 
-//Profile Routes
-Route::get('/profile', 'ProfileController@index') ->middleware('auth','menu')->name('profile');
-Route::post('/profile', 'ProfileController@mobileUpdate');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('/dog', 'DogController@index') ->middleware('auth','menu')->name('dog');
-Route::get('/oto', 'OtoController@index') ->middleware('auth','menu')->name('oto');
+    //Profile Routes
+    Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::post('/profile', 'ProfileController@mobileUpdate')->name('updatemob.post');
 
-//Calendar Routes
-Route::get('/calendar', 'CalendarController@index') ->middleware('menu')->name('calendar');
-Route::post('/addEvent', 'CalendarController@addEvent');
-Route::post('/addMockEvent', 'CalendarController@addMockEvent');
-Route::post('/attendMockEvent', 'CalendarController@attendMockEvent');
-Route::post('/attendCalEvent', 'CalendarController@attendCalEvent');
-Route::get('/calEvents', 'CalFeedController@getCalEvents');
-Route::get('/calMocks', 'CalFeedController@getCalMocks');
+    Route::get('/dog', 'DogController@index')->name('dog');
+    Route::get('/oto', 'OtoController@index')->name('oto');
+    
+    //Calendar Routes
+    Route::get('/calendar', 'CalendarController@index')->name('calendar');
+    Route::post('/addEvent', 'CalendarController@addEvent');
+    Route::post('/addMockEvent', 'CalendarController@addMockEvent');
+    Route::post('/attendMockEvent', 'CalendarController@attendMockEvent');
+    Route::post('/attendCalEvent', 'CalendarController@attendCalEvent');
+    Route::get('/calEvents', 'CalFeedController@getCalEvents');
+    Route::get('/calMocks', 'CalFeedController@getCalMocks');
+
+});
+
+
+

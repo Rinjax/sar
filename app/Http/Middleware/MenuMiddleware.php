@@ -34,7 +34,7 @@ class MenuMiddleware
         $menu->add('Calendar',  'calendar') ->data('permission','standard')->prepend('<span class="fa fa-calendar"></span> ');
         $menu->add('Op Training Off',  'oto') ->data('permission','standard')->prepend('<span class="fa fa-paw"></span> ');
         $menu->add('Training Off',  'to') ->data('permission','standard')->prepend('<span class="fa fa-graduation-cap"></span> ');
-        $menu->add('Equipment Off',  'eo') ->data('permission','standard')->prepend('<span class="fa fa-binoculars"></span> ');
+        $menu->add('Equipment Off', 'eo') ->data('permission','standard')->prepend('<span class="fa fa-binoculars"></span> ');
   
         })
         

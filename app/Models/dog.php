@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class dog extends Model
 {
     protected $table = 'dogs';
-    protected $dates = ['DoB', 'start_program'];
+    protected $dates = ['DoB', 'start_program', 'op_ticket_exp'];
     public $timestamps = false;
     
     public function assessments(){

@@ -16,7 +16,7 @@ class CreateMemberRoleTable extends Migration
         Schema::create('member_role', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('member_id');
-            $table->integer('role_id');
+            $table->integer('roles_id');
             $table->boolean('PriRole');
             $table->timestamps();
         });
