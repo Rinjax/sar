@@ -3,12 +3,12 @@ var options = {
 header: {
             left: 'prev,next',
             center: 'title',
-            right: 'month,list3Month'
+            right: 'month'
         },
         
         eventSources: [
             {
-                url: 'http://portal.searchdogssussex.com/calEvents',
+                url: 'http://dev.searchdogs.com/calEvents',
                 color: 'orange',
                 textColor: 'black'
             },

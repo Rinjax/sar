@@ -1,0 +1,75 @@
+.main-area {
+  padding-top: 15px;
+}
+
+.space-bottom-1 {
+  padding-bottom: 2rem;
+}
+.space-bottom-2 {
+  padding-bottom: 3rem;
+}
+.space-bottom-3 {
+  padding-bottom: 4rem;
+}
+.space-bottom-4 {
+  padding-bottom: 5rem;
+}
+
+
+
+
+.menu-logo{
+  float: left;
+  padding-left: 10px;
+  padding-top: 2px;
+}
+
+
+.content-header {
+  text-align: center;
+  height: 50px;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 15px 15px;
+}
+
+
+@media screen and (min-width: 760px) {
+  .content-header {
+    text-align: center;
+    height: 50px;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 15px 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    border-left: #f8f8f8;
+  }
+
+  .profilepic{
+    height: 200px;
+    widows: 200px;
+  }
+}
+
+.profilepic {
+  height: 160px;
+  width: 160px;
+  padding-right: 10px;
+
+}
+
+.ticket {
+  font-size: 1.9rem;
+  font-weight: bold;
+}
+
+.assess-schd-tbl {
+  padding: 15px;
+  width: 25%;
+}
+
+.dogassessmenttable {
+  padding: 15px;
+}
+

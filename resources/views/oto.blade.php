@@ -86,6 +86,10 @@
                 </table>
             </div>
         </div>
+        <div class="row">
+            @include('partial.oto.admin')
+            {!! route('profile') !!}
+        </div>
     </div>
 
 @endsection
