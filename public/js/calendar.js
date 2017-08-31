@@ -13,7 +13,7 @@ header: {
                 textColor: 'black'
             },
             {
-                url: 'http://portal.searchdogssussex.com/calMocks',
+                url: 'http://dev.searchdogs.com/calMocks',
                 color: 'purple',
                 textColor: 'black'
             }
@@ -34,14 +34,14 @@ header: {
             if (event.title.includes("Team Training")){
                 element.find('.fc-content').append("<br/>" + event.location.name);
             }
-            
+            /*
             if (event.title.includes("Mock")){
                 element.find('.fc-content').append("<br/>" + event.assessor);
                 if (event.handler !== null){
                     element.find('.fc-title').append("<br/>" + event.handler);
                     element.css('background-color', 'green');
                 };
-            }
+            }*/
         },
         
         selectable: true,

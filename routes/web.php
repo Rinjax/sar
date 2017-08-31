@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth','menu']], function () {
 
     Route::get('/dog', 'DogController@index')->name('dog');
     Route::get('/oto', 'OtoController@index')->name('oto');
+    Route::post('/addassessment', 'OtoController@index')->name('addAssessment.post');
     
     //Calendar Routes
     Route::get('/calendar', 'CalendarController@index')->name('calendar');

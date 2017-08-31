@@ -1,8 +1,8 @@
 <!-- Team Training Modal -->
-<div class="modal fade" id="addAssessment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="AddAssessmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form method="POST" action="{!! route('addAssessment') !!}">{{ csrf_field() }}
+            <form method="POST" action="{!! route('addAssessment.post') !!}">{{ csrf_field() }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel"><b>Add Assessment</b></h4>

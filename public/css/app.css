@@ -10668,3 +10668,22 @@ select {
   }
 }
 
+.vertical-align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  vertical-align: middle;
+  width: 100%;
+  top: 45%;
+}
+
+.btn-loz {
+  border-radius: 25px;
+  background-color: #fff;
+  border: 5px solid #197517;
+  color: #197517;
+  min-height: 5rem;
+  min-width: 20rem;
+  line-height: 100%;
+}
+

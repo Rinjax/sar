@@ -28,7 +28,14 @@ class cal_mock extends Model
         }
         return false;
     }
-    
+
+
+    public function getAssessmentDetails()
+    {
+        return $this->hasOne('App\Models\dog_assessments');
+    }
+
+    /*
     public function getHandlerName()
     {
         return $this->hasOne('App\Models\member','id','handler')->select('name');
@@ -38,4 +45,6 @@ class cal_mock extends Model
     {
         return $this->hasOne('App\Models\member','id','assessor')->select('name');
     }
+
+    */
 }

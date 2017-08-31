@@ -30,8 +30,19 @@ class CalFeedController extends Controller
     }
     
     
-    public function getCalMocks (){
-        $cal_events = \App\Models\cal_mock::all();
+    public function getCalMocks (Request $request){
+        //$cal_events = \App\Models\cal_mock::all();
+
+        $cal_events = \App\Models\cal_mock::with('getAssessmentDetails')
+
+        ->where([
+            ['start','>', $request->start],
+            ['start','<', $request->end],
+        ])/*->orwhere([
+            ['end', '<', $request->end],
+            ['end', '>', $request->start],
+        ])*/->get();
+
         $user_id = Auth::id();
         foreach($cal_events as $cal_event){
             $time = new Carbon($cal_event->start);
@@ -44,7 +55,7 @@ class CalFeedController extends Controller
             if($cal_event->handler !== NULL){
                 $cal_event->handler = $cal_event->getHandlerName->name;
             }
-            $cal_event->assessor = $cal_event->getAssessorName->name;
+            //$cal_event->assessor = $cal_event->getAssessorName->name;
         }
         return $cal_events;
     }

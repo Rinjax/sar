@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\dog;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class OtoController extends Controller
 {
@@ -18,8 +19,13 @@ class OtoController extends Controller
             $dog->start_program = $st;
         }
 
+        if (Auth::user()->hasRole('Chairman')){
+            $locations = \App\Models\training_location::orderBy('name')->get();
+        }
+
         $data = array(
             'dogs' => $dogs,
+            'locations' => $locations,
         );
         
         return view('oto')->with($data);
