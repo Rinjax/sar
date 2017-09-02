@@ -34,14 +34,17 @@ header: {
             if (event.title.includes("Team Training")){
                 element.find('.fc-content').append("<br/>" + event.location.name);
             }
-            /*
+
             if (event.title.includes("Mock")){
-                element.find('.fc-content').append("<br/>" + event.assessor);
-                if (event.handler !== null){
-                    element.find('.fc-title').append("<br/>" + event.handler);
+                element.find('.fc-content').append("<br/>" + event.get_assessment_details.get_assessor.name);
+                if (typeof event.get_assessment_details.get_handler !== 'undefined'){
+                    element.find('.fc-title').append("<br/>" + event.get_assessment_details.get_handler.name);
                     element.css('background-color', 'green');
-                };
-            }*/
+                }
+                else{
+                    element.find('.fc-title').append("<br/>Available");
+                }
+            }
         },
         
         selectable: true,

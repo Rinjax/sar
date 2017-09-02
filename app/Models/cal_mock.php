@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class cal_mock extends Model
 {
     protected $table = 'cal_mock';
+    protected $hidden = [
+        'id', 'location_id', 'created_at', 'updated_at'
+    ];
+
     
     public function location()
     {
@@ -32,19 +36,7 @@ class cal_mock extends Model
 
     public function getAssessmentDetails()
     {
-        return $this->hasOne('App\Models\dog_assessments');
-    }
-
-    /*
-    public function getHandlerName()
-    {
-        return $this->hasOne('App\Models\member','id','handler')->select('name');
+        return $this->hasOne('App\Models\dog_assessments')->select(array('cal_mock_id','handler_id','dog_id','assessor_id'));
     }
     
-    public function getAssessorName()
-    {
-        return $this->hasOne('App\Models\member','id','assessor')->select('name');
-    }
-
-    */
 }

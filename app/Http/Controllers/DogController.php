@@ -32,6 +32,7 @@ class DogController extends Controller
         
         $assessments = \App\Models\dog_assessments::where('dog_id', ($dog->id))->get();       
         foreach ($assessments as $assessment){
+            //location no longer in this table, need to fix this
             $assessment->location = $assessment->locationName->name;
             $assessDate = new Carbon($assessment->date);
             $assessment->d = $assessDate->format('d-m-Y');

@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::post('/addEvent', 'CalendarController@addEvent')->name('addTraining');
     Route::post('/addMockEvent', 'CalendarController@addMockEvent')->name('addMock');
     Route::post('/attendMockEvent', 'CalendarController@attendMockEvent');
-    Route::post('/attendCalEvent', 'CalendarController@attendCalEvent');
+    Route::post('/attendCalEvent', 'CalendarController@attendCalEvent')->name('attendEvent');
     Route::get('/calEvents', 'CalFeedController@getCalEvents');
     Route::get('/calMocks', 'CalFeedController@getCalMocks');
 

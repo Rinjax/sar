@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class cal_training_attendance extends Model
 {
     protected $table = 'cal_training_attendance';
+
+   // protected $dates = ['created_at', 'updated_at'];
+    public $timestamps = true;
     
     /*public function ()
     {

@@ -102,7 +102,7 @@ class CalendarController extends Controller
         
         //return $request->all();
         $cal_id  = $request->input('cal_id');
-        $cal_event = \App\Models\cal_training::findOrFail($cal_id);
+        //$cal_event = \App\Models\cal_training_attendance::findOrFail($cal_id);
         $user_id = Auth::id();
         
         switch ($request['calButton']){
@@ -111,6 +111,7 @@ class CalendarController extends Controller
                 $cal_attend = new \App\Models\cal_training_attendance;
                 $cal_attend->cal_training_id = $cal_id;
                 $cal_attend->member_id = $user_id;
+                //$cal_attend->timestamps = true;
                 $cal_attend->save();
             break;
             
@@ -122,8 +123,9 @@ class CalendarController extends Controller
                 $cal_unattend->delete();
             break;
         }
-        
-        return redirect()->route('calendar');
+
+        return $cal_attend;
+        //return redirect()->route('calendar');
         
     }
 }

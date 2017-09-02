@@ -33,7 +33,7 @@ class CalFeedController extends Controller
     public function getCalMocks (Request $request){
         //$cal_events = \App\Models\cal_mock::all();
 
-        $cal_events = \App\Models\cal_mock::with('getAssessmentDetails')
+        $cal_events = \App\Models\cal_mock::with(['getAssessmentDetails.getHandler','getAssessmentDetails.getAssessor'])
 
         ->where([
             ['start','>', $request->start],
@@ -52,10 +52,11 @@ class CalFeedController extends Controller
             $cal_event->title = $titleTime . " Mock Assessment";
             $cal_event->attendance = $cal_event->attendance;
             $cal_event->attending = $cal_event->isAttending($user_id);
-            if($cal_event->handler !== NULL){
-                $cal_event->handler = $cal_event->getHandlerName->name;
+            if ($cal_event->getAssessmentDetails->handler_id === null){
+                $cal_event->getAssessmentDetails->getHandler->name = 'available';
+                
+                //problem is that no record is being returned for handler
             }
-            //$cal_event->assessor = $cal_event->getAssessorName->name;
         }
         return $cal_events;
     }

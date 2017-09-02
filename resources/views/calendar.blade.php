@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="http://portal.searchdogssussex.com/attendCalEvent">{{ csrf_field() }}
+                    <form method="POST" action="{!! route('attendEvent') !!}">{{ csrf_field() }}
                         <input hidden id="cal_id" name="cal_id" value=""></input>              
                         <button type="submit" id="calAttendButton" name="calButton" value="attend" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Attend</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban fa-fw"></i>Close</button>                      
