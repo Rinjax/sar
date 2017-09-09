@@ -19,14 +19,21 @@ class OtoController extends Controller
             $dog->start_program = $st;
         }
 
-        if (Auth::user()->hasRole('Chairman')){
-            $locations = \App\Models\training_location::orderBy('name')->get();
-        }
 
         $data = array(
             'dogs' => $dogs,
-            'locations' => $locations,
         );
+
+
+        /**
+         * if user has admin for this page
+         * 
+         */
+
+        if (Auth::user()->hasRole('Chairman')){
+            $locations = \App\Models\training_location::orderBy('name')->get();
+            $data['locations'] = $locations;
+        }
         
         return view('oto')->with($data);
     }

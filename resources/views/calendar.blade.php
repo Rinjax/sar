@@ -54,7 +54,8 @@
                 </div>
                 <div class="modal-footer">
                     <form method="POST" action="{!! route('attendEvent') !!}">{{ csrf_field() }}
-                        <input hidden id="cal_id" name="cal_id" value=""></input>              
+                        <input hidden id="cal_id" name="cal_id" value=""></input>
+                        <input hidden id="cal_type" name="cal_type" value=""></input>
                         <button type="submit" id="calAttendButton" name="calButton" value="attend" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Attend</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban fa-fw"></i>Close</button>                      
                     </form>
@@ -142,7 +143,9 @@
                 <div class="modal-footer">
                     <form method="POST" action="{!! route('attendMock') !!}">{{ csrf_field() }}
                         <input hidden id="mock_id" name="mock_id" value=""></input>
-                        @if ($bookButton)
+                        <input hidden id="cal_type" name="cal_type" value=""></input>
+
+                    @if ($bookButton)
                         <button type="submit" id="bookButton" name="calButton" value="book" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Book</button>
                         @endif
                         

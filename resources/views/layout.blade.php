@@ -35,6 +35,9 @@
             <div class="row content-header">
                 @yield('title')
             </div>
+
+            @include('common.flashMessages')
+
             <div id="content">
                 @yield('content')
             </div>

@@ -45,10 +45,10 @@ Route::group(['middleware' => ['auth','menu']], function () {
     
     //Calendar Routes
     Route::get('/calendar', 'CalendarController@index')->name('calendar');
-    Route::post('/addEvent', 'CalendarController@addEvent')->name('addTraining');
-    Route::post('/addMockEvent', 'CalendarController@addMockEvent')->name('addMock');
-    Route::post('/attendMockEvent', 'CalendarController@attendMockEvent')->name('attendMock');
-    Route::post('/attendCalEvent', 'CalendarController@attendCalEvent')->name('attendEvent');
+    Route::post('/addEvent', 'CalendarController@addEvent')->name('addTraining')->middleware('event.expired');
+    Route::post('/addMockEvent', 'CalendarController@addMockEvent')->name('addMock')->middleware('event.expired');
+    Route::post('/attendMockEvent', 'CalendarController@attendMockEvent')->name('attendMock')->middleware('event.expired');
+    Route::post('/attendCalEvent', 'CalendarController@attendCalEvent')->name('attendEvent')->middleware('event.expired');
     Route::get('/calEvents', 'CalFeedController@getCalEvents');
     Route::get('/calMocks', 'CalFeedController@getCalMocks');
     

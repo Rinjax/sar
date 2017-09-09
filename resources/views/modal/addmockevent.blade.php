@@ -31,7 +31,7 @@
                     </div>
 
 
-
+                    <input hidden id="cal_type" name="cal_type" value="new"></input>
                     <input hidden id="datetimepicker2" name="datetimepicker2" data-format="yyyy-MM-dd hh:mm" type="datetime"></input>
                     <textarea id="notes" name="notes" rows="4" cols="60" placeholder="Notes..."></textarea>
                 </div>

@@ -77,7 +77,6 @@ class CalendarController extends Controller
 
     public function attendMockEvent(Request $request)
     {
-
         //return $request->all();
         $cal_id = $request->input('mock_id');
         $user_id = Auth::id();
@@ -131,6 +130,7 @@ class CalendarController extends Controller
     public function attendCalEvent(Request $request)
     {
 
+        dd($request);
         $cal_id = $request->input('cal_id');
         $user_id = Auth::id();
 
@@ -157,17 +157,5 @@ class CalendarController extends Controller
 
     }
 
-
-    private function checkCalExpired($date)
-    {
-        $now = Carbon::now();
-        $start = Carbon::createFromDate($date);
-        if ($now->lt($start)) {
-            return true;
-        } else {
-            return false;
-        }
-
-
-    }
+    
 }

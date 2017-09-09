@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'menu' => \App\Http\Middleware\MenuMiddleware::class,
+        'event.expired' => \App\Http\Middleware\CalendarCheckEventExpired::class,
     ];
 }

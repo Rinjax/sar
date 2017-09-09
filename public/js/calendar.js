@@ -53,6 +53,7 @@ header: {
 
             if(event.type === "training"){
                 $('#cal_id').val(event.id);
+                $('[id=cal_type]').val('training');
                 $("#myModalLabel").text(event.title);
                 $("#locationName").text(event.location.name);
                 $("#locationGrid").text(event.location.gridRef);
@@ -83,6 +84,8 @@ header: {
             
             if(event.type === "mock"){
                 $('#mock_id').val(event.id);
+                $('[id=cal_type]').val('mock');
+                $('#cal_type').removeClass('hidden');
                 $("#mockModalLabel").text(event.title);
                 $("#mockLocationName").text(event.location.name);
                 $("#mockLocationGrid").text(event.location.gridRef);
