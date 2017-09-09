@@ -8,7 +8,7 @@ class cal_mock extends Model
 {
     protected $table = 'cal_mock';
     protected $hidden = [
-        'id', 'location_id', 'created_at', 'updated_at'
+         'created_at', 'updated_at'
     ];
 
     

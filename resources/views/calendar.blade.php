@@ -17,6 +17,8 @@
 
 
 @section('content')
+
+    @include('common.flashMessages')
     <!-- ModalEvent (training) -->
     <div class="modal fade" id="modalEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -68,7 +70,31 @@
     <div class="modal fade" id="modalMock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-           
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <section class="alerts">
+                        @if(session()->has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {!! session()->get('success')!!}
+                            </div>
+                        @endif
+
+                        @if(session()->has('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {!! session()->get('error') !!}
+                            </div>
+                        @endif
+
+                        @if(session()->has('calevent.expired'))
+                            <div class="alert alert-danger" role="alert">
+                                {!! session()->get('calevent.expired') !!}
+                            </div>
+                        @endif
+                    </section>
+                </div>
+            </div>
+
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title" id="mockModalLabel"></h4>
@@ -114,7 +140,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="http://portal.searchdogssussex.com/attendMockEvent">{{ csrf_field() }}
+                    <form method="POST" action="{!! route('attendMock') !!}">{{ csrf_field() }}
                         <input hidden id="mock_id" name="mock_id" value=""></input>
                         @if ($bookButton)
                         <button type="submit" id="bookButton" name="calButton" value="book" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Book</button>

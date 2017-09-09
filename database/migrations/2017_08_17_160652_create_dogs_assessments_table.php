@@ -15,11 +15,13 @@ class CreateDogsAssessmentsTable extends Migration
     {
         Schema::create('dog_assessments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('dog_id');
+            $table->integer('dog_id')->nullable()->default(null);
+            $table->integer('handler_id')->nullable()->default(null);
+            $table->integer('assessor_id');
             $table->integer('cal_mock_id');
-            $table->string('type');
-            $table->boolean('passed');
-            $table->text('comment');
+            $table->string('type')->nullable()->default(null);
+            $table->boolean('passed')->nullable()->default(null);
+            $table->text('comment')->nullable()->default(null);
             $table->timestamps();
         });
     }

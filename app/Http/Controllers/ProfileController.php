@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Models\member;
+use App\Models\member;
+use App\Models\training_location;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
     public function index (){
+
         $user = \App\Models\member::with(array('roles' => function($query){
             $query->orderBy('role');
-         }))->where('id', Auth::id()) -> first();
+         }))->where('id', Auth::id()) ->first();
         
         $firstaid = new Carbon($user->getTrainingCompleted->firstaid);
         $waterSafetyDate = new Carbon($user->getTrainingCompleted->watersafety);
@@ -27,6 +29,11 @@ class ProfileController extends Controller
         $firstaid = $firstaid->format('d/m/y');
         $waterSafetyDate = $waterSafetyDate->format('d/m/y');
         $fitness = $fitness->format('d/m/y');
+
+        $locations =  \App\Models\training_location::all();
+
+        //assessor array hack to provide one assessor to the admin view
+        $assessors = collect([0 => $user->name]);
         
         $data = array(
             'member' => $user,
@@ -37,12 +44,24 @@ class ProfileController extends Controller
             'firstaid' => $firstaid,
             'water' => $waterSafetyDate,
             'fitness' => $fitness,
-  
+            'locations' => $locations,
+            'assessors' => $assessors,
          );
-       
+
+
+/*
+        if(Auth::user()->hasRole('Assessor')){
+            $locations =  \App\Models\training_location::all();
+            array_push($data, $locations);
+        }
+       */
+
         return view ('profile')->with($data);
     }
-    
+
+
+
+
     
     public function mobileUpdate(request $request) {
         

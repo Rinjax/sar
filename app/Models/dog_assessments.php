@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class dog_assessments extends Model
 {
     protected $table = 'dog_assessments';
-    protected $dates = ['date'];
-    protected $dateFormat = 'd-m-Y';
-    public $timestamps = false;
 
     protected $hidden = [
         'cal_mock_id', 'handler_id', 'dog_id', 'assessor_id'

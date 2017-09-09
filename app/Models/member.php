@@ -51,10 +51,17 @@ class member extends Authenticatable
     {
         return $this->roles()->where('PriRole','1')->first();
     }
-    
+
     public function getTrainingCompleted()
     {
-        
-        return $this->hasOne('App\Models\members_training_completed');   
+
+        return $this->hasOne('App\Models\members_training_completed');
     }
+
+
+    public function dog()
+    {
+        return $this->hasOne('App\Model\dog');
+    }
+    
 }

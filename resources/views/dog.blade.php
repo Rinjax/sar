@@ -13,19 +13,18 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-2">
                                 <div class="space-bottom-1">
-                                    <div class="pull-left profilepic">
-                                        <img class="img-responsive img-rounded" src="/img/{{$name}}.jpg" alt="dog pic"/>
-                                    </div>
-                                    <div class="text-left">
-                                        <p>Breed: <strong>{{$breed}}</strong></p>
-                                        <p>Level: <strong>{{$level}}</strong></p>
-                                        <p>Started: <strong>{{$start}}</strong></p>
-                                    </div>
+                                    <img class="img-responsive img-rounded" src="/img/{{$name}}.jpg" alt="dog pic"/>
                                 </div>
-                                
-                                <br>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="text-left">
+                                    <p>Breed: <strong>{{$breed}}</strong></p>
+                                    <p>Level: <strong>{{$level}}</strong></p>
+                                    <p>Started: <strong>{{$start}}</strong></p>
+                                </div>
                             </div>
                             
                             @if ($level > 1)
@@ -42,28 +41,30 @@
                                 </div>
                             </div>
                             @else
-                            <div class="assess-schd-tbl">
-                                <h4>Assessment Schedule:</h4>
-                                General time line guide
-                                <table class="table table-responsive table-striped table-bordered">
-                                    <tr>
-                                        <th class="text-center">Stage 1</th>
-                                        <th class="text-center">Stage 2</th> 
-                                        <th class="text-center">Stage 3</th>
-                                        <th class="text-center">Stage 4</th>
-                                        <th class="text-center">Stage 5</th>
-                                        <th class="text-center">Stage 6</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">{{ $stage1 }}</td>
-                                        <td class="text-center">{{ $stage2 }}</td>
-                                        <td class="text-center">{{ $stage3 }}</td>
-                                        <td class="text-center">{{ $stage4 }}</td>
-                                        <td class="text-center">{{ $stage5 }}</td>
-                                        <td class="text-center">{{ $stage6 }}</td>
-                                    </tr>
-                                </table>
-                            </div>
+                                <div class="col-md-2">
+                                    <div class="tabel table-responsive">
+                                        <h4>Assessment Schedule:</h4>
+                                        General time line guide
+                                        <table class="table table-responsive table-striped table-bordered">
+                                            <tr>
+                                                <th class="text-center">Stage 1</th>
+                                                <th class="text-center">Stage 2</th>
+                                                <th class="text-center">Stage 3</th>
+                                                <th class="text-center">Stage 4</th>
+                                                <th class="text-center">Stage 5</th>
+                                                <th class="text-center">Stage 6</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">{{ $stage1 }}</td>
+                                                <td class="text-center">{{ $stage2 }}</td>
+                                                <td class="text-center">{{ $stage3 }}</td>
+                                                <td class="text-center">{{ $stage4 }}</td>
+                                                <td class="text-center">{{ $stage5 }}</td>
+                                                <td class="text-center">{{ $stage6 }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             @endif
                             
                             

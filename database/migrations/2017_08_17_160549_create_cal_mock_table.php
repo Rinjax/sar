@@ -15,12 +15,10 @@ class CreateCalMockTable extends Migration
     {
         Schema::create('cal_mock', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('assessor_id');
-            $table->integer('handler_id');
             $table->integer('location_id');
             $table->dateTime('start');
             $table->timestamps();
-            $table->string('note');
+            $table->string('note')->nullable()->default(null);
         });
     }
 

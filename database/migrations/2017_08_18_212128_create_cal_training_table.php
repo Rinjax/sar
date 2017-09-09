@@ -18,7 +18,7 @@ class CreateCalTrainingTable extends Migration
             $table->integer('location_id');
             $table->dateTime('start');
             $table->timestamps();
-            $table->string('note');
+            $table->string('note')->nullable()->default(null);
         });    
     }
 

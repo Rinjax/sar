@@ -36,14 +36,14 @@ header: {
             }
 
             if (event.title.includes("Mock")){
-                element.find('.fc-content').append("<br/>" + event.get_assessment_details.get_assessor.name);
-                if (typeof event.get_assessment_details.get_handler !== 'undefined'){
+                element.find('.fc-content').append("<br/>" + event.location.name);
+                /*if (typeof event.get_assessment_details.get_handler !== 'undefined'){
                     element.find('.fc-title').append("<br/>" + event.get_assessment_details.get_handler.name);
                     element.css('background-color', 'green');
                 }
                 else{
                     element.find('.fc-title').append("<br/>Available");
-                }
+                }*/
             }
         },
         
@@ -57,14 +57,25 @@ header: {
                 $("#locationName").text(event.location.name);
                 $("#locationGrid").text(event.location.gridRef);
                 $("#locationPost").text(event.location.postcode);
-                $("#notes").text(event.notes);
+                $("#notes").text(event.note);
                 $.each(event.attendance, function(index, element){
                     $('#attendanceTable tbody').append('<tr><td>' + element.name + '</td></tr>');
                 });
-                if(event.attending === true){
-                    $('#calAttendButton').text('UnAttend');
-                    $('#calAttendButton').val('unattend');
+
+                var eventDate = new Date(event.start);
+                var todayDate = new Date();
+
+                if (todayDate.setHours(0,0,0,0) > eventDate.setHours(0,0,0,0)){
+                    $('#calAttendButton').addClass('hidden');
                 }
+                else{
+                    if(event.attending === true){
+                        $('#calAttendButton').text('UnAttend');
+                        $('#calAttendButton').val('unattend');
+                    }
+                    $('#calAttendButton').removeClass('hidden');
+                }
+
                 $('#modalEvent').modal('show');
             }
             
@@ -80,22 +91,29 @@ header: {
                 $.each(event.attendance, function(index, element){
                     $('#mockAttendanceTable tbody').append('<tr><td>' + element.name + '</td></tr>');
                 });
-                if(event.handler !== null){
+                if(event.get_assessment_details.get_handler !== null){
                     $('#bookButton').addClass('hidden');
-                    var handlerModal = event.handler;
+                    var handlerModal = event.get_assessment_details.get_handler.name;
                 }
                 else{
                     var handlerModal = "";
                 }
-                $('#assessorTable tbody').append('<tr><td>' + event.assessor + '</td><td>' + handlerModal + '</td></tr>');
-                if(event.handler !== null){
-                    $('#bookButton').addClass('hidden');
+                $('#assessorTable tbody').append('<tr><td>' + event.get_assessment_details.get_assessor.name + '</td><td>' + handlerModal + '</td></tr>');
+
+                var eventDate = new Date(event.start);
+                var todayDate = new Date();
+
+                if (todayDate.setHours(0,0,0,0) > eventDate.setHours(0,0,0,0)){
+                    $('#mockAttendButton').addClass('hidden');
                 }
-                
-                if(event.attending === true){
-                    $('#mockAttendButton').text('UnAttend');
-                    $('#mockAttendButton').val('unattend');
+                else{
+                    if(event.attending === true){
+                        $('#mockAttendButton').text('UnAttend');
+                        $('#mockAttendButton').val('unattend');
+                    }
+                    $('#mockAttendButton').removeClass('hidden');
                 }
+
                 $('#modalMock').modal('show');
             }
         }
@@ -150,14 +168,22 @@ $(function () {
     });
 });
 
+
+
 // function on modal close to clear out the data from the last displayed
 $(document).on('hide.bs.modal','#modalEvent', function () {
-  $("#attendanceTable tbody").empty();
+    $("#attendanceTable tbody").empty();
+    //$("#calAttendButton").removeClass('hidden');
  
 });
 
 $(document).on('hide.bs.modal','#modalMock', function () {
-  $("#mockAttendanceTable tbody").empty();
-  $("#assessorTable tbody").empty();
+    $("#mockAttendanceTable tbody").empty();
+    $("#assessorTable tbody").empty();
+    //$("#calAttendButton").removeClass('hidden');
+    if($('#bookButton').length){
+        $('#bookButton').removeClass('hidden')
+    }
+
   
 });

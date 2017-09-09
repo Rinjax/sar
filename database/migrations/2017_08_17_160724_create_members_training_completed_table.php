@@ -16,10 +16,10 @@ class CreateMembersTrainingCompletedTable extends Migration
         Schema::create('members_training_completed', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('member_id');
-            $table->date('firstaid');
-            $table->date('watersafety');
-            $table->date('fitness');
-            $table->date('silvernavs');
+            $table->date('firstaid')->nullable()->default(null);
+            $table->date('watersafety')->nullable()->default(null);
+            $table->date('fitness')->nullable()->default(null);
+            $table->date('silvernavs')->nullable()->default(null);
             $table->timestamps();
         });
     }

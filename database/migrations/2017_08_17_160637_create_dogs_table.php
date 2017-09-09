@@ -20,7 +20,7 @@ class CreateDogsTable extends Migration
             $table->string('breed');
             $table->date('start_program');
             $table->integer('level');
-            $table->date('op_ticket_exp')->nullable();
+            $table->date('op_ticket_exp')->nullable()->default(null);
             $table->timestamps();
         });
     }

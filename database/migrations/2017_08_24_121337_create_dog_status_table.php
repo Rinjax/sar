@@ -17,7 +17,7 @@ class CreateDogsTable extends Migration
             $table->increments('id');
             $table->integer('dog_id');
             $table->string('status');
-            $table->text('note');
+            $table->text('note')->nullable()->default(null);
             $table->timestamps();
         });
     }
