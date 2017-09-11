@@ -24,15 +24,17 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-12 col-md-8">
+                            <div class="col-sm-12 col-md-2">
                                 <div class="space-bottom-2" style="height: 20rem;">
                                     <div class="pull-left profilepic">
                                         <img class="img-responsive img-rounded" src="img/{{$member->name}}.jpg" alt="profile pic"/>
                                     </div>
-                                    <div class="text-left">
-                                        <p>Call Sign: <strong>{{$member->callsign}}</strong></p>
-                                        <p>Contact: <a href="#" data-toggle="modal" data-target="#updateMob"><strong>{{$member->contact}}</strong></a></p>
-                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="text-left">
+                                    <p>Call Sign: <strong>{{$member->callsign}}</strong></p>
+                                    <p>Contact: <a href="#" data-toggle="modal" data-target="#updateMob"><strong>{{$member->contact}}</strong></a></p>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-1">
@@ -89,11 +91,13 @@
             </div>
         </div>
 
+        @if(Auth::user()->hasRole('Assessor'))
+            <div class="row">
+                @include('partial.profile.admin')
+                {!! route('profile') !!}
+            </div>
+        @endif
 
-        <div class="row">
-            @include('partial.profile.admin')
-            {!! route('profile') !!}
-        </div>
 
     </div>
 @endsection

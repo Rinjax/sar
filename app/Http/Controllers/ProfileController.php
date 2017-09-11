@@ -15,7 +15,8 @@ class ProfileController extends Controller
         $user = \App\Models\member::with(array('roles' => function($query){
             $query->orderBy('role');
          }))->where('id', Auth::id()) ->first();
-        
+
+        //need to sort out if user has no date
         $firstaid = new Carbon($user->getTrainingCompleted->firstaid);
         $waterSafetyDate = new Carbon($user->getTrainingCompleted->watersafety);
         $fitness = new Carbon($user->getTrainingCompleted->fitness);
@@ -30,10 +31,6 @@ class ProfileController extends Controller
         $waterSafetyDate = $waterSafetyDate->format('d/m/y');
         $fitness = $fitness->format('d/m/y');
 
-        $locations =  \App\Models\training_location::all();
-
-        //assessor array hack to provide one assessor to the admin view
-        $assessors = collect([0 => $user->name]);
         
         $data = array(
             'member' => $user,
@@ -44,19 +41,23 @@ class ProfileController extends Controller
             'firstaid' => $firstaid,
             'water' => $waterSafetyDate,
             'fitness' => $fitness,
-            'locations' => $locations,
-            'assessors' => $assessors,
          );
 
 
-/*
-        if(Auth::user()->hasRole('Assessor')){
-            $locations =  \App\Models\training_location::all();
-            array_push($data, $locations);
-        }
-       */
 
-        return view ('profile')->with($data);
+        if(Auth::user()->hasRole('Assessor')){
+            $locations =  \App\Models\training_location::all()->toArray();
+            array_push($data, $locations);
+
+
+            //assessor array hack to provide one assessor to the admin view
+            $assessors = collect(['assessors' => $user->name]);
+            array_push($data, $assessors);
+        }
+
+
+        //return view ('profile')->with($data);
+        return $data;
     }
 
 

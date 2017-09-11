@@ -1,0 +1,44 @@
+body, html {
+    height: 100%;
+}
+
+.flex-container {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-box-flex-direction: row;
+    -moz-box-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    height:100%;
+
+    /*
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    */
+}
+
+.flex-item {
+    margin: auto;
+
+}
+
+.login-background {
+    background-image: url('/img/welcome.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.login-banner {
+    width: 100%;
+    background-color: #fff;
+    border-top: 1rem solid black;
+    border-bottom: 1rem solid black;
+    padding: 2rem 0 2rem 0;
+    opacity: 0.91;
+}
