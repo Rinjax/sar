@@ -33,7 +33,7 @@ Route::get('logging', 'Auth\LoginController@handleProviderCallback');
 
 Route::group(['middleware' => ['auth','menu']], function () {
 
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/dashboard', 'ProfileController@index')->name('dashboard');
 
     //Profile Routes
     Route::get('/profile', 'ProfileController@index')->name('profile');

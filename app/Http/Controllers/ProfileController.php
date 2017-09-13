@@ -46,18 +46,17 @@ class ProfileController extends Controller
 
 
         if(Auth::user()->hasRole('Assessor')){
-            $locations =  \App\Models\training_location::all()->toArray();
-            array_push($data, $locations);
+            $locations =  \App\Models\training_location::all();
+            $data['locations']=$locations;
 
 
             //assessor array hack to provide one assessor to the admin view
-            $assessors = collect(['assessors' => $user->name]);
-            array_push($data, $assessors);
+            $data['assessors'] = collect([$user->name]);
         }
 
 
-        //return view ('profile')->with($data);
-        return $data;
+        return view ('profile')->with($data);
+        //return $data;
     }
 
 
