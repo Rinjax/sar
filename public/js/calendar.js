@@ -28,6 +28,8 @@ header: {
                 buttonText: 'Agenda'
             }
         },
+
+        themeSystem : 'bootstrap3',
         
         eventRender: function(event, element) {
             

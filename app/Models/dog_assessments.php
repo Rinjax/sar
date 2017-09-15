@@ -15,12 +15,7 @@ class dog_assessments extends Model
     public function location(){
        return $this->hasOne('\App\Models\training_location');
     }
-   
-    /*
-    public function locationName(){
-       return $this->hasOne('App\Models\training_location','id','location_id');
-    }
-    */
+
 
     public function getHandler ()
     {
@@ -36,5 +31,12 @@ class dog_assessments extends Model
     {
         return $this->hasOne('App\Models\dog','id','dog_id')->select(array('id','name'));
     }
+
+    public function getDate()
+    {
+        return $this->hasOne('App\Models\cal_mock', 'id', 'cal_mock_id');
+    }
+
+
         
 }

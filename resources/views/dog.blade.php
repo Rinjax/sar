@@ -41,30 +41,7 @@
                                 </div>
                             </div>
                             @else
-                                <div class="col-md-2">
-                                    <div class="tabel table-responsive">
-                                        <h4>Assessment Schedule:</h4>
-                                        General time line guide
-                                        <table class="table table-responsive table-striped table-bordered">
-                                            <tr>
-                                                <th class="text-center">Stage 1</th>
-                                                <th class="text-center">Stage 2</th>
-                                                <th class="text-center">Stage 3</th>
-                                                <th class="text-center">Stage 4</th>
-                                                <th class="text-center">Stage 5</th>
-                                                <th class="text-center">Stage 6</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">{{ $stage1 }}</td>
-                                                <td class="text-center">{{ $stage2 }}</td>
-                                                <td class="text-center">{{ $stage3 }}</td>
-                                                <td class="text-center">{{ $stage4 }}</td>
-                                                <td class="text-center">{{ $stage5 }}</td>
-                                                <td class="text-center">{{ $stage6 }}</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
+
                             @endif
                             
                             
@@ -74,9 +51,38 @@
             </div>
         </div>
 
-        <div class="row">
-            
-        </div>
+
+
+        @if ($level == 1)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tabel table-responsive">
+                        <h4>Assessment Schedule:</h4>
+                        General time line guide
+                        <table class="table table-responsive table-striped table-bordered">
+                            <tr>
+                                <th class="text-center">Stage 1</th>
+                                <th class="text-center">Stage 2</th>
+                                <th class="text-center">Stage 3</th>
+                                <th class="text-center">Stage 4</th>
+                                <th class="text-center">Stage 5</th>
+                                <th class="text-center">Stage 6</th>
+                            </tr>
+                            <tr>
+                                <td class="text-center">{{ $stage1 }}</td>
+                                <td class="text-center">{{ $stage2 }}</td>
+                                <td class="text-center">{{ $stage3 }}</td>
+                                <td class="text-center">{{ $stage4 }}</td>
+                                <td class="text-center">{{ $stage5 }}</td>
+                                <td class="text-center">{{ $stage6 }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+
         <div class="row">
             <div class="dogassessmenttable">
                 <h3>Assessment History:</h3>

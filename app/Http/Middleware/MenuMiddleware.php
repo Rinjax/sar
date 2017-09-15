@@ -30,7 +30,7 @@ class MenuMiddleware
   
         $menu->add('Home')->data('permission','disabled')->prepend('<span class=" fa fa-cog"></span> ');
         $menu->add('My Profile', 'profile')->data('permission','standard') ->prepend('<span class="glyphicon glyphicon-user"></span> ');//->link->secure();
-        $menu->add('My Dog', 'dog')->data('permission','Handler')->prepend('<span class="fa fa-paw"></span> ');
+        $menu->add('My Dog', 'dog')->data('permission','Dog Handler')->prepend('<span class="fa fa-paw"></span> ');
         $menu->add('Calendar',  'calendar') ->data('permission','standard')->prepend('<span class="fa fa-calendar"></span> ');
         $menu->add('Op Training Off',  'oto') ->data('permission','standard')->prepend('<span class="fa fa-paw"></span> ');
         $menu->add('Training Off',  'to') ->data('permission','disabled')->prepend('<span class="fa fa-graduation-cap"></span> ');

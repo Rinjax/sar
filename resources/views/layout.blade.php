@@ -18,20 +18,15 @@
                         </div>
                         <div class="collapse navbar-collapse">
                             {!! $MyNavBar->asUl( array('class' => 'nav navbar-nav text-center')) !!}
-                        <p class="navbar-text">
+                        <p class="navbar-text hidden-xs">
                             <strong>Made by</strong> Steve Temple
                         </p>
                     </div>
                 </div>
             </nav>
         </div>
-        
-        <!-- ///////////////////
-             Main Content Area 
-            ///////////////////
-        -->
           
-        <div class="col-sm-9 col-lg-10">
+        <div class="col-sm-9 col-lg-10 main-pane">
             <div class="row content-header">
                 @yield('title')
             </div>
