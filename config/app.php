@@ -231,7 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         //Project added
-	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+	    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Menu' => Lavary\Menu\Facade::class,
 
     ],
