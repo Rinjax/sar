@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p class="text-center">
-                        <button href="{!! Route('login') !!}" class="btn btn-loz">Login</button>
+                        <a href="{!! Route('login') !!}" class="btn btn-loz">Login</a>
                     </p>
 
                 </div>

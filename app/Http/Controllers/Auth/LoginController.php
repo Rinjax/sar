@@ -54,26 +54,21 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
         $gid = $user->getId();
-	$email = $user->getEmail();
-	$avatar = $user->getAvatar();
+	    $email = $user->getEmail();
+	    $avatar = $user->getAvatar();
         
         
         $dbuser = \App\Models\member::where('email', $email)->first();
         if ($dbuser === null){
             return $email;
-            
-            //return redirect()->route('dashboard');
         }
         else {
             Auth::login($dbuser);
             $dbuser->gavatar = $avatar;
             $dbuser->save();
-            return redirect()->route('dashboard');
+            return redirect()->route('profile');
         }
-            
         
-        
-
     }
 
 }

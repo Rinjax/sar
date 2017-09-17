@@ -42,3 +42,12 @@ body, html {
     padding: 2rem 0 2rem 0;
     opacity: 0.91;
 }
+
+.btn-loz {
+    /*
+    //display: flex;
+    //vertical-align: middle;
+    //align-items: center;
+    */
+    line-height: 3rem !important;
+}
