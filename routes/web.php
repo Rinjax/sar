@@ -28,8 +28,8 @@ Route::get('/kill', function () {
 });
 
 
-Route::get('login', 'Auth\LoginController@redirectToProvider');
-Route::get('logging', 'Auth\LoginController@handleProviderCallback')->name('logging.in');
+Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
+Route::get('logging', 'Auth\LoginController@handleProviderCallback');
 
 Route::group(['middleware' => ['auth','menu']], function () {
 
