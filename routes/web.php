@@ -19,16 +19,17 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('login');
+})->name('login');
 
 Route::get('/kill', function () {
     Session::flush();
-    return view('welcome');
+    Auth::logout();
+    return view('login');
 });
 
 
-Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
+Route::get('logon', 'Auth\LoginController@redirectToProvider')->name('logon');
 Route::get('logging', 'Auth\LoginController@handleProviderCallback');
 
 Route::group(['middleware' => ['auth','menu']], function () {
