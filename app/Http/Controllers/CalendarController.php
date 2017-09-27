@@ -54,7 +54,7 @@ class CalendarController extends Controller
     {
         $date = $request->input('datetimepicker2');
         $location = $request->input('location');
-        $assessor = $request->input('assessor');
+        $assessor_1 = $request->input('assessor_1');
         $notes = $request->input('notes');
 
         $locationid = \App\Models\training_location::where('name', $location)->first()->pluck('id');
@@ -66,7 +66,7 @@ class CalendarController extends Controller
 
         $assessment = new \App\Models\dog_assessments();
         $assessment->cal_mock_id = $mock->id;
-        $assessment->assessor_id = Auth::id();
+        $assessment->assessor_1_id = $assessor_1;
         $assessment->save();
 
         Session::flash('success', 'event created');

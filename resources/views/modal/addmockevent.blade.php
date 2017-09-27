@@ -22,17 +22,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="location">Assessor:</label>
-                            <select id="assessor" name="assessor" class="form-group">
+                            <select id="assessor_1" name="assessor_1" class="form-group">
                                 @foreach($assessors as $assessor)
-                                    <option value="{{$assessor}}">{{ $assessor }} </option>
+                                    <option value="{{$assessor->id}}">{{ $assessor->name }} </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
 
-                    <input hidden id="cal_type" name="cal_type" value="new"></input>
-                    <input hidden id="datetimepicker2" name="datetimepicker2" data-format="yyyy-MM-dd hh:mm" type="datetime"></input>
+                    <input hidden id="cal_type" name="cal_type" value="new">
+                    <input hidden id="datetimepicker2" name="datetimepicker2" data-format="yyyy-MM-dd hh:mm" type="datetime">
                     <textarea id="notes" name="notes" rows="4" cols="60" placeholder="Notes..."></textarea>
                 </div>
                 <div class="modal-footer">

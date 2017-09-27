@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\roles;
 use Illuminate\Http\Request;
 use App\Models\member;
 use App\Models\training_location;
@@ -34,7 +35,11 @@ class ProfileController extends Controller
 
 
             //assessor array hack to provide one assessor to the admin view
-            $data['assessors'] = collect([$user->name]);
+            //$data['assessors'] = collect([$user->name]);
+
+            $assessors = roles::where('role', 'Qualified Handler')->first()->users()->get();
+
+            $data['assessors'] = $assessors;
         }
 
 

@@ -28,7 +28,7 @@ class MenuMiddleware
         
         \Menu::make('MyNavBar', function($menu){
   
-        $menu->add('Home')->data('permission','disabled')->prepend('<span class=" fa fa-cog"></span> ');
+        $menu->add('Admin', 'admin')->data('permission','admin')->prepend('<span class=" fa fa-cog"></span> ');
         $menu->add('My Profile', 'profile')->data('permission','standard') ->prepend('<span class="glyphicon glyphicon-user"></span> ');//->link->secure();
         $menu->add('My Dog', 'dog')->data('permission','Dog Handler')->prepend('<span class="fa fa-paw"></span> ');
         $menu->add('Calendar',  'calendar') ->data('permission','standard')->prepend('<span class="fa fa-calendar"></span> ');

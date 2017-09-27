@@ -13,17 +13,17 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="name">Full Name:</label>
-                                <input id="name" name="name" class="form-control"  type="text" placeholder="Jon Smith"></input>
+                                <input id="name" name="name" class="form-control"  type="text" placeholder="Jon Smith">
                             </div>
 
                             <div class="form-group">
                                 <label for="contact">Contact Mobile:</label>
-                                <input id="contact" name="contact" class="form-control" type="tel" placeholder="07123456789"></input>
+                                <input id="contact" name="contact" class="form-control" type="tel" placeholder="07123456789">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input id="email" name="email" class="form-control" type="email" placeholder="jon.smith@searchdogssussex.com"></input>
+                                <input id="email" name="email" class="form-control" type="email" placeholder="jon.smith@searchdogssussex.com">
                             </div>
 
                             <div class="form-group">
@@ -35,42 +35,32 @@
                                 </select>
                             </div>
 
-                            <div class="row">
-                                <div class="col-xs-12 col-md-5">
-                                    <div class="role-select-box">
-                                        <select multiple="multiple" id='lstBox1' class="form-control">
-                                            @foreach ($roles as $role)
-                                                <option value="{{$role->id}}">{{$role->role}}</option>
-                                            @endforeach
-                                        </select>
+                            <div class="row space-bottom-3">
+                                <hr>
+                                <h4 class="text-center">Assign Roles</h4>
+                                @foreach ($roles as $role)
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="form-check" style="padding-top: 1rem; padding-left: 30%; font-size: 1.3rem;">
+                                            <label class="form-check-label">
+                                                <input id="{{$role->id}}" name="rolesarray[]" type="checkbox" class="form-check-input" value="{{$role->id}}">
+                                                <small>{{$role->role}}</small>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-xs-12 col-md-2">
-                                    <div class="role-select-arrows text-center">
-                                        <button type="button" id="btnAllRight" value="" class="btn btn-default"><span class="fa fa-angle-double-down" style="font-size: 2.2rem;"></span></button>
-                                        <input type="button" id="btnRight" value=">" class="btn btn-default" />
-                                        <input type="button" id="btnLeft" value="<" class="btn btn-default" />
-                                        <input type="button" id="btnAllLeft" value="<<" class="btn btn-default" />
-                                    </div>
-                                </div>
-
-
-                                <div class="col-xs12 col-md-5">
-                                    <div class="role-select-box">
-                                        <select multiple="multiple" id='lstBox2' class="form-control">
-
-                                        </select>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
 
 
-                            <div class="form-check" style="padding-top: 1rem;">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input">
-                                    Include Dog
-                                </label>
+
+                            <div class="row space-bottom-2">
+                                <div class="col-xs-12">
+                                    <div class="form-check" style="padding-top: 1rem;">
+                                        <label class="form-check-label">
+                                            <input id="dogCheckbox" type="checkbox" class="form-check-input" name="includeDog" onclick="incDog">
+                                            Include Dog
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
 
                             @include('modal.addDog')
@@ -87,3 +77,8 @@
         </div>
     </div>
 </div>
+
+@section('scripts')
+
+
+@stop
