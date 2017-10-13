@@ -99,11 +99,14 @@ header: {
                 if(event.get_assessment_details.get_handler !== null){
                     $('#bookButton').addClass('hidden');
                     var handlerModal = event.get_assessment_details.get_handler.name;
+                    var dogModal = event.get_assessment_details.get_dog.name;
                 }
                 else{
                     var handlerModal = "";
+                    var dogModal = "";
                 }
-                $('#assessorTable tbody').append('<tr><td>' + event.get_assessment_details.get_assessor.name + '</td><td>' + handlerModal + '</td></tr>');
+                $('#assessorTable tbody').append('<tr><td>' + event.get_assessment_details.get_assessor1.name + '</td><td>' + handlerModal + '</td></tr>');
+                $('#assessorTable tbody').append('<tr><td>' + event.get_assessment_details.get_assessor2.name + '</td><td>' + dogModal + '</td></tr>');
 
                 var eventDate = new Date(event.start);
                 var todayDate = new Date();

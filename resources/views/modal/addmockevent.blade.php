@@ -21,9 +21,20 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="location">Assessor:</label>
-                            <select id="assessor_1" name="assessor_1" class="form-group">
-                                @foreach($assessors as $assessor)
+                            <label for="location">Assessor 1:</label>
+                            <select id="assessor1" name="assessor1" class="form-group">
+                                @foreach($assessors1 as $assessor)
+                                    <option value="{{$assessor->id}}">{{ $assessor->name }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="location">Assessor 2:</label>
+                            <select id="assessor2" name="assessor2" class="form-group">
+                                @foreach($assessors2 as $assessor)
                                     <option value="{{$assessor->id}}">{{ $assessor->name }} </option>
                                 @endforeach
                             </select>

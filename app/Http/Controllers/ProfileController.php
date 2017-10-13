@@ -7,39 +7,38 @@ use Illuminate\Http\Request;
 use App\Models\member;
 use App\Models\training_location;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\Processors\SffwDates;
 
 class ProfileController extends Controller
 {
     public function index (){
 
-        $user = \App\Models\member::with(array('roles' => function($query){
-            $query->orderBy('role');
-         }))->where('id', Auth::id()) ->first();
-        
+        $user = member::with(array(
+            'roles' => function($query){$query->orderBy('role');},
+            'getTrainingCompleted',
+        ))->where('id', Auth::id()) ->first();
+
+
+        SffwDates::getSffwDates($user);
+        //$data = array_merge($data, $sffw);
+
         $data = array(
             'member' => $user,
-         );
-
-
-        $sffw = \App\Tasks\SffwDates::getSffwDates($user);
-        $data = array_merge($data, $sffw);
-
-
+        );
+        
 
 
         if(Auth::user()->hasRole('Assessor')){
-            $locations =  \App\Models\training_location::all();
-            $data['locations']=$locations;
+            $locations = training_location::all();
+            $data['locations']= $locations;
 
 
             //assessor array hack to provide one assessor to the admin view
-            //$data['assessors'] = collect([$user->name]);
+            $data['assessors1'] = collect([$user]);
 
-            $assessors = roles::where('role', 'Qualified Handler')->first()->users()->get();
-
-            $data['assessors'] = $assessors;
+            $assessors2 = roles::where('role', 'Qualified Handler')->first()->users()->get();
+            $data['assessors2'] = $assessors2->except(Auth::id());
         }
 
 

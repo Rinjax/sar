@@ -13,7 +13,7 @@
                         <table class="table table-condensed" id="assessorTable">
                             <thead>
                             <tr>
-                                <th>Assessor:</th>
+                                <th>Assessors:</th>
                                 <th>Handler:</th>
                             </tr>
                             </thead>

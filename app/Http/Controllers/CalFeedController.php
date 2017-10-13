@@ -33,7 +33,12 @@ class CalFeedController extends Controller
     public function getCalMocks (Request $request){
         //$cal_events = \App\Models\cal_mock::all();
 
-        $cal_events = \App\Models\cal_mock::with(['getAssessmentDetails.getHandler','getAssessmentDetails.getAssessor'])
+        $cal_events = \App\Models\cal_mock::with([
+            'getAssessmentDetails.getHandler',
+            'getAssessmentDetails.getAssessor1',
+            'getAssessmentDetails.getAssessor2',
+            'getAssessmentDetails.getDog'
+        ])
 
        /* ->where([
             ['start','>', $request->start],

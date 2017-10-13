@@ -12,7 +12,7 @@
 @section('scripts')
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker3').datetimepicker({
+            $('#datetimepickerDog').datetimepicker({
                 inline: true,
                 sideBySide: true,
                 stepping: 15,
@@ -26,8 +26,6 @@
     <div class="main-area">
 
         @include('modal.addMember')
-
-        @include('common.flashMessages')
 
 
         <div class="row">

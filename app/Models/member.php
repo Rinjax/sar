@@ -61,7 +61,7 @@ class member extends Authenticatable
 
     public function dog()
     {
-        return $this->hasOne('App\Model\dog');
+        return $this->hasOne('App\Models\dog');
     }
     
 }

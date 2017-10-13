@@ -36,7 +36,7 @@ class cal_mock extends Model
 
     public function getAssessmentDetails()
     {
-        return $this->hasOne('App\Models\dog_assessments')->select(array('cal_mock_id','handler_id','dog_id','assessor_id'));
+        return $this->hasOne('App\Models\dog_assessments')->select(array('cal_mock_id','handler_id','dog_id','assessor_1_id', 'assessor_2_id'));
     }
     
 }

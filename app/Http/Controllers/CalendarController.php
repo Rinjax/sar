@@ -11,6 +11,9 @@ use App\Models\member;
 use Carbon\Carbon;
 
 
+/**
+ * @property mixed handler_id
+ */
 class CalendarController extends Controller
 {
     public function index()
@@ -18,7 +21,7 @@ class CalendarController extends Controller
         $user = Auth::user();
         
         //does the user need the booking button
-        if ($user->hasRole('bob')) {
+        if ($user->hasRole('Mock Assessment')) {
             $bookButton = true;
         }
         else{
@@ -52,21 +55,19 @@ class CalendarController extends Controller
 
     public function addMockEvent(request $request)
     {
-        $date = $request->input('datetimepicker2');
         $location = $request->input('location');
-        $assessor_1 = $request->input('assessor_1');
-        $notes = $request->input('notes');
 
         $locationid = \App\Models\training_location::where('name', $location)->first()->pluck('id');
         $mock = new \App\Models\cal_mock;
-        $mock->start = $date;
+        $mock->start = $request->input('datetimepicker2');
         $mock->location_id = $locationid[0];
-        $mock->note = $notes;
+        $mock->note = $request->input('notes');
         $mock->save();
 
         $assessment = new \App\Models\dog_assessments();
         $assessment->cal_mock_id = $mock->id;
-        $assessment->assessor_1_id = $assessor_1;
+        $assessment->assessor_1_id = $request->input('assessor1');
+        $assessment->assessor_2_id  = $request->input('assessor2');
         $assessment->save();
 
         Session::flash('success', 'event created');
@@ -84,16 +85,10 @@ class CalendarController extends Controller
         switch ($request['calButton']) {
             case 'attend':
                 $cal_attend = new \App\Models\cal_mock_attendance;
-                if (checkCalExpired($cal_attend->start)) {
-                    $cal_attend->cal_mock_id = $cal_id;
-                    $cal_attend->member_id = $user_id;
-                    $cal_attend->save();
-                } else {
-                    Session::flash('calevent.expired', 'You cannot attend an event that has already past!');
-                    back();
-                }
-
-                break;
+                $cal_attend->cal_mock_id = $cal_id;
+                $cal_attend->member_id = $user_id;
+                $cal_attend->save();
+                 break;
 
             case 'unattend':
                 $cal_unattend = \App\Models\cal_mock_attendance::where([
@@ -105,8 +100,8 @@ class CalendarController extends Controller
 
             case 'book':
                 if (Auth::user()->hasRole('Mock Assessment')) {
-                    $assessment = \App\Models\dog_assessments::where('cal_mock_id', $cal_id);
-                    if ($assessment->handler_id == null) {
+                    $assessment = \App\Models\dog_assessments::where('cal_mock_id', $cal_id)->first();
+                    if ($assessment->handler_id === null) {
                         $assessment->handler_id = Auth::id();
                         $assessment->dog_id = Auth::user()->dog->id;
                         $assessment->save();

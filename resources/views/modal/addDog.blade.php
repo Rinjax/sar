@@ -21,7 +21,7 @@
 
     <div class="space-bottom-2">
         <h5 class="text-center space-bottom-1">Select Start Date</h5>
-        <input hidden id="datetimepicker3" name="datetimepicker3" data-format="yyyy-MM-dd" type="datetime"></input>
+        <input hidden id="datetimepickerDog" name="datetimepickerDog" data-format="yyyy-MM-dd" type="datetime"></input>
     </div>
 
 </div>

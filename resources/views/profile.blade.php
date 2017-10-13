@@ -41,7 +41,7 @@
                                 <div class="space-bottom-2">
                                     <p class="text-center">Silver Navs</p>
                                     <img class="img-responsive center-block" src="/img/silver-compass.png" alt="compass">
-                                    <p class="text-center" style="padding-top: 0.7rem;">{{$silvernavs}}</p>
+                                    <p class="text-center" style="padding-top: 0.7rem;">{{$member->silvernavs}}</p>
                                 </div>
                             </div>
 
@@ -49,9 +49,9 @@
                                 <div class="space-bottom-2">
                                     <p class="text-center">First Aid</p>
                                     <img class="img-responsive center-block" src="/img/first-aid.png" alt="first aid">
-                                    <p class="text-center" style="padding-top: 1rem;">{{$firstaid}}</p>
+                                    <p class="text-center" style="padding-top: 1rem;">{{$member->firstaid}}</p>
                                     <p class="text-center">
-                                        <small>{{$daysLeft1}}</small>
+                                        <small>{{$member->firstaid_daysLeft}}</small>
                                     </p>
                                 </div>
                             </div>
@@ -60,9 +60,9 @@
                                 <div class="space-bottom-2">
                                     <p class="text-center">Fitness Test</p>
                                     <img class="img-responsive center-block" src="/img/fitness.png" alt="fitness">
-                                    <p class="text-center" style="padding-top: 1rem;">{{$fitness}}</p>
+                                    <p class="text-center" style="padding-top: 1rem;">{{$member->fitness}}</p>
                                     <p class="text-center">
-                                        <small>{{$daysLeft3}}</small>
+                                        <small>{{$member->fitness_daysLeft}}</small>
                                     </p>
                                 </div>
                             </div>
@@ -70,25 +70,16 @@
                                 <div class="space-bottom-2">
                                     <p class="text-center">Water Safety</p>
                                     <img class="img-responsive center-block" src="/img/water.png" alt="water">
-                                    <p class="text-center" style="padding-top: 1rem;">{{$water}}</p>
+                                    <p class="text-center" style="padding-top: 1rem;">{{$member->waterSafety}}</p>
                                     <p class="text-center">
-                                        <small>{{$daysLeft2}}</small>
+                                        <small>{{$member->waterSafety_daysLeft}}</small>
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h4>Team Roles Assigned:</h4>
-                                <table class="table table-striped table-bordered">
-                                    @foreach($member->roles as $role)
-                                        <tr>
-                                            <td>{{ $role->role }}</td>
-                                        </tr>
-                                    @endforeach
-                                </table>
-                            </div>
-                        </div>
+
+
+
                         @if(Auth::user()->hasRole('Assessor'))
                             <div class="row">
                                 <div class="col-sm-12">
