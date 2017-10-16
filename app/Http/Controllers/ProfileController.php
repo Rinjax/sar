@@ -9,6 +9,7 @@ use App\Models\training_location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Processors\SffwDates;
+use App\Processors\MemberStats;
 
 class ProfileController extends Controller
 {
@@ -22,6 +23,8 @@ class ProfileController extends Controller
 
         SffwDates::getSffwDates($user);
         //$data = array_merge($data, $sffw);
+        
+        MemberStats::trainingRatioYear($user->id);
 
         $data = array(
             'member' => $user,

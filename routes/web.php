@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
     Route::post('/addMember', 'AdminController@addMember')->name('addMember');
 
+    //test dev routes
+    Route::get('/test', 'TestDevController@index'); 
+
 });
 
 
