@@ -24,10 +24,11 @@ class ProfileController extends Controller
         SffwDates::getSffwDates($user);
         //$data = array_merge($data, $sffw);
         
-        MemberStats::trainingRatioYear($user->id);
+        $trainingPercent = MemberStats::trainingRatioYear($user->id);
 
         $data = array(
             'member' => $user,
+            'trainingPercent' => $trainingPercent
         );
         
 
