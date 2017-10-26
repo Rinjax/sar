@@ -13,7 +13,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <img class="img-responsive img-circle menu-logo" alt="logo" src="img/SAR logo.png"/>
+                            <img class="img-responsive img-circle menu-logo" alt="logo" src="{{asset('img/SAR logo.png')}}"/>
                             <div class="navbar-brand">SD Members Portal </div>
                         </div>
                         <div class="collapse navbar-collapse">

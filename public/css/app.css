@@ -2,8 +2,8 @@
 
 @font-face {
   font-family: 'icomoon';
-  src: url(/fonts/icomoon.eot?2d06270542686ace87f35ceea7872679);
-  src: url(/fonts/icomoon.eot?2d06270542686ace87f35ceea7872679) format("embedded-opentype"), url(/fonts/icomoon.ttf?b5abab5f99b8d28d5a4fd619d206d973) format("truetype"), url(/fonts/icomoon.woff?a81f3a5b39a49550d568634ea4022b67) format("woff"), url(/fonts/icomoon.svg?a3dc0bdf773712e20b3c5286c128d34a) format("svg");
+  src: url(/fonts/icomoon.eot?dc6a77f067b1ca02ebf2de2307f92fd9);
+  src: url(/fonts/icomoon.eot?dc6a77f067b1ca02ebf2de2307f92fd9) format("embedded-opentype"), url(/fonts/icomoon.ttf?fb07d36e63b87c15e110cf07d1b465e5) format("truetype"), url(/fonts/icomoon.woff?474f85c80615c3f8425599801e200487) format("woff"), url(/fonts/icomoon.svg?f2605e651941b967cff73ae367dd785e) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -41,6 +41,10 @@
 
 .icon-user:before {
   content: "\E971";
+}
+
+.icon-tab:before {
+  content: "\EA45";
 }
 
 /*
@@ -10496,6 +10500,10 @@ select {
   text-align: center;
 }
 
+.modalLocation {
+  padding-top: 1rem;
+}
+
 /* end of modal components */
 
 @media (max-width: 768px) {
@@ -10689,5 +10697,26 @@ select {
 .main-pane {
   background-color: #eee;
   min-height: 100vh;
+}
+
+.grid-container {
+  display: grid;
+}
+
+.member-select-grid {
+  grid-template-columns: 8fr 1fr 8fr;
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.grid-item-center {
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+  width: 90%;
 }
 

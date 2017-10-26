@@ -61,6 +61,7 @@ header: {
                 $("#locationGrid").text(event.location.gridRef);
                 $("#locationPost").text(event.location.postcode);
                 $("#notes").text(event.note);
+                $('#modifyButton').attr('href', $('#modifyButton').attr('href') + event.id);
                 $.each(event.attendance, function(index, element){
                     $('#attendanceTable tbody').append('<tr><td>' + element.name + '</td></tr>');
                 });
@@ -181,6 +182,7 @@ $(function () {
 // function on modal close to clear out the data from the last displayed
 $(document).on('hide.bs.modal','#modalEvent', function () {
     $("#attendanceTable tbody").empty();
+    $('#modifyButton').attr('href', 'http://dev.searchdogs.com/modifyEvent/');
     //$("#calAttendButton").removeClass('hidden');
  
 });

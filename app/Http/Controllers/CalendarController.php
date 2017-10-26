@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cal_training;
+use App\Models\training_location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -20,7 +22,7 @@ class CalendarController extends Controller
     {
         $user = Auth::user();
         
-        //does the user need the booking button
+        //does the user need the booking button?
         if ($user->hasRole('Mock Assessment')) {
             $bookButton = true;
         }
@@ -125,7 +127,6 @@ class CalendarController extends Controller
     public function attendCalEvent(Request $request)
     {
 
-        dd($request);
         $cal_id = $request->input('cal_id');
         $user_id = Auth::id();
 
@@ -150,6 +151,32 @@ class CalendarController extends Controller
 
         return redirect()->route('calendar');
 
+    }
+
+
+    public function modifyEvent($id)
+    {
+
+        $event = cal_training::where('id', (int)$id )
+            ->with('location')
+            ->with('attendance')
+            ->firstOrFail();
+
+        $locations = training_location::all();
+
+        $availableMembers = member::whereNotIn('name', $event->attendance)->get();
+        //dd($event);
+        
+        //$time = new Carbon($event->start);
+        
+        $data = [
+            'event' => $event,
+            'locations' => $locations,
+            'availableMembers' => $availableMembers
+        ];
+
+
+        return view('admin.modifyEvent')->with($data);
     }
 
     

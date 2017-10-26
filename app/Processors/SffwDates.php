@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 class SffwDates
 {
-    public static function getSffwDates($user)
+    public function getSffwDates($user)
     {
         $currentDate = Carbon::now();
 

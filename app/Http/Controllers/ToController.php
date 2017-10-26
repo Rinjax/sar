@@ -9,15 +9,20 @@ use App\Processors\SffwDates;
 
 class ToController extends Controller
 {
+
+
     public function index()
     {
+
+        $sffw = new SffwDates();
+
         $members = member::with('getTrainingCompleted')->orderBy('name')->get();
 
 
         foreach ($members as $member)
         {
 
-            SffwDates::getSffwDates($member);
+            $sffw->getSffwDates($member);
 
         }
 

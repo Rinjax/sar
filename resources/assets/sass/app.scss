@@ -1,7 +1,7 @@
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-@import "../../../public/fonts/icons/style.scss";
+@import "../../../public/fonts/icons/_style.scss";
 
 
 // Variables
@@ -20,4 +20,5 @@
 @import "components/_flex";
 @import "components/_buttons";
 @import "components/_panes";
+@import "components/_grid";
 

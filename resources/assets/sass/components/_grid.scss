@@ -1,0 +1,18 @@
+.grid-container{
+    display: grid;
+}
+
+.member-select-grid{
+    grid-template-columns: 8fr 1fr 8fr;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    align-self: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.grid-item-center{
+    align-self: center;
+    justify-self: center;
+    width: 90%;
+}

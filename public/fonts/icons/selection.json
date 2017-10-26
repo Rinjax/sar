@@ -141,6 +141,35 @@
       "setIdx": 1,
       "setId": 1,
       "iconIdx": 113
+    },
+    {
+      "icon": {
+        "paths": [
+          "M960 0h64v512h-64v-512z",
+          "M0 512h64v512h-64v-512z",
+          "M320 704h704v128h-704v160l-224-224 224-224v160z",
+          "M704 320h-704v-128h704v-160l224 224-224 224z"
+        ],
+        "tags": [
+          "tab",
+          "arrows"
+        ],
+        "defaultCode": 59973,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "tab, arrows",
+        "name": "tab",
+        "order": 8,
+        "id": 326,
+        "prevSize": 32,
+        "code": 59973
+      },
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 325
     }
   ],
   "height": 1024,

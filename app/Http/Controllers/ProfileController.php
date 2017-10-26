@@ -13,15 +13,19 @@ use App\Processors\MemberStats;
 
 class ProfileController extends Controller
 {
+
+    protected $sffw;
+    
     public function index (){
+
+        $sffw = new SffwDates();
 
         $user = member::with(array(
             'roles' => function($query){$query->orderBy('role');},
             'getTrainingCompleted',
         ))->where('id', Auth::id()) ->first();
 
-
-        SffwDates::getSffwDates($user);
+        $sffw->getSffwDates($user);
         //$data = array_merge($data, $sffw);
         
         $trainingPercent = MemberStats::trainingRatioYear($user->id);

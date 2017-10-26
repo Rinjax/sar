@@ -35,6 +35,10 @@
                 <form method="POST" action="{!! route('attendEvent') !!}">{{ csrf_field() }}
                     <input hidden id="cal_id" name="cal_id" value=""></input>
                     <input hidden id="cal_type" name="cal_type" value=""></input>
+
+                    <button type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-ban fa-fw"></i>Modify</button>
+                    <a href="#" id="modifyButton" class="btn btn-primary">Link</a>
+
                     <button type="submit" id="calAttendButton" name="calButton" value="attend" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Attend</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban fa-fw"></i>Close</button>
                 </form>
