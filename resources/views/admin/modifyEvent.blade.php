@@ -12,11 +12,11 @@
 
     <div class="main-area">
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{$event->location->name}}</div>
-                    <div class="panel-body">
-                        <form method="post" action="">{{csrf_field()}}
+            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+                <form method="post" action="">{{csrf_field()}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Team Training</div>
+                        <div class="panel-body">
                             <div class="row space-bottom-2">
                                 <div class="col-xs-12">
                                     <div class="space-bottom-2">
@@ -24,7 +24,7 @@
                                         <select id="location" name="location" class="form-group">
                                             @foreach($locations as $location)
                                                 <option
-                                                        value="{{$location->name}}"
+                                                        value="{{$location->id}}"
                                                         @if ($location->name == $event->location->name) selected="selected" @endif>
                                                     {{ $location->name }}
                                                 </option>
@@ -38,10 +38,7 @@
                             <div class="row">
                                 <div class="col-xs-12"><h4 class="text-center">Attendance</h4></div>
                             </div>
-
-
-
-                            <div class="row">
+                            <div class="row space-bottom-2">
 
                                 <div class="grid-container member-select-grid">
 
@@ -58,7 +55,7 @@
                                     </div>
                                     <div class="grid-item-center">
                                         <p class="text-center">Members Attended</p>
-                                        <select name="members_selected" id="members_selected" multiple="multiple" size="8">
+                                        <select name="members_selected[]" id="members_selected" multiple="multiple" size="8">
                                             @foreach ($event->attendance as $name)
                                                 <option value="{{$name->name}}">{{$name->name}}</option>
                                             @endforeach
@@ -66,12 +63,16 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary pull-right"><i class="fa fa-check fa-fw"></i> Save </button>
+                                    <a href="#" id="cancel" class="btn btn-danger"><i class="fa fa-ban fa-fw"></i> Cancel</a>
+                                    <a href="#" id="jsbutton" class="btn btn-danger"><i class="fa fa-ban fa-fw"></i> JS button</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-footer">
-                        Panel Footer
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -99,5 +100,16 @@
         $('#members_selected').click(function() {
             return !$('#members_selected option:selected').remove().appendTo($('#members_select'));
         });
+    </script>
+
+    <script>
+        $('#jsbutton').click(function () {
+
+            var data = $('form').serializeArray();
+
+
+
+            $.post('{!! route('modify.event.url') . '/' . $event->id !!}', data);
+        })
     </script>
 @endsection

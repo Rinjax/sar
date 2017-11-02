@@ -179,5 +179,16 @@ class CalendarController extends Controller
         return view('admin.modifyEvent')->with($data);
     }
 
+    public function modifyEventPost(Request $request, $id)
+    {
+        $event = cal_training::where('id', (int)$id )->firstOrFail();
+
+        dd($request);
+        return $request->input('members_selected');
+
+
+
+    }
+
     
 }
