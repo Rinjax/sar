@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cal_training;
+use App\Models\cal_training_attendance;
 use App\Models\training_location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -179,12 +180,23 @@ class CalendarController extends Controller
         return view('admin.modifyEvent')->with($data);
     }
 
-    public function modifyEventPost(Request $request, $id)
+    public function modifyEventPost(Request $request)
     {
-        $event = cal_training::where('id', (int)$id )->firstOrFail();
+        $event = cal_training::where('id', $request->input('eventID') )->firstOrFail();
 
-        dd($request);
-        return $request->input('members_selected');
+
+        $event->location_id = $request->input('location');
+        $event->start = $request->input('datetimepicker1');
+        $event->note = $request->input('note');
+        $event->save();
+
+        $oldAttends = cal_training_attendance::where('cal_training_id', $event->id)->with('member')->get();
+
+        foreach($oldAttends as $oldAttend){
+            if(!in_array($oldAttend->member->name, $request->input('attended'))){
+                $oldAttend->delete();
+            }
+        }
 
 
 

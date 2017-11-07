@@ -14,6 +14,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
                 <form method="post" action="">{{csrf_field()}}
+                    <input type="hidden" value="{{$event->id}}" name="eventID" id="eventID">
                     <div class="panel panel-default">
                         <div class="panel-heading">Team Training</div>
                         <div class="panel-body">
@@ -63,6 +64,16 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="row space-bottom-2">
+                                <div class="col-xs-12">
+                                    <h4 class="text-center">Event Note</h4>
+                                    <textarea name="note" id="note" cols="30" rows="10">{{$event->note}}</textarea>
+                                </div>
+                            </div>
+
+
                             <div class="row">
                                 <div class="col-xs-12">
                                     <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary pull-right"><i class="fa fa-check fa-fw"></i> Save </button>
@@ -103,13 +114,25 @@
     </script>
 
     <script>
+
         $('#jsbutton').click(function () {
 
             var data = $('form').serializeArray();
 
+            var selected = [];
+            $('#members_selected > option').each(function(){
+                selected.push(this.value);
+            });
 
+            data.push({name: 'attended', value: selected});
+            console.log(data);
 
-            $.post('{!! route('modify.event.url') . '/' . $event->id !!}', data);
-        })
+            $.post('{!! route('modify.event.url')  !!}', data);
+
+            console.log(data);
+
+            //location.reload();
+        });
+
     </script>
 @endsection

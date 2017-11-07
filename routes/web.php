@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/calMocks', 'CalFeedController@getCalMocks');
     Route::get('/modifyEvent/', 'CalendarController@modifyEvent')->name('modify.event.url');
     Route::get('/modifyEvent/{id}', 'CalendarController@modifyEvent')->name('modify.event');
-    Route::post('/modifyEvent/{id}', 'CalendarController@modifyEventPost')->name('modifyEvent.post');
+    Route::post('/modifyEvent', 'CalendarController@modifyEventPost')->name('modifyEvent.post');
     
     //Admin Routes
     Route::get('/admin', 'AdminController@index')->name('admin');
