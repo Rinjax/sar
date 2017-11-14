@@ -190,10 +190,12 @@ class CalendarController extends Controller
         $event->note = $request->input('note');
         $event->save();
 
+        $attendingArray = $request->input('attended');
+
         $oldAttends = cal_training_attendance::where('cal_training_id', $event->id)->with('member')->get();
 
         foreach($oldAttends as $oldAttend){
-            if(!in_array($oldAttend->member->name, $request->input('attended'))){
+            if(!in_array($oldAttend->member->name, $attendingArray)){
                 $oldAttend->delete();
             }
         }
