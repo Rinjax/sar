@@ -8,22 +8,21 @@ use App\Models\cal_mock;
 //use Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Models\cal_training_attendance;
-use App\Models\cal_mock_attendance;
+
 
 
 class CalFeedController extends Controller
 {
     public function getCalEvents (){
-        $cal_events = \App\Models\cal_training::all();
+        $cal_events = cal_training::all();
         $user_id = Auth::id();
         foreach($cal_events as $cal_event){
             $time = new Carbon($cal_event->start);
             $time = $time->format('H:i');
             $cal_event->location = $cal_event->location;
             $cal_event->title = $time . " Team Training";
-            $cal_event->attendance = $cal_event->attendance;
             $cal_event->attending = $cal_event->isAttending($user_id);
+            $cal_event->attendances = $cal_event->attendance->pluck('name');
             $cal_event->type = "training";
         }
         return $cal_events;
@@ -33,7 +32,7 @@ class CalFeedController extends Controller
     public function getCalMocks (Request $request){
         //$cal_events = \App\Models\cal_mock::all();
 
-        $cal_events = \App\Models\cal_mock::with([
+        $cal_events = cal_mock::with([
             'getAssessmentDetails.getHandler',
             'getAssessmentDetails.getAssessor1',
             'getAssessmentDetails.getAssessor2',
@@ -55,7 +54,7 @@ class CalFeedController extends Controller
             $cal_event->type = "mock";
             $cal_event->location = $cal_event->location;
             $cal_event->title = $titleTime . " Mock Assessment";
-            $cal_event->attendance = $cal_event->attendance;
+            $cal_event->attendances = $cal_event->attendance->pluck('name');
             $cal_event->attending = $cal_event->isAttending($user_id);
         }
         return $cal_events;

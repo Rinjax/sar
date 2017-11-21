@@ -62,8 +62,8 @@ header: {
                 $("#locationPost").text(event.location.postcode);
                 $("#notes").text(event.note);
                 $('#modifyButton').attr('href', $('#modifyButton').attr('href') + event.id);
-                $.each(event.attendance, function(index, element){
-                    $('#attendanceTable tbody').append('<tr><td>' + element.name + '</td></tr>');
+                $.each(event.attendances, function(index, element){
+                    $('#attendanceTable tbody').append('<tr><td>' + element + '</td></tr>');
                 });
 
                 var eventDate = new Date(event.start);
@@ -94,8 +94,8 @@ header: {
                 $("#mockLocationGrid").text(event.location.gridRef);
                 $("#mockLocationPost").text(event.location.postcode);
                 $("#mockNotes").text(event.notes);
-                $.each(event.attendance, function(index, element){
-                    $('#mockAttendanceTable tbody').append('<tr><td>' + element.name + '</td></tr>');
+                $.each(event.attendances, function(index, element){
+                    $('#mockAttendanceTable tbody').append('<tr><td>' + element + '</td></tr>');
                 });
                 if(event.get_assessment_details.get_handler !== null){
                     $('#bookButton').addClass('hidden');

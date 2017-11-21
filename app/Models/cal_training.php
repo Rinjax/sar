@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class cal_training extends Model
 {
     protected $table = 'cal_training';
-    
-    /*public function attendance()
-    {
-        return $this->hasMany('App\Models\user');
-    }*/
+
+    protected $hidden = ['attendance'];
+
     
     public function location()
     {
@@ -20,8 +18,9 @@ class cal_training extends Model
     
     public function attendance()
     {
-        return $this->belongsToMany('App\Models\member','cal_training_attendance')->select('name')->orderBy('name');
+        return $this->belongsToMany('App\Models\member','cal_training_attendance');
     }
+    
     
     public function isAttending($user_id)
     {
