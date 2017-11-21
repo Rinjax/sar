@@ -47,7 +47,7 @@
                                         <p class="text-center">Available Members</p>
                                         <select name="members_select" id="members_select" multiple="multiple" size="8">
                                             @foreach ($availableMembers as $name)
-                                                <option value="{{$name->name}}">{{$name->name}}</option>
+                                                <option value="{{$name->id}}">{{$name->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -58,7 +58,7 @@
                                         <p class="text-center">Members Attended</p>
                                         <select name="members_selected[]" id="members_selected" multiple="multiple" size="8">
                                             @foreach ($event->attendance as $name)
-                                                <option value="{{$name->name}}">{{$name->name}}</option>
+                                                <option value="{{$name->id}}">{{$name->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -107,9 +107,11 @@
     <script type="text/javascript">
         $('#members_select').click(function() {
             return !$('#members_select option:selected').remove().appendTo($('#members_selected'));
+
         });
         $('#members_selected').click(function() {
             return !$('#members_selected option:selected').remove().appendTo($('#members_select'));
+            $('#members_select option').prop('selected', false);
         });
     </script>
 
@@ -117,8 +119,9 @@
 
         $('#jsbutton').click(function () {
 
+            $('#members_selected option').prop('selected', true);
             var data = $('form').serializeArray();
-
+/*
             var selected = [];
             $('#members_selected > option').each(function(){
                 selected.push(this.value);
@@ -126,7 +129,7 @@
 
             data.push({name: 'attended', value: selected});
             console.log(data);
-
+*/
             $.post('{!! route('modify.event.url')  !!}', data);
 
             console.log(data);

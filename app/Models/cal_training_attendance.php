@@ -20,4 +20,6 @@ class cal_training_attendance extends Model
     {
         return $this->hasOne('App\Models\Member');
     }
+
+  
 }

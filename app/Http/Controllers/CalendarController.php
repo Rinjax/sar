@@ -190,15 +190,31 @@ class CalendarController extends Controller
         $event->note = $request->input('note');
         $event->save();
 
-        $attendingArray = $request->input('attended');
+        $attendingArray = $request->input('members_selected');
 
-        $oldAttends = cal_training_attendance::where('cal_training_id', $event->id)->with('member')->get();
 
-        foreach($oldAttends as $oldAttend){
-            if(!in_array($oldAttend->member->name, $attendingArray)){
+        $oldAttends = cal_training_attendance::where('cal_training_id', $event->id)->get();
+
+
+
+        foreach ($oldAttends as $oldAttend){
+            if(!in_array($oldAttend->member_id, $attendingArray)){
                 $oldAttend->delete();
             }
         }
+
+        return response()->json(['ttt' => $attendingArray]);
+        foreach($attendingArray as $newAttend){
+            return response()->json(['ttt' => $newAttend]);
+            if (!in_array($newAttend, $oldAttends)){
+                $newAttend = new cal_training_attendance();
+                $newAttend->cal_mock_id = $request->input('eventID');
+                $newAttend->member_id = $newAttend;
+                $newAttend->save();
+            }
+        }
+
+        return response()->json(['success' => true, 'yay' => $attendingArray]);
 
 
 
