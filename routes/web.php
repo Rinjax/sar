@@ -53,9 +53,9 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::post('/attendCalEvent', 'CalendarController@attendCalEvent')->name('attendEvent')->middleware('event.expired');
     Route::get('/calEvents', 'CalFeedController@getCalEvents');
     Route::get('/calMocks', 'CalFeedController@getCalMocks');
-    Route::get('/modifyEvent/', 'CalendarController@modifyEvent')->name('modify.event.url');
-    Route::get('/modifyEvent/{id}', 'CalendarController@modifyEvent')->name('modify.event');
-    Route::post('/modifyEvent', 'CalendarController@modifyEventPost')->name('modifyEvent.post');
+    Route::get('/modifyEvent/', 'CalendarController@modifyEvent')->name('modify.event.url')->middleware('has.role:Sec');
+    Route::get('/modifyEvent/{id}', 'CalendarController@modifyEvent')->name('modify.event')->middleware('has.role:Sec');
+    Route::post('/modifyEvent', 'CalendarController@modifyEventPost')->name('modifyEvent.post')->middleware('has.role:Secretary');
     
     //Admin Routes
     Route::get('/admin', 'AdminController@index')->name('admin');

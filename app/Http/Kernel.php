@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'menu' => \App\Http\Middleware\MenuMiddleware::class,
         'event.expired' => \App\Http\Middleware\CalendarCheckEventExpired::class,
+        'has.role' => \App\Http\Middleware\CheckHasRole::class,
     ];
 }
