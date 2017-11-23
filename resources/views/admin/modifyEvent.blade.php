@@ -76,9 +76,8 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="submit" id="submit" name="submit" value="submit" class="btn btn-primary pull-right"><i class="fa fa-check fa-fw"></i> Save </button>
                                     <a href="#" id="cancel" class="btn btn-danger"><i class="fa fa-ban fa-fw"></i> Cancel</a>
-                                    <a href="#" id="jsbutton" class="btn btn-danger"><i class="fa fa-ban fa-fw"></i> JS button</a>
+                                    <a href="#" id="jsbutton" class="btn btn-primary pull-right"><i class="fa fa-check fa-fw"></i> Save</a>
                                 </div>
                             </div>
                         </div>
@@ -119,22 +118,15 @@
 
         $('#jsbutton').click(function () {
 
-            $('#members_selected option').prop('selected', true);
-            var data = $('form').serializeArray();
-/*
-            var selected = [];
-            $('#members_selected > option').each(function(){
-                selected.push(this.value);
-            });
+            if($('#members_selected option').length > 0){
+                $('#members_selected option').prop('selected', true);
+            }
 
-            data.push({name: 'attended', value: selected});
-            console.log(data);
-*/
+            var data = $('form').serializeArray();
+
             $.post('{!! route('modify.event.url')  !!}', data);
 
-            console.log(data);
-
-            //location.reload();
+            window.location.href = ("{{route('calendar')}}");
         });
 
     </script>

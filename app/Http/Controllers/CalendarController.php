@@ -165,8 +165,8 @@ class CalendarController extends Controller
 
         $locations = training_location::all();
 
-        $availableMembers = member::whereNotIn('name', $event->attendance)->get();
-        //dd($event);
+        $availableMembers = member::whereNotIn('name', $event->attendance->pluck('name'))->get();
+
         
         //$time = new Carbon($event->start);
         
@@ -192,6 +192,10 @@ class CalendarController extends Controller
 
         $attendingArray = $request->input('members_selected');
 
+        if ($attendingArray == null){
+            $attendingArray = [];
+        }
+
 
         $oldAttends = cal_training_attendance::where('cal_training_id', $event->id)->get();
 
@@ -203,14 +207,15 @@ class CalendarController extends Controller
             }
         }
 
-        return response()->json(['ttt' => $attendingArray]);
+        //return response()->json(['success' => $oldAttends->pluck('member_id')]);
+
         foreach($attendingArray as $newAttend){
-            return response()->json(['ttt' => $newAttend]);
-            if (!in_array($newAttend, $oldAttends)){
-                $newAttend = new cal_training_attendance();
-                $newAttend->cal_mock_id = $request->input('eventID');
-                $newAttend->member_id = $newAttend;
-                $newAttend->save();
+
+            if (!in_array($newAttend, $oldAttends->pluck('member_id')->toArray())){
+                $newAttendance = new cal_training_attendance();
+                $newAttendance->cal_training_id = $request->input('eventID');
+                $newAttendance->member_id = $newAttend;
+                $newAttendance->save();
             }
         }
 
