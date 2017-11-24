@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\MemberManager;
 use Illuminate\Http\Request;
 use App\Models\dog;
 use App\Models\member;
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
+    protected $memberManager;
+
+    public function __construct()
+    {
+        $this->memberManager = new MemberManager();
+    }
     public function index ()
     {
         //sort through a get available callsign for new members add
@@ -32,35 +39,26 @@ class AdminController extends Controller
 
     public function addMember(request $request)
     {
+        //dd($request);
 
+        $id = $this->memberManager->addNewMember(
+            $request->name,
+            $request->contact,
+            $request->email,
+            $request->callsign
+        );
 
-        $member = new member();
-        $member->name = $request->name;
-        $member->contact = $request->contact;
-        $member->email = $request->email;
-        $member->callsign = $request->callsign;
-        $member->save();
-        
-        $training = new members_training_completed();
-        $training->member_id = $member->id;
-        $training->save();
-
-        foreach($request->rolesarray as $role_id){
-            $role = new member_role();
-            $role->member_id = $member->id;
-            $role->roles_id = $role_id;
-            $role->save();
-        }
-
+        $this->memberManager->addMemberRoles($id, $request->rolesarray);
 
         if($request->includeDog == 'on'){
-            $dog = new dog();
-            $dog->member_id = $member->id;
-            $dog->name = $request->dogname;
-            $dog->breed = $request->breed;
-            $dog->level = $request->level;
-            $dog->started = $request->
-            $dog->save();
+            dog::firstOrCreate([
+                'member_id' => $id,
+                'name' => $request->dogname,
+                'breed' => $request->breed,
+                'level' => $request->level,
+                'started' => $request->datetimepickerDog,
+            ]);
+
             Session::flash('success', 'Dog Added');
         }
 

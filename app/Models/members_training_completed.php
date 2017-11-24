@@ -10,6 +10,10 @@ class members_training_completed extends Model
     protected $dates = ['firstaid','fitness','silvernavs'];
     protected $dateFormat = 'd-m-Y';
     public $timestamps = false;
+
+    protected $fillable = [
+        'member_id'
+    ];
     
  
         
