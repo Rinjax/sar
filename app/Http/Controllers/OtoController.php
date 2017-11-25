@@ -14,10 +14,12 @@ class OtoController extends Controller
         $dogs = \App\Models\dog::orderBy('name')->get();
 
         foreach ($dogs as $dog){
-            $st = new Carbon($dog->start_program);
+            $st = new Carbon($dog->started);
             $st->format('d/m/Y');
-            $dog->start_program = $st;
+            $dog->started = $st;
         }
+
+        //dd($dogs);
 
 
         $data = array(

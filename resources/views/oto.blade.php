@@ -17,15 +17,17 @@
                 <table class="table table-responsive table-striped table-bordered">
                     <h3 class="text-center">All dogs</h3>
                     <tr>
+                        <th class="text-center">#</th>
                         <th>Name</th>
                         <th>Breed</th>
                         <th>Started</th>
                     </tr>
                     @foreach($dogs as $dog)
                         <tr>
+                            <td><img class="img-responsive img-circle" src="/img/{{$dog->name}}.jpg" alt="dog pic"/></td>
                             <td>{{$dog->name}}</td>
                             <td>{{$dog->breed}}</td>
-                            <td>{{$dog->start_program->format('d-m-Y')}}</td>
+                            <td>{{$dog->started->format('d-m-Y')}}</td>
                         </tr>
                     @endforeach
                 </table>
@@ -43,7 +45,7 @@
                         @if ($dog->level == 1)
                             <tr>
                                 <td>{{$dog->name}}</td>
-                                <td>{{$dog->op_ticket_exp->format('d-m-Y')}}</td>
+                                <td>{{$dog->started}}</td>
                             </tr>
                         @endif
                     @endforeach
@@ -61,7 +63,7 @@
                         @if ($dog->level == 2)
                             <tr>
                                 <td>{{$dog->name}}</td>
-                                <td>{{$dog->op_ticket_exp->format('d-m-Y')}}</td>
+                                <td>{{$dog->started}}</td>
                             </tr>
                         @endif
                     @endforeach

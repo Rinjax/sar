@@ -17,10 +17,12 @@ class CreateDogsTable extends Migration
             $table->increments('id');
             $table->integer('member_id');
             $table->string('name');
+            $table->string('profile_pic')->default('default.png');
             $table->string('breed');
-            $table->date('start_program');
+            $table->date('started');
             $table->integer('level');
             $table->date('op_ticket_exp')->nullable()->default(null);
+            $table->string('status')->default('Training');
             $table->timestamps();
         });
     }

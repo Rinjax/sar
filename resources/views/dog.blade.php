@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="space-bottom-1">
-                                    <img class="img-responsive img-rounded" src="/img/{{$name}}.jpg" alt="dog pic"/>
+                                    <img class="img-responsive img-rounded" src="/img/profile/dogs{{$name}}.jpg" alt="dog pic"/>
                                 </div>
                             </div>
 

@@ -26,7 +26,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="space-bottom-2" style="height: 20rem;">
                                     <div class="pull-left profilepic">
-                                        <img class="img-responsive img-rounded" src="img/{{$member->name}}.jpg" alt="profile pic"/>
+                                        <img class="img-responsive img-rounded" src="img/profile/humans/{{$member->profile_pic}}" alt="profile pic"/>
                                     </div>
                                 </div>
                             </div>
@@ -65,8 +65,8 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-body">
+                        <div class="panel panel-warning">
+                            <div class="panel-body" style="background-color: #ff4d4d; border: solid blue 1px;">
                                 <p class="text-center"><strong>First Aid</strong></p>
                                 <img class="img-responsive center-block" src="/img/first-aid.png" alt="first aid">
                                 <p class="text-center" style="padding-top: 1rem;">{{$member->firstaid}}</p>
