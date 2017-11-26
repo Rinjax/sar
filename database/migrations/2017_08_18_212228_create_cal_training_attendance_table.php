@@ -13,9 +13,9 @@ class CreateCalTrainingAttendanceTable extends Migration
      */
     public function up()
     {
-        Schema::create('cal_training_attendance', function (Blueprint $table) {
+        Schema::create('calendar_attendance', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cal_training_id');
+            $table->integer('calendar_id');
             $table->dateTime('member_id');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateCalTrainingAttendanceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cal_training_attendance');
+        Schema::dropIfExists('calendar_attendance');
     }
 }

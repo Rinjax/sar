@@ -21,7 +21,7 @@ class CreateDogsTable extends Migration
             $table->string('breed');
             $table->date('started');
             $table->integer('level');
-            $table->date('op_ticket_exp')->nullable()->default(null);
+            $table->date('ticket_expiry')->nullable()->default(null);
             $table->string('status')->default('Training');
             $table->timestamps();
         });

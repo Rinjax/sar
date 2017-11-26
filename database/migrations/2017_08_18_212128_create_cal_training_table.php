@@ -13,12 +13,13 @@ class CreateCalTrainingTable extends Migration
      */
     public function up()
     {
-        Schema::create('cal_training', function (Blueprint $table) {
+        Schema::create('calendar', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('location_id');
             $table->dateTime('start');
-            $table->timestamps();
+            $table->string('type')->default('Training');
             $table->string('note')->nullable()->default(null);
+            $table->timestamps();
         });    
     }
 
@@ -29,6 +30,6 @@ class CreateCalTrainingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cal_training');
+        Schema::dropIfExists('calendar');
     }
 }

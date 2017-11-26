@@ -9,18 +9,12 @@ header: {
         eventSources: [
             {
                 url: 'http://dev.searchdogs.com/calEvents',
-                //color: 'orange',
-                textColor: 'black'
-            },
-            {
-                url: 'http://dev.searchdogs.com/calMocks',
-                color: 'purple',
-                textColor: 'black'
+
             }
         ],
         firstDay: 1,
         displayEventTime: false,
-        //eventColor: 'red',
+    
         views: {
             list3Month: {
                 type: 'list',

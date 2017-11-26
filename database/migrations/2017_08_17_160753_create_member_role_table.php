@@ -17,7 +17,6 @@ class CreateMemberRoleTable extends Migration
             $table->increments('id');
             $table->integer('member_id');
             $table->integer('roles_id');
-            $table->boolean('PriRole')->default(false);
             $table->timestamps();
         });
     }

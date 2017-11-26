@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDogStatusTable extends Migration
+class CreateMembersPermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateDogStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('dog_status', function (Blueprint $table) {
+        Schema::create('member_permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('dog_id');
-            $table->string('status');
-            $table->text('note')->nullable()->default(null);
+            $table->integer('member_id');
+            $table->integer('permission_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateDogStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dogs');
+        Schema::dropIfExists('member_permissions');
     }
 }
