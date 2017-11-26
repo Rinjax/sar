@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cal_training;
+use App\Models\calendar;
 use App\Models\cal_training_attendance;
 use App\Models\training_location;
 use Illuminate\Http\Request;

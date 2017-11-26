@@ -47,16 +47,6 @@ class member extends Authenticatable
         return false;
     }
     
-    public function getPriRole()
-    {
-        return $this->roles()->where('PriRole','1')->first();
-    }
-
-    public function getTrainingCompleted()
-    {
-
-        return $this->hasOne('App\Models\members_training_completed');
-    }
 
 
     public function dog()

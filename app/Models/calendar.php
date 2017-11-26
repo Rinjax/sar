@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class cal_training extends Model
+class calendar extends Model
 {
-    protected $table = 'cal_training';
+    protected $table = 'calendar';
 
     protected $hidden = ['attendance'];
 
@@ -18,13 +18,13 @@ class cal_training extends Model
     
     public function attendance()
     {
-        return $this->belongsToMany('App\Models\member','cal_training_attendance');
+        return $this->belongsToMany('App\Models\member','calendar_attendance');
     }
     
     
     public function isAttending($user_id)
     {
-        foreach ($this->belongsToMany('App\Models\member','cal_training_attendance')->get() as $attendee){
+        foreach ($this->belongsToMany('App\Models\member','calendar_attendance')->get() as $attendee){
             if($user_id === $attendee->id){
                 return true;
             }

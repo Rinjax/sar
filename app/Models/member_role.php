@@ -9,12 +9,8 @@ class member_role extends Model
     protected $table = 'member_role';
     
     protected $fillable = [
-        'member_id', 'roles_id', 'PriRole'
+        'member_id', 'roles_id'
     ];
-
-    /*public function ()
-    {
-        return $this->hasOne('App\Models\training_locations');
-    }*/
+    
 
 }
