@@ -51,7 +51,6 @@ class ProfileController extends Controller
 
 
         return view ('profile')->with($data);
-        //return $data;
     }
 
 

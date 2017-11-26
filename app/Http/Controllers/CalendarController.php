@@ -22,21 +22,17 @@ class CalendarController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        $bookButton = false;
         
         //does the user need the booking button?
-        if ($user->hasRole('Mock Assessment')) {
-            $bookButton = true;
-        }
-        else{
-            $bookButton = false;
-        }
+        if ($user->hasRole('Mock Assessment')) $bookButton = true;
         
         $data = array(
             'bookButton' => $bookButton
         );
 
-
-        //return $user;
+        
         return view('calendar')->with($data);
     }
 

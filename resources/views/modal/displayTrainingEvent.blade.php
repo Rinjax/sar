@@ -15,7 +15,7 @@
                             <div id="locationGrid"></div>
                             <div id="locationPost"></div>
                         </div>
-                        <textarea id="notes" name="notes" placeholder="Notes..."></textarea>
+                        <textarea readonly id="notes" name="notes" placeholder="Notes..."></textarea>
                     </div>
                     <div class="col-sm-6">
                         <table class="table table-striped table-condensed" id="attendanceTable">
@@ -36,7 +36,7 @@
                     <input hidden id="cal_id" name="cal_id" value=""></input>
                     <input hidden id="cal_type" name="cal_type" value=""></input>
 
-                    @if (Auth::user()->hasRole('admin'))
+                    @if (Auth::user()->hasRole('Secretary'))
                         <a href="{!! url('/modifyEvent/') !!}/" id="modifyButton" class="btn btn-primary pull-left"><span class="icon-pencil"></span> Modify</a>
                     @endif
                     <button type="submit" id="calAttendButton" name="calButton" value="attend" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Attend</button>

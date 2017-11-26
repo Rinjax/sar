@@ -24,6 +24,14 @@
     
     <!-- Calendar -->
 
+    <div class="row space-bottom-2">
+        <div class="col-xs-12">
+            <h3 class="text-center">Admin Buttons</h3>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddMockModal">Add Training</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddMockModal">Add Mock</button>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">

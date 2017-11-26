@@ -9,7 +9,7 @@ header: {
         eventSources: [
             {
                 url: 'http://dev.searchdogs.com/calEvents',
-                color: 'orange',
+                //color: 'orange',
                 textColor: 'black'
             },
             {
@@ -35,6 +35,7 @@ header: {
             
             if (event.title.includes("Team Training")){
                 element.find('.fc-content').append("<br/>" + event.location.name);
+                element.addClass('yourClass');
             }
 
             if (event.title.includes("Mock")){

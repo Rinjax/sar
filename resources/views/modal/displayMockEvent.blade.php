@@ -27,7 +27,7 @@
                             <div id="mockLocationGrid"></div>
                             <div id="mockLocationPost"></div>
                         </div>
-                        <textarea id="mockNotes" name="notes" placeholder="Notes..."></textarea>
+                        <textarea readonly id="mockNotes" name="notes" placeholder="Notes..."></textarea>
                     </div>
                     <div class="col-sm-6">
                         <table class="table table-striped table-condensed" id="mockAttendanceTable">

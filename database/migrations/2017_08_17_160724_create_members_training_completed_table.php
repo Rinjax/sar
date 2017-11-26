@@ -19,7 +19,8 @@ class CreateMembersTrainingCompletedTable extends Migration
             $table->date('firstaid')->nullable()->default(null);
             $table->date('watersafety')->nullable()->default(null);
             $table->date('fitness')->nullable()->default(null);
-            $table->date('silvernavs')->nullable()->default(null);
+            $table->date('navs')->nullable()->default(null);
+            $table->boolean('silver_navs')->default(false);
             $table->timestamps();
         });
     }

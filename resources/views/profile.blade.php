@@ -92,7 +92,9 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="panel panel-primary">
-                            <div class="panel-body">
+                            <div class="panel-body" @if ($member->waterSafety_daysLeft < 0)
+                                style="background-color: #ff4d4d; border: solid blue 1px;"
+                            @endif>
                                 <p class="text-center"><strong>Water Safety</strong></p>
                                 <img class="img-responsive center-block" src="/img/water.png" alt="water">
                                 <p class="text-center" style="padding-top: 1rem;">{{$member->waterSafety}}</p>
