@@ -23,6 +23,7 @@ class CreateMembersTable extends Migration
             $table->string('email');
             $table->string('password')->nullable()->default(null);
             $table->string('profile_pic')->default('default.jpg');
+            $table->boolean('active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -2,8 +2,11 @@
 
 namespace App\Managers;
 
+use App\Models\calendar;
 use \App\Models\member;
 use \App\Models\member_role;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class MemberManager
@@ -44,7 +47,70 @@ class MemberManager
     {
         if($id == null) $id = Auth::id();
         
-        member::where('id', $id)->with('roles');
+        return  member::where('id', $id)->with('roles')->first();
+    }
+
+
+    public function getLatestCPDDate(member $member)
+    {
+
+        $format = 'd/m/Y';
+        
+        $water = $member->cpdTraining->where('cpd_type', 'Water Safety')->last();
+
+        if($water){
+            $water = calendar::where('id', $water->calendar_id)->select('start')->first();
+            $t = new Carbon($water->start);
+            $t = $t->format($format);
+            $member->water = $t;
+        }else{
+            $member->water = 'Not Completed';
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////
+        $firstaid = $member->cpdTraining->where('cpd_type', 'First Aid')->last();
+
+        if($firstaid){
+            $firstaid = calendar::where('id', $firstaid->calendar_id)->select('start')->first();
+            $t = new Carbon($firstaid->start);
+            $t = $t->format($format);
+            $member->firstaid = $t;
+        }else{
+            $member->firstaid = 'Not Completed';
+        }
+
+        //////////////////////////////////////////////////////////////////////
+        $navs = $member->cpdTraining->where('cpd_type', 'Navs')->last();
+
+        if($navs){
+            $navs = calendar::where('id', $navs->calendar_id)->select('start')->first();
+            $t = new Carbon($navs->start);
+            $t = $t->format($format);
+            $member->navs = $t;
+        }else{
+            $member->navs = 'Not Completed';
+        }
+
+        //////////////////////////////////////////////////////////////////////
+        $fitness = $member->cpdTraining->where('cpd_type', 'Fitness')->last();
+
+        if($fitness){
+            $fitness = calendar::where('id', $fitness->calendar_id)->select('start')->first();
+            $t = new Carbon($fitness->start);
+            $t = $t->format($format);
+            $member->firness = $t;
+        }else{
+            $member->fitness = 'Not Completed';
+        }
+
+
+
+        
+        
+        
+        
+        return $member;
     }
 
    

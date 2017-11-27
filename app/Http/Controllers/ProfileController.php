@@ -24,19 +24,12 @@ class ProfileController extends Controller
     
     public function index (){
         
-        $this->memberManager->getMember();
+        $member = $this->memberManager->getMember();
+        
+        $this->memberManager->getLatestCPDDate($member);
 
-        $sffw = new SffwDates();
-
-        $sffw->getSffwDates($user);
-        //$data = array_merge($data, $sffw);
         
         $trainingPercent = MemberStats::trainingRatioYear($user->id);
-
-        $data = array(
-            'member' => $user,
-            'trainingPercent' => $trainingPercent
-        );
         
 
 

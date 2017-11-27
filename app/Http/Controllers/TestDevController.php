@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\MemberManager;
 use App\Models\member;
 use App\Processors\memberStats;
 
@@ -11,10 +12,13 @@ class TestDevController extends Controller
     {
        //$result =  memberStats::trainingRatioYear(1, 2017);
 
-        $s = member::where('id', 1)->first();
+        $s = new MemberManager();
 
+        $m = $s->getMember(1);
+//dd($m);
 
+        $m = $s->getLatestCPDDate($m);
 
-         dd($s->cpdTraining);
+         dd($m);
     }
 }
