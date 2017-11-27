@@ -3,8 +3,8 @@
 namespace App\Managers;
 
 use \App\Models\member;
-use \App\Models\members_training_completed;
 use \App\Models\member_role;
+
 
 class MemberManager
 {
@@ -37,6 +37,14 @@ class MemberManager
             ]);
 
         }
+    }
+
+
+    public function getMember($id = null)
+    {
+        if($id == null) $id = Auth::id();
+        
+        member::where('id', $id)->with('roles');
     }
 
    

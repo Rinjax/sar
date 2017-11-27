@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\MemberManager;
 use App\Models\roles;
 use Illuminate\Http\Request;
 use App\Models\member;
@@ -14,16 +15,18 @@ use App\Processors\MemberStats;
 class ProfileController extends Controller
 {
 
-    protected $sffw;
+    protected $memberManager;
+
+    public function __construct()
+    {
+        $this->memberManager = new MemberManager();
+    }
     
     public function index (){
+        
+        $this->memberManager->getMember();
 
         $sffw = new SffwDates();
-
-        $user = member::with(array(
-            'roles' => function($query){$query->orderBy('role');},
-            'getTrainingCompleted',
-        ))->where('id', Auth::id()) ->first();
 
         $sffw->getSffwDates($user);
         //$data = array_merge($data, $sffw);

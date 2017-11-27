@@ -18,6 +18,7 @@ class CreateTrainingLocationsTable extends Migration
             $table->string('name');
             $table->string('gridRef', 15);
             $table->string('postcode', 8);
+            $table->text('notes')->default(null);
             $table->timestamps();
         });
     }

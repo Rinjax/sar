@@ -33,6 +33,10 @@ class member extends Authenticatable
     public function roles(){
         return $this->belongsToMany('App\Models\roles','member_role')->select('role')->orderBy('role');
     }
+
+    public function permissions(){
+        return $this->belongsToMany('App\Models\permissions','member_permissions')->select('permission')->orderBy('permission');
+    }
     
     public function hasRole($roleName)
     {
@@ -46,12 +50,30 @@ class member extends Authenticatable
 
         return false;
     }
+
+    public function hasPermission($permissionName)
+    {
+        foreach ($this->permissions()->get() as $permission)
+        {
+            if ($permission->permission == $permissionName)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
 
 
     public function dog()
     {
         return $this->hasOne('App\Models\dog');
+    }
+
+    public function cpdTraining()
+    {
+        return $this->hasManyThrough('cpd_training', 'calendar_attendance');
     }
     
 }

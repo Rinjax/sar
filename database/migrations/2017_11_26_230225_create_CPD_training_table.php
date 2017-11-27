@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCalTrainingTable extends Migration
+class CreateCPDTrainingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCalTrainingTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendar', function (Blueprint $table) {
+        Schema::create('cpd_training', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('location_id');
-            $table->dateTime('start');
-            $table->dateTime('end')->default(null);
-            $table->string('type')->default('Training');
-            $table->string('notes')->nullable()->default(null);
+            $table->integer('calendar_id');
+            $table->integer('trainer_id');
+            $table->string('cpd_type');
+            $table->text('notes')->default(null);
             $table->timestamps();
-        });    
+        });
     }
 
     /**
@@ -31,6 +30,6 @@ class CreateCalTrainingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendar');
+        Schema::dropIfExists('cpd_training');
     }
 }

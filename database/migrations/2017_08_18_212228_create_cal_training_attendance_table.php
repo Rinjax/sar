@@ -16,7 +16,7 @@ class CreateCalTrainingAttendanceTable extends Migration
         Schema::create('calendar_attendance', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('calendar_id');
-            $table->dateTime('member_id');
+            $table->integer('member_id');
             $table->timestamps();
         });
     }
