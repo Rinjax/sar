@@ -60,9 +60,8 @@ class MemberManager
 
         if($water){
             $water = calendar::where('id', $water->calendar_id)->select('start')->first();
-            $t = new Carbon($water->start);
-            $t = $t->format($format);
-            $member->water = $t;
+
+            $member->water = $water->start;
         }else{
             $member->water = 'Not Completed';
         }
@@ -103,14 +102,23 @@ class MemberManager
         }else{
             $member->fitness = 'Not Completed';
         }
-
-
-
-        
-        
-        
         
         return $member;
+    }
+
+    public function getCDPExpiryInDays($date)
+    {
+       if($date != 'Not Completed'){
+           $date = new Carbon($date);
+
+           $currentDate = Carbon::now();
+           return $currentDate ->diffInDays($date, false);
+       }else{
+           return 0;
+       }
+
+
+
     }
 
    

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
+use App\Managers\StatsManager;
 use App\Models\roles;
 use Illuminate\Http\Request;
 use App\Models\member;
@@ -17,9 +18,13 @@ class ProfileController extends Controller
 
     protected $memberManager;
 
+    protected $statsManager;
+
     public function __construct()
     {
         $this->memberManager = new MemberManager();
+        
+        $this->statsManager = new StatsManager();
     }
     
     public function index (){
@@ -28,25 +33,14 @@ class ProfileController extends Controller
         
         $this->memberManager->getLatestCPDDate($member);
 
-        
-        $trainingPercent = MemberStats::trainingRatioYear($user->id);
-        
+        $member->waterDays = $this->memberManager->getCDPExpiryInDays($member->water);
+        $member->firstaidDays = $this->memberManager->getCDPExpiryInDays($member->firstaid);
+        $member->navsDays = $this->memberManager->getCDPExpiryInDays($member->navs);
+        $member->fitnesDays = $this->memberManager->getCDPExpiryInDays($member->fitness);
 
+        $member->percent = $this->statsManager->getTrainingYearAttendancePercent($member->id);
 
-        if(Auth::user()->hasRole('Assessor')){
-            $locations = training_location::all();
-            $data['locations']= $locations;
-
-
-            //assessor array hack to provide one assessor to the admin view
-            $data['assessors1'] = collect([$user]);
-
-            $assessors2 = roles::where('role', 'Qualified Handler')->first()->users()->get();
-            $data['assessors2'] = $assessors2->except(Auth::id());
-        }
-
-
-        return view ('profile')->with($data);
+        return view ('profile')->with(['member' => $member]);
     }
 
 
