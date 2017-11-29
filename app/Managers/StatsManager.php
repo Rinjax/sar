@@ -40,4 +40,10 @@ class StatsManager
 
         return 'No Training Events for this Month';
     }
+
+
+    public function cdpTileCSS()
+    {
+        
+    }
 }

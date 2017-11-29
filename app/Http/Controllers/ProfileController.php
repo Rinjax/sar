@@ -33,12 +33,14 @@ class ProfileController extends Controller
         
         $this->memberManager->getLatestCPDDate($member);
 
-        $member->waterDays = $this->memberManager->getCDPExpiryInDays($member->water);
-        $member->firstaidDays = $this->memberManager->getCDPExpiryInDays($member->firstaid);
-        $member->navsDays = $this->memberManager->getCDPExpiryInDays($member->navs);
-        $member->fitnesDays = $this->memberManager->getCDPExpiryInDays($member->fitness);
+        $member->waterDays = $this->memberManager->getCDPExpiryInDays($member->water, 1);
+        $member->firstaidDays = $this->memberManager->getCDPExpiryInDays($member->firstaid, 2);
+        $member->navsDays = $this->memberManager->getCDPExpiryInDays($member->navs, 1);
+        $member->fitnesDays = $this->memberManager->getCDPExpiryInDays($member->fitness, 1);
 
         $member->percent = $this->statsManager->getTrainingYearAttendancePercent($member->id);
+        $member->percent = $this->statsManager->getTrainingMonthAttendancePercent($member->id);
+
 
         return view ('profile')->with(['member' => $member]);
     }

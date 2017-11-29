@@ -10736,3 +10736,13 @@ select {
   width: 90%;
 }
 
+.cpd-panel-warning {
+  background-color: #ffaf47;
+  border: solid darkorange 1px;
+}
+
+.cpd-panel-danger {
+  background-color: #ff4747;
+  border: solid darkred 1px;
+}
+
