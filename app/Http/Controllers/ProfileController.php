@@ -36,7 +36,7 @@ class ProfileController extends Controller
         $member->waterDays = $this->memberManager->getCDPExpiryInDays($member->water, 1);
         $member->firstaidDays = $this->memberManager->getCDPExpiryInDays($member->firstaid, 2);
         $member->navsDays = $this->memberManager->getCDPExpiryInDays($member->navs, 1);
-        $member->fitnesDays = $this->memberManager->getCDPExpiryInDays($member->fitness, 1);
+        $member->fitnessDays = $this->memberManager->getCDPExpiryInDays($member->fitness, 1);
 
         $member->percent = $this->statsManager->getTrainingYearAttendancePercent($member->id);
         $member->percent = $this->statsManager->getTrainingMonthAttendancePercent($member->id);
