@@ -38,8 +38,18 @@
             </div>
         </div>
     </div>
-
-
 @endsection
-    
+
+@section('scripts')
+            <script>
+                $(function () {
+                    $('.js-datetimepicker').datetimepicker({
+                        inline: true,
+                        sideBySide: true,
+                        stepping: 15,
+                        format: ('YYYY-MM-DD HH:mm')
+                    });
+                });
+            </script>
+@endsection
 

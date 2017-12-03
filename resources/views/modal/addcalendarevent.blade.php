@@ -1,5 +1,5 @@
 <!-- Team Training Modal -->
-<div class="modal fade" id="addEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form method="POST" action="{!! route('addTraining') !!}">{{ csrf_field() }}
@@ -11,11 +11,11 @@
                     <label for="location">Location:</label>
                     <select id="location" name="location" class="form-group">
                         @foreach($locations as $location)
-                            <option value="{{$location->name}}">{{ $location->name }} </option>
+                            <option value="{{$location->id}}">{{ $location->name }} </option>
                         @endforeach
                     </select>
-                    <input hidden id="datetimepicker1" name="datetimepicker1" data-format="yyyy-MM-dd hh:mm" type="datetime"/>
-                    <input hidden id="cal_type" name="cal_type" value="new"/>
+                    <input hidden class="js-datetimepicker" id="datetimepicker" name="datetimepicker" data-format="yyyy-MM-dd hh:mm" type="datetime"/>
+                    <input hidden id="cal_type" name="cal_type" value="Team Training"/>
                     <textarea id="notes" name="notes" placeholder="Notes..."></textarea>
                 </div>
                 <div class="modal-footer">

@@ -8,9 +8,9 @@ class dog_assessments extends Model
 {
     protected $table = 'dog_assessments';
 
-    protected $hidden = [
-        'cal_mock_id', 'handler_id', 'dog_id', 'assessor_1_id', 'assessor_2_id'
-    ];
+    protected $hidden = ['cal_mock_id', 'handler_id', 'dog_id', 'assessor_1_id', 'assessor_2_id'];
+
+    protected $fillable = ['assessor_1_id','assessor_2_id','calendar_id','type'];
     
     public function location(){
        return $this->hasOne('\App\Models\training_location');
@@ -39,7 +39,7 @@ class dog_assessments extends Model
 
     public function getDate()
     {
-        return $this->hasOne('App\Models\cal_mock', 'id', 'cal_mock_id');
+        return $this->hasOne('App\Models\calendar', 'id', 'calendar_id');
     }
 
 

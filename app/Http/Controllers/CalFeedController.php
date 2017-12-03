@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\calendar;
 use Illuminate\Http\Request;
-use App\Models\cal_training;
-use App\Models\cal_mock;
 //use Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -14,7 +13,7 @@ use Carbon\Carbon;
 class CalFeedController extends Controller
 {
     public function getCalEvents (){
-        $cal_events = cal_training::all();
+        $cal_events = calendar::all();
         $user_id = Auth::id();
         foreach($cal_events as $cal_event){
             $time = new Carbon($cal_event->start);

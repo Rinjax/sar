@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Managers\CalendarManager;
 use App\Models\calendar;
 use App\Models\calendar_attendance;
+use App\Models\permission;
 use App\Models\training_location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\member;
 use Carbon\Carbon;
+use App\Models\roles;
 
 
 /**
@@ -33,20 +35,34 @@ class CalendarController extends Controller
     
     public function index()
     {
-        
         $bookButton = $this->calendarManager->allowBookMock();
+        $locations = training_location::all();
+
+        $data = [
+            'bookButton' => false,
+            'locations' => $locations,
+            //'assessors1' => Auth::user(),
+
+        ];
+
+        $assessors2 = permission::where('permission', 'Mock Assessor')->first()->members()->get();
+
+        $data['assessors2'] = $assessors2; //->except(Auth::id());
+
+        //dd($data['assessors1']['id']);
         
-        return view('calendar')->with(['bookButton' => $bookButton]);
+        return view('calendar')->with($data);
     }
 
     
     
     public function addEvent(request $request)
     {
+        //dd($request);
         
-        $cal = $this->calendarManager->addCalendarEvent($request->input('type'), $request->input('location'), $request->input('datetimepicker'), $request->input('notes'));
+        $cal = $this->calendarManager->addCalendarEvent($request->input('cal_type'), $request->input('location'), $request->input('datetimepicker'), $request->input('notes'));
         
-        if ($request->input('type') == 'Mock'){
+        if ($request->input('type') == 'Mock Assessment'){
             $this->calendarManager->addDogAssessment($cal->id, $request->input('assessor1'), $request->input('assessor2'));
         }
 

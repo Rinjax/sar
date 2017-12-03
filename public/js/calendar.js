@@ -154,26 +154,6 @@ recreateFC($(window).width());
 
 });
 
-$(function () {
-    $('#datetimepicker1').datetimepicker({
-        inline: true,
-        sideBySide: true,
-        stepping: 15,
-        format: ('YYYY-MM-DD HH:mm')
-    });
-});
-
-$(function () {
-    $('#datetimepicker2').datetimepicker({
-        inline: true,
-        sideBySide: true,
-        stepping: 15,
-        format: ('YYYY-MM-DD HH:mm')
-    });
-});
-
-
-
 // function on modal close to clear out the data from the last displayed
 $(document).on('hide.bs.modal','#modalEvent', function () {
     $("#attendanceTable tbody").empty();

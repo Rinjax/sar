@@ -31,15 +31,13 @@ class CalendarCheckEventExpired
                 $event = \App\Models\cal_mock::where('id',$request->mock_id)->first();
                 break;
 
-            case 'new':
+            // these are new events trying to be created from the Modals
+            case 'Mock Assessment' || 'Team Training':
 
                 $event = new \stdClass();
 
-                if(isset($request->datetimepicker1)){
-                    $event->start = $request->datetimepicker1;
-                }
-                elseif(isset($request->datetimepicker2)){
-                    $event->start = $request->datetimepicker2;
+                if(isset($request->datetimepicker)){
+                    $event->start = $request->datetimepicker;
                 }
                 break;
         }

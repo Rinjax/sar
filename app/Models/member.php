@@ -35,7 +35,7 @@ class member extends Authenticatable
     }
 
     public function permissions(){
-        return $this->belongsToMany('App\Models\permissions','member_permissions')->select('permission')->orderBy('permission');
+        return $this->belongsToMany('App\Models\permission','member_permissions')->select('permission')->orderBy('permission');
     }
     
     public function hasRole($roleName)

@@ -5,7 +5,9 @@ namespace App\Managers;
 use App\Models\calendar;
 use App\Models\calendar_attendance;
 use App\Models\dog_assessments;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 class CalendarManager
@@ -14,7 +16,7 @@ class CalendarManager
     {
         calendar::create([
             'type' => $type,
-            'location' => $location,
+            'location_id' => $location,
             'start' => $start,
             'note' => $note
         ]);
@@ -112,4 +114,5 @@ class CalendarManager
 
         return false;
     }
+    
 }
