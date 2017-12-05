@@ -13,6 +13,10 @@ class roles extends Model
     protected $casts = [
         'role' => 'string',
     ];
+    
+    protected $fillable = ['role'];
+    
+    
     public function users(){
         //returns all users assigned to a peticular role
         return $this->belongsToMany('App\Models\member','member_role')->orderBy('name');

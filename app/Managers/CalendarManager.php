@@ -37,13 +37,13 @@ class CalendarManager
 
             case 'unattend':
                 calendar_attendance::where([
-                    ['cal_mock_id', $cal_id], ['member_id', $user->id],
+                    ['calendar_id', $cal_id], ['member_id', $user->id],
                 ])->firstOrFail()->delete();
                 break;
 
             case 'book':
                 if ($user->hasPermission('Book Mock')) {
-                    $assessment = \App\Models\dog_assessments::where('cal_mock_id', $cal_id)->first();
+                    $assessment = \App\Models\dog_assessments::where('calendar_id', $cal_id)->first();
                     if ($assessment->handler_id === null) {
                         $assessment->handler_id = $user->id();
                         $assessment->dog_id = $user->dog->id;

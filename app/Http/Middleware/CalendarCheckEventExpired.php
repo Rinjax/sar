@@ -21,26 +21,18 @@ class CalendarCheckEventExpired
      */
     public function handle($request, Closure $next)
     {
+        $uri = $request->path();
 
-        switch ($request['cal_type']){
-            case 'training':
-                $event = \App\Models\cal_training::where('id', $request->cal_id)->first();
-                break;
-                
-            case 'mock':
-                $event = \App\Models\cal_mock::where('id',$request->mock_id)->first();
-                break;
+        if ($uri == 'modifyEvent'){
+            $event = \App\Models\calendar::where('id', $request->cal_id)->first();
+        }else{
+            $event = new \stdClass();
 
-            // these are new events trying to be created from the Modals
-            case 'Mock Assessment' || 'Team Training':
+            $event->start = $request->datetimepicker;
 
-                $event = new \stdClass();
-
-                if(isset($request->datetimepicker)){
-                    $event->start = $request->datetimepicker;
-                }
-                break;
         }
+
+        //dd($event);
         
         $now = Carbon::now();
         $start = new Carbon($event->start);

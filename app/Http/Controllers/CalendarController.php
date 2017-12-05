@@ -58,11 +58,11 @@ class CalendarController extends Controller
     
     public function addEvent(request $request)
     {
-        //dd($request);
+        dd($request);
         
         $cal = $this->calendarManager->addCalendarEvent($request->input('cal_type'), $request->input('location'), $request->input('datetimepicker'), $request->input('notes'));
         
-        if ($request->input('type') == 'Mock Assessment'){
+        if ($request->input('cal_type') == 'Mock Assessment'){
             $this->calendarManager->addDogAssessment($cal->id, $request->input('assessor1'), $request->input('assessor2'));
         }
 
@@ -73,10 +73,11 @@ class CalendarController extends Controller
     
 
 
-    public function attendMockEvent(Request $request)
+    public function attendEvent(Request $request)
     {
-        
-        $this->calendarManager->attendEvent($request->input('calendar_id'), $request->input('calButton'));
+
+       // dd($request);
+        $this->calendarManager->attendEvent($request->input('cal_id'), $request->input('calButton'));
 
         return redirect()->route('calendar');
     }

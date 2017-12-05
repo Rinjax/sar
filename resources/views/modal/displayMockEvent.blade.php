@@ -46,7 +46,7 @@
             <div class="modal-footer">
                 <form method="POST" action="{!! route('attendMock') !!}">{{ csrf_field() }}
                     <input hidden id="mock_id" name="mock_id" value=""></input>
-                    <input hidden id="cal_type" name="cal_type" value=""></input>
+                    <input hidden id="mock_cal_type" name="cal_type" value=""></input>
 
                     @if ($bookButton)
                         <button type="submit" id="bookButton" name="calButton" value="book" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Book</button>

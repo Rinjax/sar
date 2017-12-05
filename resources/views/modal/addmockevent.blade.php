@@ -40,7 +40,7 @@
                     </div>
 
 
-                    <input hidden id="cal_type" name="cal_type" value="Mock Assessment">
+                    <input hidden name="cal_type" value="Mock Assessment">
                     <input hidden class="js-datetimepicker" id="datetimepicker" name="datetimepicker" data-format="yyyy-MM-dd hh:mm" type="datetime">
                     <textarea id="notes" name="notes" rows="4" cols="60" placeholder="Notes..."></textarea>
                 </div>

@@ -50,7 +50,6 @@ header: {
 
             if(event.type === "training"){
                 $('#cal_id').val(event.id);
-                $('[id=cal_type]').val('training');
                 $("#myModalLabel").text(event.title);
                 $("#locationName").text(event.location.name);
                 $("#locationGrid").text(event.location.gridRef);
