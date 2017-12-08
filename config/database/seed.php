@@ -3,8 +3,10 @@
 return [
 
     'permissions' => [
+        'dev',
         'Calendar Admin',
-        'Mock Assessor',
+        'Locations Admin',
+        'Mock Assessor'
 
     ],
 
@@ -50,7 +52,7 @@ return [
         'Lilly'
     ],
 
-    'roels' => [
+    'roles' => [
         'Callout CoOrdinator',
         'Chairman',
         'Dog Handler',

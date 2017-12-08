@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class CheckHasRole
+class CheckHasPermission
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,16 @@ class CheckHasRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, $permissions)
     {
-
+        $permissions = explode('|',$permissions);
+        
         $user = Auth::user();
-        if($user->hasRole($role)) return $next($request);
+        
+        foreach ($permissions as $permission){
+            if($user->hasPermission($permission)) return $next($request);
+        }
+        
 
         Session::flash('error', "You're Not Authorised for that function!");
         return redirect('/dashboard');

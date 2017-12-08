@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'menu' => \App\Http\Middleware\MenuMiddleware::class,
         'event.expired' => \App\Http\Middleware\CalendarCheckEventExpired::class,
         'has.role' => \App\Http\Middleware\CheckHasRole::class,
+        'has.permission' => \App\Http\Middleware\CheckHasPermission::class,
     ];
 }

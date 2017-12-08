@@ -48,14 +48,14 @@ Route::group(['middleware' => ['auth','menu']], function () {
     //Calendar Routes
     Route::get('/calendar', 'CalendarController@index')->name('calendar');
     Route::post('/addEvent', 'CalendarController@addEvent')->name('addTraining')->middleware('event.expired');
-    Route::post('/addMockEvent', 'CalendarController@addEvent')->name('addMock'); //->middleware('event.expired');
+    Route::post('/addMockEvent', 'CalendarController@addEvent')->name('addMock')->middleware('event.expired');
     Route::post('/attendMockEvent', 'CalendarController@attendMockEvent')->name('attendMock')->middleware('event.expired');
     Route::post('/attendCalEvent', 'CalendarController@attendEvent')->name('attendEvent')->middleware('event.expired');
     Route::get('/calEvents', 'CalFeedController@getCalEvents');
     Route::get('/calMocks', 'CalFeedController@getCalMocks');
-    Route::get('/modifyEvent/', 'CalendarController@modifyEvent')->name('modify.event.url')->middleware('has.role:Sec');
-    Route::get('/modifyEvent/{id}', 'CalendarController@modifyEvent')->name('modify.event')->middleware('has.role:Sec');
-    Route::post('/modifyEvent', 'CalendarController@modifyEventPost')->name('modifyEvent.post')->middleware('has.role:Secretary');
+    Route::get('/modifyEvent/', 'CalendarController@modifyEvent')->name('modify.event.url')->middleware('has.permission:dev');
+    Route::get('/modifyEvent/{id}', 'CalendarController@modifyEvent')->name('modify.event')->middleware('has.permission:sec|dev');
+    Route::post('/modifyEvent', 'CalendarController@modifyEventPost')->name('modifyEvent.post')->middleware('has.permission:Secretary|dev');
     
     //Admin Routes
     Route::get('/admin', 'AdminController@index')->name('admin');

@@ -87,7 +87,7 @@ class CalendarController extends Controller
     public function modifyEvent($id)
     {
 
-        $event = cal_training::where('id', (int)$id )->with('location')->with('attendance')->firstOrFail();
+        $event = calendar::where('id', (int)$id )->with('location')->with('attendance')->firstOrFail();
 
         $locations = training_location::all();
 
@@ -104,6 +104,7 @@ class CalendarController extends Controller
 
     public function modifyEventPost(Request $request)
     {
+        //return response()->json($request->input('eventID'));
         
         $this->calendarManager->updateCalendar($request->input('eventID'), $request->input('location'), $request->input('datetimepicker1'), $request->input('note'));
         

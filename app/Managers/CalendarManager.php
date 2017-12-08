@@ -62,15 +62,17 @@ class CalendarManager
 
     public function updateCalendar($cal_id, $loc, $start, $note)
     {
-        $cal = calendar::where('id', $cal_id  )->update([
-            'location' => $loc,
+        $cal = calendar::where('id', $cal_id)->update([
+            'location_id' => $loc,
             'start' => $start,
-            'note' => $note
+            'notes' => $note
         ]);
     }
 
     public function removeAttendance($cal_id, $members = [])
     {
+        if ($members == null) $members = [];
+
         $oldAttends = calendar_attendance::where('calendar_id', $cal_id)->get();
 
         foreach ($oldAttends as $oldAttend){
@@ -83,6 +85,8 @@ class CalendarManager
 
     public function addAttendance($cal_id, $members =[])
     {
+        if ($members == null) $members = [];
+        
         $oldAttends = calendar_attendance::where('calendar_id', $cal_id)->get();
 
         foreach($members as $member){
