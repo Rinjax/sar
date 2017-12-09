@@ -73,7 +73,7 @@ class member extends Authenticatable
 
     public function cpdTraining()
     {
-        return $this->hasManyThrough('App\Models\cpd_training', 'App\Models\calendar_attendance', 'member_id', 'calendar_id');
+        return $this->hasManyThrough('App\Models\cpd_training', 'App\Models\calendar_attendance', 'member_id', 'calendar_id', 'id', 'calendar_id');
     }
     
 }

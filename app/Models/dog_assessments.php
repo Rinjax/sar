@@ -39,7 +39,7 @@ class dog_assessments extends Model
 
     public function getDate()
     {
-        return $this->hasOne('App\Models\calendar', 'id', 'calendar_id');
+        return $this->belongsTo('App\Models\calendar');
     }
 
 

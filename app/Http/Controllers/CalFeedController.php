@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\calendar;
+use App\Managers\CalFeedManager;
 use Illuminate\Http\Request;
-//use Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -12,19 +11,16 @@ use Carbon\Carbon;
 
 class CalFeedController extends Controller
 {
+    protected $CalFeedManager;
+
+    public function __construct()
+    {
+        $this->CalFeedManager = new CalFeedManager();
+    }
     public function getCalEvents (){
-        $cal_events = calendar::all();
-        $user_id = Auth::id();
-        foreach($cal_events as $cal_event){
-            $time = new Carbon($cal_event->start);
-            $time = $time->format('H:i');
-            $cal_event->location = $cal_event->location;
-            $cal_event->title = $time . " Team Training";
-            $cal_event->attending = $cal_event->isAttending($user_id);
-            $cal_event->attendances = $cal_event->attendance->pluck('name');
-            $cal_event->type = "training";
-        }
-        return $cal_events;
+
+        return $this->CalFeedManager->getCalendarEvents();
+        
     }
     
     

@@ -12,6 +12,6 @@ class cpd_training extends Model
 
     public function calendar()
     {
-        return $this->hasOne('App\Models\calendar');
+        return $this->belongsTo('App\Models\calendar');
     }
 }

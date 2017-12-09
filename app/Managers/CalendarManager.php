@@ -14,12 +14,14 @@ class CalendarManager
 {
     public function addCalendarEvent($type, $location, $start, $note)
     {
-        calendar::create([
+        $cal = calendar::create([
             'type' => $type,
             'location_id' => $location,
             'start' => $start,
             'note' => $note
         ]);
+
+        return $cal;
 
     }
 

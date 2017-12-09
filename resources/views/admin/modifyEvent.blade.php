@@ -13,7 +13,7 @@
     <div class="main-area">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-                <form id="form" method="post" action="#">{{csrf_field()}}
+                <form id="form" method="post" action="{!! route('modify.event.url')  !!}">{{csrf_field()}}
                     <input type="hidden" value="{{$event->id}}" name="eventID" id="eventID">
                     <div class="panel panel-default">
                         <div class="panel-heading">Team Training</div>
@@ -124,8 +124,9 @@
 
             var data = $('form').serializeArray();
 
-            console.log(data);
-            $.post('{!! route('modify.event.url')  !!}', data);
+            $('#form').submit();
+
+            //$.post('{!! route('modify.event.url')  !!}', data);
 
            //window.location.href = ("{{route('calendar')}}");
         });

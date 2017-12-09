@@ -55,11 +55,11 @@ class MemberManager
     {
 
         $format = 'd/m/Y';
-        
+
         $water = $member->cpdTraining->where('cpd_type', 'Water Safety')->last();
 
         if($water){
-            $water = calendar::where('id', $water->calendar_id)->select('start')->first();
+            $water = $water->calendar;
             $t = new Carbon($water->start);
             $t = $t->format($format);
             $member->water = $t;

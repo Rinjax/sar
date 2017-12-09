@@ -58,8 +58,7 @@ class CalendarController extends Controller
     
     public function addEvent(request $request)
     {
-        dd($request);
-        
+
         $cal = $this->calendarManager->addCalendarEvent($request->input('cal_type'), $request->input('location'), $request->input('datetimepicker'), $request->input('notes'));
         
         if ($request->input('cal_type') == 'Mock Assessment'){
@@ -104,7 +103,6 @@ class CalendarController extends Controller
 
     public function modifyEventPost(Request $request)
     {
-        //return response()->json($request->input('eventID'));
         
         $this->calendarManager->updateCalendar($request->input('eventID'), $request->input('location'), $request->input('datetimepicker1'), $request->input('note'));
         
@@ -112,7 +110,9 @@ class CalendarController extends Controller
 
         $this->calendarManager->addAttendance($request->input('eventID'), $request->input('members_selected'));
 
-        return response()->json(['success' => true]);
+        Session::flash('success', 'Calendar Updated');
+
+        return redirect()->route('calendar');
 
 
 
