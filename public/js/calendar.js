@@ -48,7 +48,7 @@ header: {
         
         eventClick: function(event, element, view) {
 
-            if(event.type === "training"){
+            if(event.type === "Team Training"){
                 $('#cal_id').val(event.id);
                 $("#myModalLabel").text(event.title);
                 $("#locationName").text(event.location.name);
@@ -79,7 +79,7 @@ header: {
             
             
             
-            if(event.type === "mock"){
+            if(event.type == "Mock Assessment"){
                 $('#mock_id').val(event.id);
                 $('[id=cal_type]').val('mock');
                 $('#cal_type').removeClass('hidden');
@@ -91,17 +91,17 @@ header: {
                 $.each(event.attendances, function(index, element){
                     $('#mockAttendanceTable tbody').append('<tr><td>' + element + '</td></tr>');
                 });
-                if(event.get_assessment_details.get_handler !== null){
+                if(event.dog_assessment.get_handler !== null){
                     $('#bookButton').addClass('hidden');
-                    var handlerModal = event.get_assessment_details.get_handler.name;
-                    var dogModal = event.get_assessment_details.get_dog.name;
+                    var handlerModal = event.dog_assessment.get_handler.name;
+                    var dogModal = event.dog_assessment.get_dog.name;
                 }
                 else{
                     var handlerModal = "";
                     var dogModal = "";
                 }
-                $('#assessorTable tbody').append('<tr><td>' + event.get_assessment_details.get_assessor1.name + '</td><td>' + handlerModal + '</td></tr>');
-                $('#assessorTable tbody').append('<tr><td>' + event.get_assessment_details.get_assessor2.name + '</td><td>' + dogModal + '</td></tr>');
+                $('#assessorTable tbody').append('<tr><td>' + event.dog_assessment.get_assessor1.name + '</td><td>' + handlerModal + '</td></tr>');
+                $('#assessorTable tbody').append('<tr><td>' + event.dog_assessment.get_assessor2.name + '</td><td>' + dogModal + '</td></tr>');
 
                 var eventDate = new Date(event.start);
                 var todayDate = new Date();

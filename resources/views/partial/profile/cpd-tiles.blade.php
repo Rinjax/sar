@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-xs-6">
                         <p class="text-center" style="padding-top: 1rem;">Completed on: {{$member->navs}}</p>
-                        <p class="text-center" style="font-size: 3rem;">
+                        <p class="text-center" style="font-size: 2rem;">
                             {{$member->navsDays}} Days
                         </p>
                     </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-xs-6">
                         <p class="text-center" style="padding-top: 1rem;">Completed on: {{$member->firstaid}}</p>
-                        <p class="text-center" style="font-size: 3rem;">
+                        <p class="text-center" style="font-size: 2rem;">
                             {{$member->firstaidDays}} Days
                         </p>
                     </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-xs-6">
                         <p class="text-center" style="padding-top: 1rem;">Completed on: {{$member->fitness}}</p>
-                        <p class="text-center" style="font-size: 3rem;">
+                        <p class="text-center" style="font-size: 2rem;">
                             {{$member->fitnessDays}} Days
                         </p>
                     </div>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-xs-6">
                         <p class="text-center" style="padding-top: 1rem;">Completed on: {{$member->water}}</p>
-                        <p class="text-center" style="font-size: 3rem;">
+                        <p class="text-center" style="font-size: 2rem;">
                             {{$member->waterDays}} Days
                         </p>
                     </div>

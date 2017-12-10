@@ -19,6 +19,7 @@
  */
 
 Route::get('/', function () {
+    if(\Illuminate\Support\Facades\Auth::user()) return redirect('profile');
     return view('login');
 })->name('login');
 

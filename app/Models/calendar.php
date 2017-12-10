@@ -33,4 +33,9 @@ class calendar extends Model
         }
         return false;
     }
+
+    public function dogAssessment()
+    {
+        return $this->hasOne('App\Models\dog_assessments');
+    }
 }
