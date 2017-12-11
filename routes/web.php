@@ -35,7 +35,7 @@ Route::get('logging', 'Auth\LoginController@handleProviderCallback');
 
 Route::group(['middleware' => ['auth','menu']], function () {
 
-    Route::get('/dashboard', 'ProfileController@index')->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     //Profile Routes
     Route::get('/profile', 'ProfileController@index')->name('profile');
@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/calendar', 'CalendarController@index')->name('calendar');
     Route::post('/addEvent', 'CalendarController@addEvent')->name('addTraining')->middleware('event.expired');
     Route::post('/addMockEvent', 'CalendarController@addEvent')->name('addMock')->middleware('event.expired');
-    Route::post('/attendMockEvent', 'CalendarController@attendMockEvent')->name('attendMock')->middleware('event.expired');
+    Route::post('/attendMockEvent', 'CalendarController@attendEvent')->name('attendMock')->middleware('event.expired');
     Route::post('/attendCalEvent', 'CalendarController@attendEvent')->name('attendEvent')->middleware('event.expired');
     Route::get('/calEvents', 'CalFeedController@getCalEvents');
     Route::get('/calMocks', 'CalFeedController@getCalMocks');

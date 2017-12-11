@@ -10746,3 +10746,9 @@ select {
   border: solid darkred 1px;
 }
 
+.table.center-table-text > tbody > tr > td,
+th {
+  vertical-align: middle;
+  text-align: center;
+}
+

@@ -24,22 +24,27 @@ class MenuMiddleware
     {
 
         $roles = Auth::user()->roles->pluck('role')->toArray();
+        $permissions = Auth::user()->permissions->pluck('permission')->toArray();
         array_push($roles,'standard');
+        $access = array_merge($roles, $permissions);
+
         
         \Menu::make('MyNavBar', function($menu){
   
-        $menu->add('Admin', 'admin')->data('permission','admin')->prepend('<span class=" fa fa-cog"></span> ');
+        $menu->add('Dashboard', 'dashboard')->data('permission','standard')->prepend('<span class=" fa fa-cog"></span> ');
         $menu->add('My Profile', 'profile')->data('permission','standard') ->prepend('<span class="glyphicon glyphicon-user"></span> ');//->link->secure();
         $menu->add('My Dog', 'dog')->data('permission','Dog Handler')->prepend('<span class="fa fa-paw"></span> ');
         $menu->add('Calendar',  'calendar') ->data('permission','standard')->prepend('<span class="fa fa-calendar"></span> ');
-        $menu->add('Op Training Off',  'oto') ->data('permission','standard')->prepend('<span class="fa fa-paw"></span> ');
-        $menu->add('Training Off',  'to') ->data('permission','disabled')->prepend('<span class="fa fa-graduation-cap"></span> ');
-        $menu->add('Equipment Off', 'eo') ->data('permission','disabled')->prepend('<span class="fa fa-binoculars"></span> ');
+
+        $menu->add('Dev Section', 'dev') ->data('permission','dev')->prepend('<span class="fa fa-binoculars"></span> ');
+            $menu->devSection->add('Op Training Off',  'oto') ->data('permission','standard')->prepend('<span class="fa fa-paw"></span> ');
+            $menu->devSection->add('Training Off',  'to') ->data('permission','dev')->prepend('<span class="fa fa-graduation-cap"></span> ');
+            $menu->devSection->add('Equipment Off', 'eo') ->data('permission','dev')->prepend('<span class="fa fa-binoculars"></span> ');
   
         })
         
-        ->filter(function($item) use ($roles){
-            if( in_array($item->permission, $roles) ) {
+        ->filter(function($item) use ($access){
+            if( in_array($item->permission, $access) ) {
                 return true;
             } 
 

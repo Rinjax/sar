@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Managers\CalendarManager;
 use App\Models\calendar;
-use App\Models\calendar_attendance;
 use App\Models\permission;
 use App\Models\training_location;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\member;
-use Carbon\Carbon;
-use App\Models\roles;
+
 
 
 /**
@@ -39,17 +36,14 @@ class CalendarController extends Controller
         $locations = training_location::all();
 
         $data = [
-            'bookButton' => false,
+            'bookButton' => true,
             'locations' => $locations,
-            //'assessors1' => Auth::user(),
 
         ];
 
         $assessors2 = permission::where('permission', 'Mock Assessor')->first()->members()->get();
 
         $data['assessors2'] = $assessors2; //->except(Auth::id());
-
-        //dd($data['assessors1']['id']);
         
         return view('calendar')->with($data);
     }

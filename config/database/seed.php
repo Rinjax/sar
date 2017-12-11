@@ -6,7 +6,8 @@ return [
         'dev',
         'Calendar Admin',
         'Locations Admin',
-        'Mock Assessor'
+        'Mock Assessor',
+        'Book Mock'
 
     ],
 
@@ -30,7 +31,6 @@ return [
         'Anna Nussey',
         'Cathy Neylan',
         'Richard Betts',
-        'Paul Green',
         'Steve Bavin',
         'Michelle Bavin',
         'Liz Daddy'
@@ -49,7 +49,6 @@ return [
         'Mannu',
         'Spice',
         'Rowan',
-        'Lilly'
     ],
 
     'roles' => [

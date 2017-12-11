@@ -8,6 +8,7 @@ use App\Models\dog_assessments;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 class CalendarManager
@@ -46,8 +47,9 @@ class CalendarManager
             case 'book':
                 if ($user->hasPermission('Book Mock')) {
                     $assessment = \App\Models\dog_assessments::where('calendar_id', $cal_id)->first();
+
                     if ($assessment->handler_id === null) {
-                        $assessment->handler_id = $user->id();
+                        $assessment->handler_id = $user->id;
                         $assessment->dog_id = $user->dog->id;
                         $assessment->save();
                     } else {
