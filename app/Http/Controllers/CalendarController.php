@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Managers\CalendarManager;
+use App\Managers\TimesheetManager;
 use App\Models\calendar;
+use App\Models\calendar_attendance;
 use App\Models\permission;
 use App\Models\training_location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\member;
+use Carbon\Carbon;
 
 
 
@@ -20,11 +23,15 @@ class CalendarController extends Controller
     
     protected $calendarManager;
 
+    protected $timesheetManager;
+
     
     
     public function __construct()
     {
         $this->calendarManager = new CalendarManager();
+
+        $this->timesheetManager = new TimesheetManager();
     }
     
     
@@ -110,6 +117,29 @@ class CalendarController extends Controller
 
 
 
+    }
+
+    public function timesheetIndex($id)
+    {
+        $attendance = $this->timesheetManager->getCalendarAttendance($id);
+
+        $event = $this->timesheetManager->getCalendarEvent($id);
+        
+        return view('admin.timesheet')->with(['event' => $event, 'attendance' => $attendance]);
+    }
+
+    public function timesheetPost(Request $request)
+    {
+        foreach ($request->except('_token','eventID') as $key => $val){
+            if(!$val == null){
+                $e = explode('_',$key);
+                calendar_attendance::where([
+                    ['member_id', $e[1]], ['calendar_id', $request->input('eventID')]
+                ])->update(['clock_'.$e[0] => $val]);
+            }
+
+        }
+        dd($request);
     }
 
     

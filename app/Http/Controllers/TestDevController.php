@@ -3,22 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
+use App\Models\calendar_attendance;
 use App\Models\member;
 use App\Processors\memberStats;
+use Carbon\Carbon;
 
 class TestDevController extends Controller
 {
     public function index()
     {
-       //$result =  memberStats::trainingRatioYear(1, 2017);
 
-        $s = new MemberManager();
+        //timesheet calc for differences
 
-        $m = $s->getMember(1);
-//dd($m);
+       $rec = calendar_attendance::where('id', 13)->first();
 
-        $m = $s->getLatestCPDDate($m);
+        $in = Carbon::createFromFormat('H:i:s', $rec->clock_in);
 
-         dd($m);
+        $out = Carbon::createFromFormat('H:i:s', $rec->clock_out);
+
+        if($out->lt($in)) $out->addDay();
+
+        $h = ($in->diffInMinutes($out, false) / 60);
+
+        $m =($in->diffInMinutes($out, false) % 60);
+
+        dd($in, $out, $h, $m);
     }
 }

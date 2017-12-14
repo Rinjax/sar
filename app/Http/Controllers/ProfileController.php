@@ -38,8 +38,8 @@ class ProfileController extends Controller
         $member->navsDays = $this->memberManager->getCDPExpiryInDays($member->navs, 1);
         $member->fitnessDays = $this->memberManager->getCDPExpiryInDays($member->fitness, 1);
 
-        $member->percent = $this->statsManager->getTrainingYearAttendancePercent($member->id);
-        $member->percent = $this->statsManager->getTrainingMonthAttendancePercent($member->id);
+        $member->percentYear = $this->statsManager->getTrainingYearAttendancePercent($member->id);
+        $member->percentMonth = $this->statsManager->getTrainingMonthAttendancePercent($member->id);
 
         //dd($member);
 

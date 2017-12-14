@@ -20,7 +20,7 @@ class calendar extends Model
     
     public function attendance()
     {
-        return $this->belongsToMany('App\Models\member','calendar_attendance');
+        return $this->belongsToMany('App\Models\member','calendar_attendance')->orderBy('name');
     }
     
     

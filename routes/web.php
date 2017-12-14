@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/modifyEvent/{id}', 'CalendarController@modifyEvent')->name('modify.event')->middleware('has.permission:sec|dev');
     Route::post('/modifyEvent', 'CalendarController@modifyEventPost')->name('modifyEvent.post')->middleware('has.permission:Secretary|dev');
     
+    Route::get('/timesheet/{id}', 'CalendarController@timesheetIndex')->name('timesheet')->middleware('has.permission:Secretary|dev');
+    Route::post('/timesheet', 'CalendarController@timesheetPost')->name('timesheet.post')->middleware('has.permission:Secretary|dev');
+    
     //Admin Routes
     Route::get('/admin', 'AdminController@index')->name('admin');
     Route::post('/addMember', 'AdminController@addMember')->name('addMember');

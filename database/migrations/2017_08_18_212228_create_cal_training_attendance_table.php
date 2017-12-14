@@ -17,6 +17,8 @@ class CreateCalTrainingAttendanceTable extends Migration
             $table->increments('id');
             $table->integer('calendar_id');
             $table->integer('member_id');
+            $table->time('clock_in')->nullable()->default(null);
+            $table->time('clock_out')->nullable()->default(null);
             $table->timestamps();
         });
     }

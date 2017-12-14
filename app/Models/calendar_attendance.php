@@ -10,8 +10,11 @@ class calendar_attendance extends Model
 
     protected  $fillable = ['calendar_id', 'member_id'];
 
-   
-    //public $timestamps = true;
+
+    public function member()
+    {
+        return $this->belongsTo('App\Models\member')->orderBy('name');
+    }
     
     
 
