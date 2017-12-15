@@ -36,7 +36,7 @@
                     <input hidden id="cal_id" name="cal_id" value=""></input>
                     <input hidden id="cal_type" name="cal_type" value=""></input>
 
-                    @if (Auth::user()->hasPermission('Mock Assessor'))
+                    @if (Auth::user()->hasPermission('Calendar Admin'))
                         <a href="{!! url('/modifyEvent/') !!}/" class="btn btn-primary pull-left js-modify-btn"><span class="icon-pencil"></span> Modify</a>
                         <a href="{!! url('/timesheet/') !!}/" class="btn btn-primary pull-left js-timesheet-btn"><span class="icon-stopwatch"></span> Timesheet</a>
                     @endif

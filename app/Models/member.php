@@ -55,7 +55,7 @@ class member extends Authenticatable
     {
         foreach ($this->permissions()->get() as $permission)
         {
-            if ($permission->permission == $permissionName)
+            if ($permission->permission == $permissionName || $permission->permission == 'dev')
             {
                 return true;
             }

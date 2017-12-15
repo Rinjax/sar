@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\member;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -43,14 +44,14 @@ class CalendarController extends Controller
         $locations = training_location::all();
 
         $data = [
-            'bookButton' => true,
+            'bookButton' => $bookButton,
             'locations' => $locations,
 
         ];
 
         $assessors2 = permission::where('permission', 'Mock Assessor')->first()->members()->get();
 
-        $data['assessors2'] = $assessors2; //->except(Auth::id());
+        $data['assessors2'] = $assessors2->except(Auth::id());
         
         return view('calendar')->with($data);
     }
