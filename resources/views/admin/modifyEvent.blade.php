@@ -14,7 +14,7 @@
                 <form id="form" method="post" action="{!! route('modify.event.url')  !!}">{{csrf_field()}}
                     <input type="hidden" value="{{$event->id}}" name="eventID" id="eventID">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Team Training</div>
+                        <div class="panel-heading text-center"><strong>{{$event->type}}</strong></div>
                         <div class="panel-body">
                             <div class="row space-bottom-2">
                                 <div class="col-xs-12">
@@ -30,6 +30,18 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @if($event->type == 'Mock Assessment')
+                                    <div class="space-bottom-2">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                g
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                g
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
                                     <input hidden id="datetimepicker1" name="datetimepicker1" data-format="yyyy-MM-dd hh:mm" type="datetime"></input>
                                 </div>
                             </div>

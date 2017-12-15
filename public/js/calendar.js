@@ -48,6 +48,9 @@ header: {
         
         eventClick: function(event, element, view) {
 
+            $('.js-timesheet-btn').attr('href', $('.js-timesheet-btn').attr('href') + event.id);
+            $('.js-modify-btn').attr('href', $('.js-modify-btn').attr('href') + event.id);
+
             if(event.type === "Team Training"){
                 $('#cal_id').val(event.id);
                 $("#myModalLabel").text(event.title);
@@ -156,7 +159,8 @@ recreateFC($(window).width());
 // function on modal close to clear out the data from the last displayed
 $(document).on('hide.bs.modal','#modalEvent', function () {
     $("#attendanceTable tbody").empty();
-    $('#modifyButton').attr('href', 'http://dev.searchdogs.com/modifyEvent/');
+    $('.js-modify-btn').attr('href', 'http://dev.searchdogs.com/modifyEvent/');
+    $('.js-timesheet-btn').attr('href', 'http://dev.searchdogs.com/timesheet/');
     //$("#calAttendButton").removeClass('hidden');
  
 });
@@ -169,5 +173,7 @@ $(document).on('hide.bs.modal','#modalMock', function () {
         $('#bookButton').removeClass('hidden')
     }
 
+    $('.js-modify-btn').attr('href', 'http://dev.searchdogs.com/modifyEvent/');
+    $('.js-timesheet-btn').attr('href', 'http://dev.searchdogs.com/timesheet/');
   
 });

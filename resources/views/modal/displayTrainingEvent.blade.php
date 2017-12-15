@@ -37,7 +37,8 @@
                     <input hidden id="cal_type" name="cal_type" value=""></input>
 
                     @if (Auth::user()->hasPermission('Mock Assessor'))
-                        <a href="{!! url('/modifyEvent/') !!}/" id="modifyButton" class="btn btn-primary pull-left"><span class="icon-pencil"></span> Modify</a>
+                        <a href="{!! url('/modifyEvent/') !!}/" class="btn btn-primary pull-left js-modify-btn"><span class="icon-pencil"></span> Modify</a>
+                        <a href="{!! url('/timesheet/') !!}/" class="btn btn-primary pull-left js-timesheet-btn"><span class="icon-stopwatch"></span> Timesheet</a>
                     @endif
                     <button type="submit" id="calAttendButton" name="calButton" value="attend" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Attend</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban fa-fw"></i>Close</button>

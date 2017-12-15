@@ -17,19 +17,6 @@ class DogController extends Controller
         $currentDate = Carbon::now();
         $daysLeft =  $currentDate ->diffInDays($ticket, false);
         
-        
-        $start = new Carbon($dog->start_program);
-        $start = $start->format('d/m/y');
-        $stage = new Carbon($dog->start_program);
-        $stage1 = $stage->addMonths(4)->format('M Y');
-        $stage2 = $stage->addMonths(4)->format('M Y');
-        $stage3 = $stage->addMonths(4)->format('M Y');
-        $stage4 = $stage->addMonths(4)->format('M Y');
-        $stage5 = $stage->addMonths(4)->format('M Y');
-        $stage6 = $stage->addMonths(4)->format('M Y');
-        
-        
-        
         $assessments = \App\Models\dog_assessments::where('dog_id', ($dog->id))->get();       
         foreach ($assessments as $assessment){
             //location no longer in this table, need to fix this

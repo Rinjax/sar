@@ -48,6 +48,11 @@
                     <input hidden id="mock_id" name="cal_id" value=""></input>
                     <input hidden id="mock_cal_type" name="cal_type" value=""></input>
 
+                    @if (Auth::user()->hasPermission('Mock Assessor'))
+                        <a href="{!! url('/modifyEvent/') !!}/" class="btn btn-primary pull-left js-modify-btn"><span class="icon-pencil"></span> Modify</a>
+                        <a href="{!! url('/timesheet/') !!}/" class="btn btn-primary pull-left js-timesheet-btn"><span class="icon-stopwatch"></span> Timesheet</a>
+                    @endif
+
                     @if ($bookButton)
                         <button type="submit" id="bookButton" name="calButton" value="book" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Book</button>
                     @endif

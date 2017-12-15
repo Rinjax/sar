@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-print:before {
+  content: "\f02f";
+}
 .icon-cog:before {
   content: "\f013";
 }
@@ -53,4 +56,19 @@
 }
 .icon-tab:before {
   content: "\ea45";
+}
+.icon-lifebuoy:before {
+  content: "\e941";
+}
+.icon-map:before {
+  content: "\e94b";
+}
+.icon-stopwatch:before {
+  content: "\e952";
+}
+.icon-bug:before {
+  content: "\e999";
+}
+.icon-meter:before {
+  content: "\e9a6";
 }
