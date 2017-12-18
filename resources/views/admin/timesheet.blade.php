@@ -47,7 +47,7 @@
                                         </td>
                                         <td>
                                             <div class="input-group  js-datetimepicker">
-                                                <input name="out_{{$attend->member->id}}" class="form-control text-center" type="text">
+                                                <input name="out_{{$attend->member->id}}" class="form-control text-center" type="text" placeholder="{{$attend->clock_out}}">
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-time"></span>
                                                 </span>

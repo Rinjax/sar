@@ -18,29 +18,17 @@ class DogController extends Controller
         $daysLeft =  $currentDate ->diffInDays($ticket, false);
         
         $assessments = \App\Models\dog_assessments::where('dog_id', ($dog->id))->get();       
-        foreach ($assessments as $assessment){
-            //location no longer in this table, need to fix this
-            $assessment->location = $assessment->getDate->location->name;
-            $assessDate = new Carbon($assessment->getDate->start);
-            $assessment->d = $assessDate->format('d-m-Y');
-        }
-        
-        
-        
+
+
+
+
         $data = array(
-            'name' => $dog->name,
-            'breed' => $dog->breed,
-            'start' => $start,
-            'level' => $dog->level,
+           
             'ticket_exp' => $ticket_date,
             'ticket_days' => $daysLeft,
             'assessments' => $assessments,
-            'stage1' => $stage1,
-            'stage2' => $stage2,
-            'stage3' => $stage3,
-            'stage4' => $stage4,
-            'stage5' => $stage5,
-            'stage6' => $stage6,
+            'dog' => $dog
+
         );
        
         return view ('dog')->with($data);

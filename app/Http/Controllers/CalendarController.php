@@ -140,7 +140,10 @@ class CalendarController extends Controller
             }
 
         }
-        dd($request);
+
+        Session::flash('success', 'Timesheet Updated');
+
+        return redirect()->route('calendar');
     }
 
     
