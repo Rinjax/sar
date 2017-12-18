@@ -1,6 +1,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h1 class="panel-title"><strong>{{$member->name}}</strong> - {{$member->roles}}</h1>
+        <h1 class="panel-title"><strong>{{$member->name}}</strong> -
+            @foreach($member->roles as $role){{$role->role .', '}}@endforeach</h1>
     </div>
     <div class="panel-body">
         <div class="row">

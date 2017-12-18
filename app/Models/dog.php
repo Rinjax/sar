@@ -16,9 +16,5 @@ class dog extends Model
         //returns all assessments for a dog
         return $this->hasMany('\App\Models\dog_assessments');
     }
-
-    public function getStatus(){
-
-        return $this->hasOne('\App\Models\dog_status');
-    }
+    
 }
