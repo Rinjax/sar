@@ -25,6 +25,7 @@
                                     <h4 style="margin-top: 0"><strong>Dog Details</strong></h4>
                                     <p>Breed: <strong>{{$dog->breed}}</strong></p>
                                     <p>Level: <strong>{{$dog->level}}</strong></p>
+                                    <p>Status: <span class="text-status-orange">{{$dog->status}}</span></p>
                                     <p>Started:
                                         <strong>{{\Carbon\Carbon::parse($dog->started)->format('d / m / Y')}}</strong>
                                     </p>
@@ -38,20 +39,20 @@
                 @if ($dog->level > 1)
                     <div class="panel panel-primary">
                         <div class="panel-body
-                        @if($member->navDays < 250 && $member->navDays > 100)cpd-panel-warning
-                        @elseif($member->navDays <= 100)cpd-panel-danger
+                        @if($dog->ticketDays < 250 && $dog->ticketDays > 100)cpd-panel-warning
+                        @elseif($dog->ticketDays <= 100)cpd-panel-danger
                         @endif">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <p class="text-center"><strong>Navs</strong></p>
-                                    <img class="img-responsive center-block" src="/img/silver-compass.png" alt="water">
+                            <div class="row vertical-align-col">
+                                <div class="col-xs-12 col-sm-6">
+                                    <p class="text-center"><h3 class="text-center">Operational Ticket</h3></p>
+                                    <img class="img-responsive center-block" src="/img/certificatesm.png" alt="water">
                                 </div>
-                                <div class="col-xs-6">
-                                    <p class="text-center" style="padding-top: 1rem;">Completed
-                                        on: {{$member->navs}}</p>
-                                    <p class="text-center" style="font-size: 2rem;">
-                                        {{$member->navsDays}} Days
-                                    </p>
+                                <div class="col-xs-12 col-sm-6">
+                                    <h4 class="text-center">Completed
+                                        on: {{\Carbon\Carbon::parse($dog->operational_date)->format('d / m / Y')}}</h4>
+                                    <h3 class="text-center" style="font-size: 2rem;">
+                                        {{$dog->ticketDays}} Days
+                                    </h3>
                                 </div>
                             </div>
                         </div>

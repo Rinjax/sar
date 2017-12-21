@@ -4,3 +4,15 @@
   width: 100%;
   top: 45%;
 }
+
+.vertical-align-col{
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align-col > [class^='col-'], .vertical-align-col > [class*=' col-']{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

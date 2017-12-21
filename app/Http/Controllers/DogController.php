@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\DogManager;
 use Illuminate\Http\Request;
 use \App\Models\dog;
 use Illuminate\Support\Facades\Auth;
@@ -10,12 +11,18 @@ use Carbon\Carbon;
 
 class DogController extends Controller
 {
+    protected $dogManager;
+
+    public function __construct()
+    {
+        $this->dogManager = new DogManager();
+    }
+
+
     public function index (){
         $dog = \App\Models\dog::where('member_id', Auth::id())->first();
-        $ticket = new Carbon($dog->op_ticket_exp);
-        $ticket_date = $ticket->format('d/m/y');
-        $currentDate = Carbon::now();
-        $daysLeft =  $currentDate ->diffInDays($ticket, false);
+
+        $dog->ticketDays = $this->dogManager->getTicketExpiryDays($dog->operational_date);
         
         $assessments = \App\Models\dog_assessments::where('dog_id', ($dog->id))->get();       
 
@@ -24,8 +31,6 @@ class DogController extends Controller
 
         $data = array(
            
-            'ticket_exp' => $ticket_date,
-            'ticket_days' => $daysLeft,
             'assessments' => $assessments,
             'dog' => $dog
 
