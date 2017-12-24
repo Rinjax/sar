@@ -17,6 +17,14 @@
                     <h4 style="margin-top: 0"><strong>Member Details</strong></h4>
                     <p><strong>Call Sign: </strong>{{$member->callsign}}</p>
                     <p><strong>Contact: </strong><a href="#" data-toggle="modal" data-target="#updateMob">{{$member->contact}}</a></p>
+                    <p>
+                        <strong>Status: </strong><span class="
+                            @if($member->status == 'Training')text-status-purple
+                            @elseif($member->status == 'Operational')text-status-green
+                            @elseif($member->status == 'Non-Operational')text-status-red
+                            @endif
+                                ">{{$member->status}}</span>
+                    </p>
                 </div>
             </div>
         </div>

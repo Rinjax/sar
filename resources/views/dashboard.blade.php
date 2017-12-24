@@ -6,6 +6,9 @@
 @section('content')
 
     <div class="main-area">
+
+        @include('partial.dashboard.count-tiles')
+
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h2 class="text-center">Team Members</h2>
@@ -32,7 +35,6 @@
 
                     </table>
                 </div>
-
             </div>
         </div>
     </div>

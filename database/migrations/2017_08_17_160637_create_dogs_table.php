@@ -23,6 +23,7 @@ class CreateDogsTable extends Migration
             $table->integer('level');
             $table->date('operational_date')->nullable()->default(null);
             $table->string('status')->default('Training');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

@@ -16,3 +16,20 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.flex-same-height {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-same-height > [class*='col-']{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-same-height > [class*='col-'] > .panel{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
