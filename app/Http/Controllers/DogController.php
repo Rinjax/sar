@@ -20,6 +20,8 @@ class DogController extends Controller
 
 
     public function index (){
+        
+        
         $dog = \App\Models\dog::where('member_id', Auth::id())->first();
 
         $dog->ticketDays = $this->dogManager->getTicketExpiryDays($dog->operational_date);

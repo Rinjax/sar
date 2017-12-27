@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\seedDB;
+use App\Console\Commands\addPermission;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        seedDB::class
+        seedDB::class,
+        addPermission::class
     ];
 
     /**

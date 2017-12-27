@@ -7,7 +7,8 @@ return [
         'Calendar Admin',
         'Locations Admin',
         'Mock Assessor',
-        'Book Mock'
+        'Book Mock',
+        'Dog Menu'
 
     ],
 

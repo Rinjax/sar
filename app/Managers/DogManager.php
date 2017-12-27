@@ -3,10 +3,13 @@
 namespace App\Managers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class DogManager
 {
+
+    
     public function getTicketExpiryDays($date, $years=2)
     {
 

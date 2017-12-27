@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Managers\SeedManager;
+use App\Models\permission;
 use App\Models\roles;
 use Illuminate\Console\Command;
 
@@ -65,7 +66,7 @@ class seedDB extends Command
         }
 
         foreach($permissions as $permission){
-            roles::create([
+            permission::create([
                 'permission' => $permission
             ]);
         }

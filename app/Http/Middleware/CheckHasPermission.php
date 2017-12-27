@@ -20,11 +20,15 @@ class CheckHasPermission
         $permissions = explode('|',$permissions);
         
         $user = Auth::user();
-        
+
+
         foreach ($permissions as $permission){
-            if($user->hasPermission($permission)) return $next($request);
+           // dd($permission);
+            if($user->hasPermission($permission)) {
+                
+                return $next($request);
+            }
         }
-        
 
         Session::flash('error', "You're Not Authorised for that function!");
         return redirect('/dashboard');

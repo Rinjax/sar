@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@mobileUpdate')->name('updatemob.post');
 
-    Route::get('/dog', 'DogController@index')->name('dog');
+    Route::get('/dog', 'DogController@index')->name('dog')->middleware('has.permission:Dog Menu');
     Route::get('/oto', 'OtoController@index')->name('oto');
     Route::get('/to', 'ToController@index')->name('to');
     Route::post('/addassessment', 'OtoController@index')->name('addAssessment.post');

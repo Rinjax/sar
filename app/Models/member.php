@@ -53,9 +53,11 @@ class member extends Authenticatable
 
     public function hasPermission($permissionName)
     {
+
         foreach ($this->permissions()->get() as $permission)
         {
-            if ($permission->permission == $permissionName || $permission->permission == 'dev')
+
+            if ($permission->permission == $permissionName || $permission->permission === 'dev')
             {
                 return true;
             }
