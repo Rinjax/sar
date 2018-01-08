@@ -28,15 +28,5 @@
                 </div>
             </div>
         </div>
-
-
-
-        @if(Auth::user()->hasRole('Assessor'))
-            <div class="row">
-                <div class="col-sm-12">
-                    @include('partial.profile.admin')
-                </div>
-            </div>
-        @endif
     </div>
 </div>

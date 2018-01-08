@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
+use App\Models\permission;
 use Illuminate\Http\Request;
 use App\Models\dog;
 use App\Models\member;
@@ -65,7 +66,12 @@ class AdminController extends Controller
         Session::flash('success', 'Member Added');
 
         return back();
+    }
 
-
+    public function permissionIndex()
+    {
+        $permssions = permission::with('members')->get();
+        
+        return view('admin.modifypermissions')->with(['permissions' => $permssions]);
     }
 }

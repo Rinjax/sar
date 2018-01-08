@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth','menu']], function () {
     //Admin Routes
     Route::get('/admin', 'AdminController@index')->name('admin');
     Route::post('/addMember', 'AdminController@addMember')->name('addMember');
+    Route::get('/permissions', 'AdminController@permissionIndex')->name('permissions');
 
 
 
