@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
+use App\Models\member_permission;
 use App\Models\permission;
 use Illuminate\Http\Request;
 use App\Models\dog;
@@ -73,5 +74,60 @@ class AdminController extends Controller
         $permssions = permission::with('members')->get();
         
         return view('admin.modifypermissions')->with(['permissions' => $permssions]);
+    }
+    
+    public function getPermissionMembers($id)
+    {
+        $permission = permission::where('id', $id)->with('members')->first();
+
+        $permissionMembers = $permission->members->pluck('id')->toArray();
+        
+        $members = member::where('active', 1)->select('id', 'name')->orderBy('name')->get();
+
+        foreach($members as $k => $v){
+            if(in_array($v->id, $permissionMembers)){
+                $members->forget($k);
+            }
+        }
+        
+        return $members;
+    }
+
+    public function addPermissionMembers(Request $request)
+    {
+        $member_ids = member::where('active', 1)->pluck('id')->toArray();
+
+        $permission_ids = permission::pluck('id')->toArray();
+
+        if(!in_array($request->members_list, $member_ids)){
+            Session::flash('error', 'Invalid Member Entered');
+            return back();
+        }
+
+        if(!in_array($request->permission_id, $permission_ids)){
+            Session::flash('error', 'Invalid Permission Group Was Entered');
+            return back();
+        }
+        
+        member_permission::updateOrCreate([
+            'member_id' => $request->members_list,
+            'permission_id' => $request->permission_id
+        ]);
+
+        return back();
+    }
+
+    public function removePermissionMembers(Request $request)
+    {
+        $remove_ids = $request->id;
+
+        $ids = explode("_", $remove_ids);
+
+        member_permission::where('member_id', $ids[0])
+            ->where('permission_id', $ids[1])
+            ->delete();
+
+        return response('complete', 200);
+
     }
 }

@@ -37,7 +37,7 @@
                             <td>{{$member->name}}</td>
                             <td>{{$member->callsign}}</td>
                             <td>
-                                <a href="#" id="rm_{{$member->id}}" class="btn btn-danger js-btn-remove"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a href="#" id="rm_{{$member->id}}_{{$permission->id}}" class="btn btn-danger js-btn-remove"><span class="glyphicon glyphicon-remove"></span></a>
                             </td>
                         </tr>
                     @endforeach
@@ -55,15 +55,49 @@
     <script>
         $('.js-btn-add').click(function () {
 
-            var membersList = $.get('{{url('/test')}}');
+            var id = $(this).attr('id').replace('add_','');
 
-            $(this).attr('id')
+            $('#permision_id').val(id);
 
-            $.each(membersList, function (k, v) {
-                console.log(membersList);
-                $('#members-list').append('<option value="element.id">element.name</option>');
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: '{{url('/permission-members')}}/' + id,
+                success: function(responseData){
+                    for(var key in responseData){
+                    }
+                    $.each(responseData, function (k,v){
+                        $('#members-list').append('<option value="'+v.id+'">'+v.name+'</option>');
+                    });
+                }
             });
+        });
+    </script>
 
+    <script>
+        // function on modal close to clear out the data from the last displayed
+        $(document).on('hide.bs.modal','#AddPermissionModal', function () {
+            $('#members-list').children('option').remove();
+        });
+    </script>
+
+    <script>
+        $('.js-btn-remove').click(function(){
+
+            var id = $(this).attr('id').replace('rm_','');
+
+            $(this).closest('tr').remove();
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'text',
+                url: '{{url('/permission-member/remove')}}',
+                data: {'id' : id},
+                success: function(){
+                    console.log('success function fired');
+                    //$(this).closest('tr').remove(); scope of this not correct.
+                }
+            });
         });
     </script>
 @endsection

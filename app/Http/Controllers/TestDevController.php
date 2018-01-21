@@ -7,12 +7,13 @@ use App\Models\calendar_attendance;
 use App\Models\member;
 use App\Processors\memberStats;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Response;
 
 class TestDevController extends Controller
 {
     public function index()
     {
 
-       return json_encode(member::all());
+       return Response::json(member::all());
     }
 }

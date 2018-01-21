@@ -40,6 +40,7 @@ class MenuMiddleware
             $menu->devSection->add('Op Training Off',  'oto') ->data('permission','standard')->prepend('<span class="fa fa-paw"></span> ');
             $menu->devSection->add('Training Off',  'to') ->data('permission','dev')->prepend('<span class="fa fa-graduation-cap"></span> ');
             $menu->devSection->add('Equipment Off', 'eo') ->data('permission','dev')->prepend('<span class="fa fa-binoculars"></span> ');
+            $menu->devSection->add('Permissions', 'permissions') ->data('permission','dev')->prepend('<span class="fa fa-binoculars"></span> ');
 
   
         })
