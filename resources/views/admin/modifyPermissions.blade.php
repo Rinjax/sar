@@ -29,7 +29,7 @@
                         <th>Img</th>
                         <th>Name</th>
                         <th>CallSign</th>
-                        <th>#</th>
+                        <th>Remove</th>
                     </tr>
                     @foreach($permission->members as $member)
                         <tr class="text-left">
