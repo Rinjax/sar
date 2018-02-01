@@ -53,6 +53,10 @@
                         <a href="{!! url('/timesheet/') !!}/" class="btn btn-primary pull-left js-timesheet-btn"><span class="icon-stopwatch"></span> Timesheet</a>
                     @endif
 
+                    @if (Auth::user()->hasPermission('Assessor'))
+                        <a href="#" class="btn btn-primary pull-left js-addAssessor-btn"><span class="icon-stopwatch"></span> Assess</a>
+                    @endif
+
                     @if ($bookButton)
                         <button type="submit" id="bookButton" name="calButton" value="book" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Book</button>
                     @endif

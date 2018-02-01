@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('manufacturer');
             $table->string('model');
             $table->string('description')->nullable()->default(null);
-            $table->string('img')->default('product.jpg');
+            $table->string('img')->default('default.png');
         });
     }
 

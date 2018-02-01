@@ -103,8 +103,19 @@ header: {
                     var handlerModal = "";
                     var dogModal = "";
                 }
+
                 $('#assessorTable tbody').append('<tr><td>' + event.dog_assessment.get_assessor1.name + '</td><td>' + handlerModal + '</td></tr>');
-                $('#assessorTable tbody').append('<tr><td>' + event.dog_assessment.get_assessor2.name + '</td><td>' + dogModal + '</td></tr>');
+
+                if(event.dog_assessment.get_assessor2 !== null){
+                    var assessor2 = event.dog_assessment.get_assessor2.name;
+                    $('.js-addAssessor-btn').addClass('hidden');
+                }else {
+                    var assessor2 = "";
+                }
+
+                $('#assessorTable tbody').append('<tr><td>' + assessor2 + '</td><td>' + dogModal + '</td></tr>');
+
+
 
                 var eventDate = new Date(event.start);
                 var todayDate = new Date();
@@ -125,6 +136,26 @@ header: {
         }
    
 };
+
+
+    $('.js-addAssessor-btn').click(function(event){
+
+        console.log('here');
+        var id = event.id;
+
+        console.log(event);
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'http://dev.searchdogs.com/assessment/addsecondassessor',
+            data: {'id' : 1},
+            success: function(){
+                console.log('success function fired');
+            }
+        });
+    });
+ 
 
 var $fc = $("#calendar").fullCalendar(options);
 
@@ -172,8 +203,11 @@ $(document).on('hide.bs.modal','#modalMock', function () {
     if($('#bookButton').length){
         $('#bookButton').removeClass('hidden')
     }
+    if($('.js-addAssessor-btn').length){
+        $('.js-addAssessor-btn').removeClass('hidden')
+    }
 
     $('.js-modify-btn').attr('href', 'http://dev.searchdogs.com/modifyEvent/');
     $('.js-timesheet-btn').attr('href', 'http://dev.searchdogs.com/timesheet/');
-  
+
 });

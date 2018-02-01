@@ -32,6 +32,10 @@
             <div class="col-md-6">
                 @include('partial.profile.stats-tile')
             </div>
+
+            <div class="col-md-6">
+                @include('partial.profile.equipment-tile')
+            </div>
         </div>
     </div>
 @endsection

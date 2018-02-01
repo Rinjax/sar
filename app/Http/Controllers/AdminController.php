@@ -130,4 +130,9 @@ class AdminController extends Controller
         return response('complete', 200);
 
     }
+
+    public function addAssetIndex()
+    {
+        return view('admin.addasset');
+    }
 }

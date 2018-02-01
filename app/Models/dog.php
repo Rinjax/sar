@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class dog extends Model
 {
     protected $table = 'dogs';
+    
     protected $dates = ['DoB', 'started'];
 
     protected $fillable = ['member_id', 'name', 'breed', 'started', 'level'];

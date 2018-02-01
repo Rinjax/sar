@@ -6,6 +6,7 @@ use App\Managers\CalendarManager;
 use App\Managers\TimesheetManager;
 use App\Models\calendar;
 use App\Models\calendar_attendance;
+use App\Models\dog_assessments;
 use App\Models\permission;
 use App\Models\training_location;
 use Illuminate\Http\Request;
@@ -65,6 +66,8 @@ class CalendarController extends Controller
         
         if ($request->input('cal_type') == 'Mock Assessment'){
             $this->calendarManager->addDogAssessment($cal->id, $request->input('assessor1'), $request->input('assessor2'));
+
+            $this->calendarManager->addAttendance($cal->id, [Auth::id()]);
         }
 
         Session::flash('success', 'event created');
@@ -144,6 +147,20 @@ class CalendarController extends Controller
         Session::flash('success', 'Timesheet Updated');
 
         return redirect()->route('calendar');
+    }
+
+    public function addSecondAssessor(Request $request)
+    {
+       
+        $id = $request->input('id');
+        
+        $assessment = dog_assessments::where('cal_id', $id)->first();
+
+        $assessment->assessor2 = Auth::id();
+
+        $assessment->save();
+
+        return response()->json(['Success' => true]);
     }
 
     

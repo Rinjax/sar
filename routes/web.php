@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::post('/attendCalEvent', 'CalendarController@attendEvent')->name('attendEvent')->middleware('event.expired');
     Route::get('/calEvents', 'CalFeedController@getCalEvents');
     Route::get('/calMocks', 'CalFeedController@getCalMocks');
-    //Route::get('/modifyEvent/', 'CalendarController@modifyEvent')->name('modify.event.url')->middleware('has.permission:dev');
+    Route::get('/modifyEvent/', 'CalendarController@modifyEvent')->name('modify.event.url')->middleware('has.permission:dev'); // this one is just used to generate the url for modal
     Route::get('/modifyEvent/{id}', 'CalendarController@modifyEvent')->name('modify.event')->middleware('has.permission:sec|dev');
     Route::post('/modifyEvent', 'CalendarController@modifyEventPost')->name('modifyEvent.post')->middleware('has.permission:Secretary|dev');
     
@@ -65,6 +65,8 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
     Route::post('/addMember', 'AdminController@addMember')->name('addMember');
     Route::get('/permissions', 'AdminController@permissionIndex')->name('permissions');
+    Route::get('/admin/addasset', 'AdminController@addAssetIndex')->name('permissions');
+
 
 });
 
@@ -74,6 +76,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/permission-members/{id}', 'AdminController@getPermissionMembers')->name('permission.members');
     Route::post('/permission-member' , 'AdminController@addPermissionMembers')->name('addPermission.post');
     Route::post('/permission-member/remove', 'AdminController@removePermissionMembers')->name('removePermission.post');
+    Route::post('/assessment/addsecondassessor', 'CalendarController@addSecondAssessor')->name('addSecondAssessor');
 });
 
 //test dev routes
