@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/permission-member/remove'
+        '/permission-member/remove',
+        '/assessment/addsecondassessor'
     ];
 }

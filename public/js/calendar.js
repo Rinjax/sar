@@ -108,7 +108,7 @@ header: {
 
                 if(event.dog_assessment.get_assessor2 !== null){
                     var assessor2 = event.dog_assessment.get_assessor2.name;
-                    $('.js-addAssessor-btn').addClass('hidden');
+                    $('.js-addassessor-btn').addClass('hidden');
                 }else {
                     var assessor2 = "";
                 }
@@ -138,20 +138,23 @@ header: {
 };
 
 
-    $('.js-addAssessor-btn').click(function(event){
+    $('.js-addassessor-btn').click(function(){
 
-        console.log('here');
-        var id = event.id;
+        var id = $('#mock_id').val();
 
-        console.log(event);
+        console.log(id);
 
         $.ajax({
             type: 'POST',
             dataType: 'json',
             url: 'http://dev.searchdogs.com/assessment/addsecondassessor',
-            data: {'id' : 1},
-            success: function(){
-                console.log('success function fired');
+            data: {'id' : id},
+            success: function(response){
+                if(response.error == true){}else{
+                    $('#assessorTable tr:nth-child(2) td:first').text(response.Assessor);
+                    $('.js-addassessor-btn').addClass('hidden')
+                }
+
             }
         });
     });
@@ -204,7 +207,7 @@ $(document).on('hide.bs.modal','#modalMock', function () {
         $('#bookButton').removeClass('hidden')
     }
     if($('.js-addAssessor-btn').length){
-        $('.js-addAssessor-btn').removeClass('hidden')
+        $('.js-addsssessor-btn').removeClass('hidden')
     }
 
     $('.js-modify-btn').attr('href', 'http://dev.searchdogs.com/modifyEvent/');

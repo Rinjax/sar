@@ -54,7 +54,7 @@
                     @endif
 
                     @if (Auth::user()->hasPermission('Assessor'))
-                        <a href="#" class="btn btn-primary pull-left js-addAssessor-btn"><span class="icon-stopwatch"></span> Assess</a>
+                        <button type="button" id="addAssessor" name="assessorButton" value="assess" class="btn btn-primary js-addassessor-btn"><i class="fa fa-check fa-fw"></i>Assess</button>
                     @endif
 
                     @if ($bookButton)

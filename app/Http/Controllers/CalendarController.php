@@ -153,14 +153,23 @@ class CalendarController extends Controller
     {
        
         $id = $request->input('id');
-        
-        $assessment = dog_assessments::where('cal_id', $id)->first();
 
-        $assessment->assessor2 = Auth::id();
+        $member = Auth::user();
+        
+        $assessment = dog_assessments::where('calendar_id', $id)->first();
+
+        if($assessment->assessor_2_id != null) return response()->json(['error' => true]);
+
+        $assessment->assessor_2_id = $member->id;
 
         $assessment->save();
 
-        return response()->json(['Success' => true]);
+        calendar_attendance::create([
+            'calendar_id' => $id,
+            'member_id' => $member->id
+        ]);
+
+        return response()->json(['Assessor' => $member->name], 200);
     }
 
     
