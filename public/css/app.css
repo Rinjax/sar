@@ -10829,6 +10829,17 @@ select {
   border: solid darkred 1px;
 }
 
+.location-panel {
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 10rem;
+  padding: 0 !important;
+}
+
+.location-panel a:hover {
+  background-color: rgba(10, 10, 10, 0.5);
+}
+
 .table.center-table-text > tbody > tr > td,
 th {
   vertical-align: middle;

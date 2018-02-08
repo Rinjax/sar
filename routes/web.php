@@ -67,6 +67,11 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/permissions', 'AdminController@permissionIndex')->name('permissions');
     Route::get('/admin/addasset', 'AdminController@addAssetIndex')->name('permissions');
 
+    //location
+    Route::get('/traininglocations', 'LocationController@index');
+
+    Route::get('/test', 'TestDevController@index');
+
 
 });
 
@@ -80,7 +85,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //test dev routes
-Route::get('/test', 'TestDevController@index'); 
+
 
 
 

@@ -9,3 +9,13 @@
   background-color: $panel-background-danger;
   border: solid darkred 1px;
 }
+
+.location-panel{
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 10rem;
+  padding: 0 !important;
+  a:hover {
+    background-color: rgba(10, 10, 10, 0.5);
+  }
+}

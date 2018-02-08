@@ -14,6 +14,6 @@ class TestDevController extends Controller
     public function index()
     {
 
-       return Response::json(member::all());
+       return view('locations');
     }
 }

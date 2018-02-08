@@ -23,9 +23,8 @@ class CheckHasPermission
 
 
         foreach ($permissions as $permission){
-           // dd($permission);
+
             if($user->hasPermission($permission)) {
-                
                 return $next($request);
             }
         }

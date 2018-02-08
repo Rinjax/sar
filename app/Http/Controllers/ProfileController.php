@@ -41,8 +41,6 @@ class ProfileController extends Controller
         $member->percentYear = $this->statsManager->getTrainingYearAttendancePercent($member->id);
         $member->percentMonth = $this->statsManager->getTrainingMonthAttendancePercent($member->id);
 
-        //dd($member);
-
         return view ('profile')->with(['member' => $member]);
     }
 

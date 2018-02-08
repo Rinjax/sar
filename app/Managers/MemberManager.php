@@ -47,7 +47,7 @@ class MemberManager
     {
         if($id == null) $id = Auth::id();
         
-        return  member::where('id', $id)->with('roles')->first();
+        return  member::where('id', $id)->with('roles', 'assets')->first();
     }
 
 

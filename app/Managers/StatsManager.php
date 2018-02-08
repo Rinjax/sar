@@ -13,12 +13,13 @@ class StatsManager
         $now = Carbon::now();
         if ($year == null) $year = $now->year;
 
-        $training = count(calendar::where('type', 'Training')->whereYear('start', '=', $year)->whereDate('start','<=', $now->toDateString())->pluck('id')->toArray());
+        $training = calendar::where('type', 'Team Training')->whereYear('start', '=', $year)->whereDate('start','<=', $now->toDateString())->pluck('id')->toArray();
 
-        if($training > 0 ){
+        if(count($training) > 0 ){
             $trainingAttended = calendar_attendance::where('member_id', $member_id)->whereIn('calendar_id', array($training))->get();
             $trainingAttendedCount = $trainingAttended->count();
-            return round((($trainingAttendedCount / $training)*100),2);
+
+            return round((($trainingAttendedCount / count($training))*100),2);
         }
 
         return 'No Training Events for this Year';
@@ -30,12 +31,12 @@ class StatsManager
         $now = Carbon::now();
         if ($month == null) $month = $now->month;
 
-        $training = count(calendar::where('type', 'Training')->whereMonth('start', '=', $month)->whereDate('start','<=', $now->toDateString())->pluck('id')->toArray());
+        $training = calendar::where('type', 'Team Training')->whereMonth('start', '=', $month)->whereDate('start','<=', $now->toDateString())->pluck('id')->toArray();
 
-        if($training > 0 ){
+        if(count($training) > 0 ){
             $trainingAttended = calendar_attendance::where('member_id', $member_id)->whereIn('calendar_id', array($training))->get();
             $trainingAttendedCount = $trainingAttended->count();
-            return round((($trainingAttendedCount / $training)*100),2);
+            return round((($trainingAttendedCount / count($training))*100),2);
         }
 
         return 'No Training Events for this Month';

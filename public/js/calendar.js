@@ -206,8 +206,9 @@ $(document).on('hide.bs.modal','#modalMock', function () {
     if($('#bookButton').length){
         $('#bookButton').removeClass('hidden')
     }
-    if($('.js-addAssessor-btn').length){
-        $('.js-addsssessor-btn').removeClass('hidden')
+    if($('.js-addassessor-btn').length){
+        $('.js-addassessor-btn').removeClass('hidden')
+
     }
 
     $('.js-modify-btn').attr('href', 'http://dev.searchdogs.com/modifyEvent/');

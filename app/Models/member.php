@@ -77,5 +77,10 @@ class member extends Authenticatable
     {
         return $this->hasManyThrough('App\Models\cpd_training', 'App\Models\calendar_attendance', 'member_id', 'calendar_id', 'id', 'calendar_id');
     }
+
+    public function assets()
+    {
+        return $this->hasMany('App\Models\asset');
+    }
     
 }

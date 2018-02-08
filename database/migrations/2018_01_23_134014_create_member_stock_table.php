@@ -21,7 +21,7 @@ class CreateMemberStockTable extends Migration
             $table->integer('qty');
             $table->date('requested_date');
             $table->date('fulfillment_date')->nullable()->default(null);
-            $table->boolean('status');
+            $table->string('status');
         });
     }
 

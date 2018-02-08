@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             $table->string('manufacturer');
             $table->string('model');
-            $table->string('description')->nullable()->default(null);
+            $table->string('item');
             $table->string('img')->default('default.png');
         });
     }
