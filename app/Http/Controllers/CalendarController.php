@@ -65,7 +65,7 @@ class CalendarController extends Controller
         $cal = $this->calendarManager->addCalendarEvent($request->input('cal_type'), $request->input('location'), $request->input('datetimepicker'), $request->input('notes'));
         
         if ($request->input('cal_type') == 'Mock Assessment'){
-            $this->calendarManager->addDogAssessment($cal->id, $request->input('assessor1'), $request->input('assessor2'));
+            $this->calendarManager->addDogAssessment($cal->id, $request->input('assessor1'));
 
             $this->calendarManager->addAttendance($cal->id, [Auth::id()]);
         }
@@ -79,8 +79,6 @@ class CalendarController extends Controller
 
     public function attendEvent(Request $request)
     {
-
-       // dd($request);
         $this->calendarManager->attendEvent($request->input('cal_id'), $request->input('calButton'));
 
         return redirect()->route('calendar');

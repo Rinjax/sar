@@ -82,7 +82,9 @@
     </script>
 
     <script>
-        $('.js-btn-remove').click(function(){
+        $('.js-btn-remove').click(function(event){
+
+            event.preventDefault();
 
             var id = $(this).attr('id').replace('rm_','');
 

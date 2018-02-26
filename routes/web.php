@@ -68,7 +68,12 @@ Route::group(['middleware' => ['auth','menu']], function () {
     Route::get('/admin/addasset', 'AdminController@addAssetIndex')->name('permissions');
 
     //location
-    Route::get('/traininglocations', 'LocationController@index');
+    Route::get('/traininglocations', 'LocationController@index')->name('location.index');
+    Route::get('/traininglocations/{id}', 'LocationController@Location');
+    
+    //file system
+    Route::get('/filesystem', 'FileSystemController@index')->name('filesystem.index');
+    Route::post('/filesystem/upload', 'FileSystemController@uploadPoliceVettingForm')->name('filesystem.upload.policevet');
 
     Route::get('/test', 'TestDevController@index');
 

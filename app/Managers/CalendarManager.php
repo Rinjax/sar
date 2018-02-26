@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Session;
 
 class CalendarManager
 {
-    public function addCalendarEvent($type, $location, $start, $note)
+    public function addCalendarEvent($type, $location, $start, $notes)
     {
         $cal = calendar::create([
             'type' => $type,
             'location_id' => $location,
             'start' => $start,
-            'note' => $note
+            'notes' => $notes
         ]);
 
         return $cal;
@@ -34,7 +34,7 @@ class CalendarManager
 
         switch ($action) {
             case 'attend':
-                calendar_attendance::create(['calendar_id' => $cal_id, 'member_id' => $user->id]);
+                calendar_attendance::updateOrCreate(['calendar_id' => $cal_id, 'member_id' => $user->id]);
 
                 break;
 
@@ -52,6 +52,9 @@ class CalendarManager
                         $assessment->handler_id = $user->id;
                         $assessment->dog_id = $user->dog->id;
                         $assessment->save();
+
+                        calendar_attendance::updateOrCreate(['calendar_id' => $cal_id, 'member_id' => $user->id]);
+
                     } else {
                         Session::flash('error', 'Ah sorry, looks like this is already booked.');
                     }
@@ -104,12 +107,11 @@ class CalendarManager
         }
     }
 
-    public function addDogAssessment($calendar_id, $assessor1, $assessor2)
+    public function addDogAssessment($calendar_id, $assessor1)
     {
         dog_assessments::create([
             'calendar_id' => $calendar_id,
             'assessor_1_id' => $assessor1,
-            'assessor_2_id' => $assessor2,
         ]);
     }
 

@@ -13,4 +13,9 @@ class LocationController extends Controller
         
         return view('locations')->with(['locations' => $locations]);
     }
+
+    public function location($id)
+    {
+        return training_location::where('id', $id)->first();
+    }
 }

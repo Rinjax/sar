@@ -29,11 +29,12 @@ header: {
             
             if (event.title.includes("Team Training")){
                 element.find('.fc-content').append("<br/>" + event.location.name);
-                element.addClass('yourClass');
+                element.addClass('event-training');
             }
 
             if (event.title.includes("Mock")){
                 element.find('.fc-content').append("<br/>" + event.location.name);
+                element.addClass('event-mock');
                 /*if (typeof event.get_assessment_details.get_handler !== 'undefined'){
                     element.find('.fc-title').append("<br/>" + event.get_assessment_details.get_handler.name);
                     element.css('background-color', 'green');

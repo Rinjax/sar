@@ -18,5 +18,6 @@ mix.scripts([
     'resources/assets/js/jquery.min.js',
     'resources/assets/js/moment.min.js',
     'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+    'node_modules/dropzone/dist/dropzone.js'
     
 ], 'public/js/app.js');
