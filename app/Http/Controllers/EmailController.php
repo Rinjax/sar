@@ -12,6 +12,6 @@ class EmailController extends Controller
     {
         Mail::to('steve.temple@searchdogssussex.com')->queue(new firstTest());
         
-        return "yay";
+        return "Email has been queued for sending";
     }
 }
