@@ -101,7 +101,7 @@ class MemberManager
             $fitness = calendar::where('id', $fitness->calendar_id)->select('start')->first();
             $t = new Carbon($fitness->start);
             $t = $t->format($format);
-            $member->firness = $t;
+            $member->fitness = $t;
         }else{
             $member->fitness = 'Not Completed';
         }

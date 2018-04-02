@@ -93,7 +93,7 @@ class CalendarController extends Controller
 
         $locations = training_location::all();
 
-        $availableMembers = member::whereNotIn('name', $event->attendance->pluck('name'))->get();
+        $availableMembers = member::whereNotIn('name', $event->attendance->pluck('name'))->orderBy('name')->get();
         
         $data = [
             'event' => $event,

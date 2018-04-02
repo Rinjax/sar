@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- div class="row">
                         <div class="col-md-12">
                             <label for="location">Assessor 2:</label>
                             <select id="assessor2" name="assessor2" class="form-group">
@@ -37,7 +37,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div -->
 
 
                     <input hidden name="cal_type" value="Mock Assessment">

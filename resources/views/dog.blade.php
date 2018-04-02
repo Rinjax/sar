@@ -23,19 +23,19 @@
                 <table class="table table-striped table-bordered">
                     <tr class="text-center">
                         <th>Assessment</th>
-                        <th>Location</th>
+                        <th class="hidden-xs">Location</th>
                         <th>Date</th>
                         <th>Passed</th>
-                        <th>Comments</th>
+                        <th class="hidden-xs">Comments</th>
                     </tr>
 
                     @foreach ($assessments as $assessment)
-                        <tr>
+                        <tr @if(!$assessment->passed)style="color: red;"@endif>
                             <td>{{ $assessment->type }}</td>
-                            <td>{{ $assessment->calendar->location->name }}</td>
+                            <td class="hidden-xs">{{ $assessment->calendar->location->name }}</td>
                             <td class="text-center">{{\Carbon\Carbon::parse($assessment->calendar->start)->format('d / m / Y')  }}</td>
                             <td class="text-center">{{ $assessment->passed ? 'yes':'no' }}</td>
-                            <td>{{ $assessment->comment }}</td>
+                            <td class="hidden-xs">{{ $assessment->comment }}</td>
                         </tr>
                     @endforeach
                 </table>

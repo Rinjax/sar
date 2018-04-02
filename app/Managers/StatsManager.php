@@ -8,6 +8,12 @@ use Carbon\Carbon;
 
 class StatsManager 
 {
+    /**
+     * Returns the percentage of 'team training' events attended for the member over the year
+     * @param $member_id
+     * @param null $year
+     * @return float|int
+     */
     public function getTrainingYearAttendancePercent($member_id, $year = null)
     {
         $now = Carbon::now();
@@ -16,16 +22,24 @@ class StatsManager
         $training = calendar::where('type', 'Team Training')->whereYear('start', '=', $year)->whereDate('start','<=', $now->toDateString())->pluck('id')->toArray();
 
         if(count($training) > 0 ){
-            $trainingAttended = calendar_attendance::where('member_id', $member_id)->whereIn('calendar_id', array($training))->get();
+            $trainingAttended = calendar_attendance::where('member_id', $member_id)->whereIn('calendar_id', $training)->get();
+
+
             $trainingAttendedCount = $trainingAttended->count();
 
             return round((($trainingAttendedCount / count($training))*100),2);
         }
 
-        return 'No Training Events for this Year';
+        return 0;
     }
 
 
+    /**
+     * Returns the percentage of 'team training' events attended for the member over the month
+     * @param $member_id
+     * @param null $month
+     * @return float|int
+     */
     public function getTrainingMonthAttendancePercent($member_id, $month = null)
     {
         $now = Carbon::now();
@@ -39,7 +53,7 @@ class StatsManager
             return round((($trainingAttendedCount / count($training))*100),2);
         }
 
-        return 'No Training Events for this Month';
+        return 0;
     }
 
 

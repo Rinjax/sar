@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class FileSystemController extends Controller
 {
@@ -20,12 +25,12 @@ class FileSystemController extends Controller
 
     public function uploadPoliceVettingForm(Request $request)
     {
-        $path = storage_path() . '/Vet Forms';
 
-        $obj = $request->file('file')->storeAs(
-            'Vet Forms', 'yay'
-        );
+        $file = $request->file('file');
 
-        dd($path);
+        $content = Crypt::encrypt(file_get_contents($file));
+
+        Storage::put(Auth::id() . '.' . $request->file('file')->extension(), $content);
+
     }
 }

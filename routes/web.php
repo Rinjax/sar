@@ -19,7 +19,7 @@
  */
 
 Route::get('/', function () {
-    if(\Illuminate\Support\Facades\Auth::user()) return redirect('profile');
+    if(\Illuminate\Support\Facades\Auth::user()) return redirect('dashboard');
     return view('login');
 })->name('login');
 
@@ -91,6 +91,14 @@ Route::group(['middleware' => ['auth']], function () {
 
 //test dev routes
 
+//Route::get('/mail', 'EmailController@sendTest');
+Route::get('/mail', function(){
+   return new \App\Mail\firstTest();
+});
 
+Route::get('/jeff', function() {
+
+    return view('jeffform');
+});
 
 

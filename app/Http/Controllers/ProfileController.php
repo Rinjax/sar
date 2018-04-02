@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Processors\SffwDates;
 use App\Processors\MemberStats;
+use ConsoleTVs\Charts\Facades\Charts;
 
 class ProfileController extends Controller
 {
@@ -41,7 +42,26 @@ class ProfileController extends Controller
         $member->percentYear = $this->statsManager->getTrainingYearAttendancePercent($member->id);
         $member->percentMonth = $this->statsManager->getTrainingMonthAttendancePercent($member->id);
 
-        return view ('profile')->with(['member' => $member]);
+        $chart = Charts::create('percentage', 'justgage')
+            ->title('Attendance Yr')
+            ->elementLabel('percent')
+            ->values([$member->percentYear,0,100])
+            ->responsive(true)
+            ->height(300)
+            ->width(0)
+            ->loader(false);
+
+        $chart2 = Charts::create('percentage', 'justgage')
+            ->title('Attendance Mth')
+            ->elementLabel('percent')
+            ->colors(['#8A2BE2'])
+            ->values([$member->percentMonth,0,100])
+            ->responsive(true)
+            ->height(300)
+            ->width(0)
+            ->loader(false);
+
+        return view ('profile')->with(['member' => $member, 'chart' => $chart, 'chart2' => $chart2]);
     }
 
 

@@ -56,4 +56,9 @@
         });
     </script>
 
+    {!! Charts::scripts() !!}
+    {!! $chart->script() !!}
+    {!! $chart2->script() !!}
+
+
 @endsection
