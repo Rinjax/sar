@@ -94,11 +94,12 @@ Route::group(['middleware' => ['auth']], function () {
 
 //test dev routes
 
-//Route::get('/mail', 'EmailController@sendTest');
-
+Route::get('/mail', 'EmailController@sendTest');
+/*
 Route::get('/mail', function(){
    return new \App\Mail\firstTest();
 });
+*/
 
 Route::get('/jeff', function() {
 
