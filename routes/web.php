@@ -70,6 +70,9 @@ Route::group(['middleware' => ['auth','menu']], function () {
     //location
     Route::get('/traininglocations', 'LocationController@index')->name('location.index');
     Route::get('/traininglocations/{id}', 'LocationController@Location');
+
+    //Equipment Officer
+    Route::get('/eo', 'EoController@index')->name('equipment.index');
     
     //file system
     Route::get('/filesystem', 'FileSystemController@index')->name('filesystem.index');
@@ -92,6 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
 //test dev routes
 
 //Route::get('/mail', 'EmailController@sendTest');
+
 Route::get('/mail', function(){
    return new \App\Mail\firstTest();
 });

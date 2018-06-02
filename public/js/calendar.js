@@ -58,7 +58,7 @@ header: {
                 $("#locationName").text(event.location.name);
                 $("#locationGrid").text(event.location.gridRef);
                 $("#locationPost").text(event.location.postcode);
-                $("#notes").val(event.note);
+                $("#notes").val(event.notes);
                 $('#modifyButton').attr('href', $('#modifyButton').attr('href') + event.id);
                 $.each(event.attendances, function(index, element){
                     $('#attendanceTable tbody').append('<tr><td>' + element + '</td></tr>');
@@ -74,6 +74,9 @@ header: {
                     if(event.attending === true){
                         $('#calAttendButton').text('UnAttend');
                         $('#calAttendButton').val('unattend');
+                    }else{
+                        $('#calAttendButton').text('Attend');
+                        $('#calAttendButton').val('attend');
                     }
                     $('#calAttendButton').removeClass('hidden');
                 }

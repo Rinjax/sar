@@ -10,4 +10,9 @@ class asset extends Model
     {
         return $this->belongsTo('App\Models\product');
     }
+    
+    public function member()
+    {
+        return $this->belongsTo('App\Models\member');
+    }
 }

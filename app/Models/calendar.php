@@ -10,7 +10,7 @@ class calendar extends Model
 
     protected $hidden = ['attendance'];
 
-    protected $fillable = ['location_id','start','end','type'];
+    protected $guarded = ['id'];
 
     
     public function location()

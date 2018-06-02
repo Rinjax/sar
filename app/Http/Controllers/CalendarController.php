@@ -61,7 +61,6 @@ class CalendarController extends Controller
     
     public function addEvent(request $request)
     {
-
         $cal = $this->calendarManager->addCalendarEvent($request->input('cal_type'), $request->input('location'), $request->input('datetimepicker'), $request->input('notes'));
         
         if ($request->input('cal_type') == 'Mock Assessment'){
