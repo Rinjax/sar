@@ -23,10 +23,6 @@ class MemberManager
             'email' => $email,
             'callsign' => $callsign,
         ]);
-
-        members_training_completed::firstorCreate([
-            'member_id' => $member->id
-        ]);
         
         return $member->id;
     }

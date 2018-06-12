@@ -95,6 +95,8 @@ Route::group(['middleware' => ['auth']], function () {
 //test dev routes
 
 Route::get('/mail', 'EmailController@sendTest');
+
+Route::get('ical', 'TestDevController@ical');
 /*
 Route::get('/mail', function(){
    return new \App\Mail\firstTest();
