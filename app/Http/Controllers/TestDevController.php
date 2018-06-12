@@ -20,12 +20,7 @@ class TestDevController extends Controller
 
     public function ical()
     {
-        $cals = calendar::with([
-            'dogAssessment.getHandler',
-            'dogAssessment.getAssessor1',
-            'dogAssessment.getAssessor2',
-            'dogAssessment.getDog'
-        ])->get();
+        $cals = calendar::all();
 
         foreach ($cals as $cal){
             if($cal->end == null){
