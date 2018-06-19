@@ -59,7 +59,7 @@ class CalendarController extends Controller
 
     
     
-    public function addEvent(request $request)
+    public function addEvent(Request $request)
     {
         $cal = $this->calendarManager->addCalendarEvent($request->input('cal_type'), $request->input('location'), $request->input('datetimepicker'), $request->input('notes'));
         
@@ -72,6 +72,15 @@ class CalendarController extends Controller
         Session::flash('success', 'event created');
 
         return back();
+    }
+
+    public function removeEventPost(Request $request)
+    {
+        $this->calendarManager->removeCalendarEvent($request->input('cal_id'));
+
+        Session::flash('success', 'Calendar Event Removed');
+
+        return back;
     }
     
 

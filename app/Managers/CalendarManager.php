@@ -26,6 +26,15 @@ class CalendarManager
 
     }
 
+    public function removeCalendarEvent($cal_id)
+    {
+        $cal = calendar::find($cal_id);
+
+        $cal->delete();
+
+        $this->removeAllAttendances($cal->id);
+    }
+
 
     public function attendEvent($cal_id, $action)
     {
@@ -123,6 +132,11 @@ class CalendarManager
         if ($user->hasPermission('Book Mock')) return true;
 
         return false;
+    }
+
+    protected function removeAllAttendances($cal_id)
+    {
+        calendar_attendance::where('cal_id', $cal_id)->get()->delete();
     }
     
 }

@@ -39,6 +39,7 @@
                     @if (Auth::user()->hasPermission('Calendar Admin'))
                         <a href="{!! url('/modifyEvent/') !!}/" class="btn btn-primary pull-left js-modify-btn"><span class="icon-pencil"></span> Modify</a>
                         <a href="{!! url('/timesheet/') !!}/" class="btn btn-primary pull-left js-timesheet-btn"><span class="icon-stopwatch"></span> Timesheet</a>
+                        <a href="{!! url('/cancelEvent/') !!}/" class="btn btn-warning pull-left js-cancel-btn"><span class="glyphicon glyphicon-remove"></span> Delete</a>
                     @endif
                     <button type="submit" id="calAttendButton" name="calButton" value="attend" class="btn btn-primary"><i class="fa fa-check fa-fw"></i>Attend</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban fa-fw"></i>Close</button>

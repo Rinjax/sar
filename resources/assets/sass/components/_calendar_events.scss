@@ -1,7 +1,19 @@
 .event-training{
-  background-color: #2ab27b;
+  border: solid 5px #2ab27b;
+  background-color: #fcfcfc;
+  color: black;
 }
 
 .event-mock{
+  border: solid 5px #d58512;
+  background-color: #fcfcfc;
+  color: black;
+}
+
+.attending-training{
+  background-color: #2ab27b;
+}
+
+.attending-mock{
   background-color: #d58512;
 }

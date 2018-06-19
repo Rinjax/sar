@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCPDTrainingTable extends Migration
+class CreateCompetenciesTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCPDTrainingTable extends Migration
      */
     public function up()
     {
-        Schema::create('competencies', function (Blueprint $table) {
+        Schema::create('competencies_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('calendar_id');
-            $table->integer('member_id');
-            $table->string('type_id');
-            $table->text('notes')->nullable()->default(null);
             $table->timestamps();
+            $table->string('name');
         });
     }
 
@@ -30,6 +27,6 @@ class CreateCPDTrainingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competencies');
+        Schema::dropIfExists('competencies_types');
     }
 }

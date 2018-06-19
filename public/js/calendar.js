@@ -30,11 +30,15 @@ header: {
             if (event.title.includes("Team Training")){
                 element.find('.fc-content').append("<br/>" + event.location.name);
                 element.addClass('event-training');
+                if(event.attending == true) element.addClass('attending-training');
             }
+
 
             if (event.title.includes("Mock")){
                 element.find('.fc-content').append("<br/>" + event.location.name);
                 element.addClass('event-mock');
+                if(event.attending == true) element.addClass('attending-mock');
+
                 /*if (typeof event.get_assessment_details.get_handler !== 'undefined'){
                     element.find('.fc-title').append("<br/>" + event.get_assessment_details.get_handler.name);
                     element.css('background-color', 'green');
@@ -51,6 +55,7 @@ header: {
 
             $('.js-timesheet-btn').attr('href', $('.js-timesheet-btn').attr('href') + event.id);
             $('.js-modify-btn').attr('href', $('.js-modify-btn').attr('href') + event.id);
+            $('.js-cancel-btn').attr('href', $('.js-cancel-btn').attr('href') + event.id);
 
             if(event.type === "Team Training"){
                 $('#cal_id').val(event.id);
