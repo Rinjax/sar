@@ -18,12 +18,14 @@ class CreateMembersTable extends Migration
             $table->string('gid')->nullable()->default(null);
             $table->string('gavatar')->nullable()->default(null);
             $table->string('callsign',5);
-            $table->string('name');
+            $table->string('firstname');
+            $table->string('surname');
             $table->string('contact', 11);
             $table->string('email');
             $table->string('password')->nullable()->default(null);
             $table->string('profile_pic')->default('default.jpg');
             $table->boolean('active')->default(true);
+            $table->string('status')->default('Non Operational');
             $table->rememberToken();
             $table->timestamps();
         });

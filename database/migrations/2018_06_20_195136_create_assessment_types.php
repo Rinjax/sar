@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCalendarTypesTable extends Migration
+class CreateAssessmentTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,7 @@ class CreateCalendarTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendar_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->string('name');
-            $table->integer('type_id');
-        });
+        //
     }
 
     /**
@@ -28,6 +23,6 @@ class CreateCalendarTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendar_types');
+        //
     }
 }

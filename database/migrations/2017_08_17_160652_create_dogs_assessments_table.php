@@ -20,7 +20,7 @@ class CreateDogsAssessmentsTable extends Migration
             $table->integer('assessor_1_id');
             $table->integer('assessor_2_id')->nullable()->default(null);
             $table->integer('calendar_id');
-            $table->string('type')->nullable()->default(null);
+            $table->integer('type_id')->default(0);
             $table->boolean('passed')->nullable()->default(null);
             $table->text('comment')->nullable()->default(null);
             $table->timestamps();
