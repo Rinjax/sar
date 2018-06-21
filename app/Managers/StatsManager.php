@@ -3,7 +3,7 @@
 namespace App\Managers;
 
 use App\Models\calendar;
-use App\Models\calendar_attendance;
+use App\Models\CalendarAttendance;
 use Carbon\Carbon;
 
 class StatsManager 
@@ -22,7 +22,7 @@ class StatsManager
         $training = calendar::where('type', 'Team Training')->whereYear('start', '=', $year)->whereDate('start','<=', $now->toDateString())->pluck('id')->toArray();
 
         if(count($training) > 0 ){
-            $trainingAttended = calendar_attendance::where('member_id', $member_id)->whereIn('calendar_id', $training)->get();
+            $trainingAttended = CalendarAttendance::where('member_id', $member_id)->whereIn('calendar_id', $training)->get();
 
 
             $trainingAttendedCount = $trainingAttended->count();
@@ -48,7 +48,7 @@ class StatsManager
         $training = calendar::where('type', 'Team Training')->whereMonth('start', '=', $month)->whereDate('start','<=', $now->toDateString())->pluck('id')->toArray();
 
         if(count($training) > 0 ){
-            $trainingAttended = calendar_attendance::where('member_id', $member_id)->whereIn('calendar_id', array($training))->get();
+            $trainingAttended = CalendarAttendance::where('member_id', $member_id)->whereIn('calendar_id', array($training))->get();
             $trainingAttendedCount = $trainingAttended->count();
             return round((($trainingAttendedCount / count($training))*100),2);
         }

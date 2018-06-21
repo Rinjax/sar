@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Managers\DogManager;
 use Illuminate\Http\Request;
-use \App\Models\dog;
+use \App\Models\Dog;
 use Illuminate\Support\Facades\Auth;
-use \App\Models\dog_assessments;
+use \App\Models\Dog_assessments;
 use Carbon\Carbon;
 
 class DogController extends Controller
@@ -22,11 +22,11 @@ class DogController extends Controller
     public function index (){
         
         
-        $dog = \App\Models\dog::where('member_id', Auth::id())->first();
+        $dog = \App\Models\Dog::where('member_id', Auth::id())->first();
 
         $dog->ticketDays = $this->dogManager->getTicketExpiryDays($dog->operational_date);
         
-        $assessments = \App\Models\dog_assessments::where('dog_id', ($dog->id))->get();       
+        $assessments = \App\Models\DogAssessment::where('dog_id', ($dog->id))->get();       
 
 
 

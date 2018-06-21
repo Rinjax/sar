@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
 use Illuminate\Http\Request;
-use App\Models\member;
+use App\Models\Member;
 use App\Processors\SffwDates;
 
 
@@ -21,7 +21,7 @@ class ToController extends Controller
 
     public function index()
     {
-        $members = member::where('active', 1)->get()->sortBy('name');
+        $members = Member::where('active', 1)->get()->sortBy('name');
 
         foreach ($members as $member){
             $this->memberManager->getLatestCPDDate($member);

@@ -12,7 +12,7 @@
                 <td>
                     <img class="img-circle img-responsive center-block" src="img/profile/humans/{{$member->profile_pic}}" alt="Human" style="max-height: 7rem;">
                 </td>
-                <td>{{$member->name}}</td>
+                <td>{{$member->firstname . ' ' . $member->surname}}</td>
                 <td>{{$member->callsign}}</td>
                 <td>{{$member->contact}}</td>
             </tr>

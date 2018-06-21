@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
-use App\Models\calendar_attendance;
-use App\Models\member;
+use App\Models\CalendarAttendance;
+use App\Models\Member;
 use App\Processors\memberStats;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Response;

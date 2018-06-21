@@ -3,8 +3,8 @@
 namespace App\Managers;
 
 use App\Models\calendar;
-use App\Models\calendar_attendance;
-use App\Models\dog_assessments;
+use App\Models\CalendarAttendance;
+use App\Models\DogAssessment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -43,26 +43,26 @@ class CalendarManager
 
         switch ($action) {
             case 'attend':
-                calendar_attendance::updateOrCreate(['calendar_id' => $cal_id, 'member_id' => $user->id]);
+                CalendarAttendance::updateOrCreate(['calendar_id' => $cal_id, 'member_id' => $user->id]);
 
                 break;
 
             case 'unattend':
-                calendar_attendance::where([
+                CalendarAttendance::where([
                     ['calendar_id', $cal_id], ['member_id', $user->id],
                 ])->firstOrFail()->delete();
                 break;
 
             case 'book':
                 if ($user->hasPermission('Book Mock')) {
-                    $assessment = \App\Models\dog_assessments::where('calendar_id', $cal_id)->first();
+                    $assessment = \App\Models\DogAssessment::where('calendar_id', $cal_id)->first();
 
                     if ($assessment->handler_id === null) {
                         $assessment->handler_id = $user->id;
                         $assessment->dog_id = $user->dog->id;
                         $assessment->save();
 
-                        calendar_attendance::updateOrCreate(['calendar_id' => $cal_id, 'member_id' => $user->id]);
+                        CalendarAttendance::updateOrCreate(['calendar_id' => $cal_id, 'member_id' => $user->id]);
 
                     } else {
                         Session::flash('error', 'Ah sorry, looks like this is already booked.');
@@ -89,7 +89,7 @@ class CalendarManager
     {
         if ($members == null) $members = [];
 
-        $oldAttends = calendar_attendance::where('calendar_id', $cal_id)->get();
+        $oldAttends = CalendarAttendance::where('calendar_id', $cal_id)->get();
 
         foreach ($oldAttends as $oldAttend){
             if(!in_array($oldAttend->member_id, $members)){
@@ -103,12 +103,12 @@ class CalendarManager
     {
         if ($members == null) $members = [];
         
-        $oldAttends = calendar_attendance::where('calendar_id', $cal_id)->get();
+        $oldAttends = CalendarAttendance::where('calendar_id', $cal_id)->get();
 
         foreach($members as $member){
 
             if (!in_array($member, $oldAttends->pluck('member_id')->toArray())){
-                calendar_attendance::create([
+                CalendarAttendance::create([
                     'calendar_id' => $cal_id,
                     'member_id' => $member
                 ]);
@@ -118,7 +118,7 @@ class CalendarManager
 
     public function addDogAssessment($calendar_id, $assessor1)
     {
-        dog_assessments::create([
+        DogAssessment::create([
             'calendar_id' => $calendar_id,
             'assessor_1_id' => $assessor1,
         ]);
@@ -136,7 +136,7 @@ class CalendarManager
 
     protected function removeAllAttendances($cal_id)
     {
-        calendar_attendance::where('cal_id', $cal_id)->get()->delete();
+        CalendarAttendance::where('cal_id', $cal_id)->get()->delete();
     }
     
 }

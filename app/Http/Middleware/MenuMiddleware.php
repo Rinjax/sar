@@ -23,12 +23,14 @@ class MenuMiddleware
     protected function buildMenu()
     {
 
+
         $roles = Auth::user()->roles->pluck('role')->toArray();
+
         $permissions = Auth::user()->permissions->pluck('permission')->toArray();
         array_push($roles,'standard');
         $access = array_merge($roles, $permissions);
 
-        
+
         \Menu::make('MyNavBar', function($menu){
   
         $menu->add('Dashboard', 'dashboard')->data('permission','standard')->prepend('<span class=" fa fa-cog"></span> ');
@@ -53,6 +55,7 @@ class MenuMiddleware
 
             return false;
         });
+
     }
     
     

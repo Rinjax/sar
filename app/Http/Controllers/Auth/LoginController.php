@@ -58,7 +58,7 @@ class LoginController extends Controller
 	    $avatar = $user->getAvatar();
         
         
-        $dbuser = \App\Models\member::where('email', $email)->first();
+        $dbuser = \App\Models\Member::where('email', $email)->first();
         if ($dbuser === null){
             return $email;
         }

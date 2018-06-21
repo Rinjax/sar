@@ -13,7 +13,12 @@ class CreateAssessmentTypes extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('assessment_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->string('name');
+            $table->integer('type_id');
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateAssessmentTypes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('assessment_types');
     }
 }

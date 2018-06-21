@@ -17,8 +17,10 @@ class CreateTrainingLocationsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('gridRef', 15);
-            $table->string('postcode', 8);
-            $table->text('notes')->default(null);
+            $table->string('postcode', 10);
+            $table->integer('lat');
+            $table->integer('lng');
+            $table->text('notes')->nullable()->default(null);
             $table->timestamps();
         });
     }

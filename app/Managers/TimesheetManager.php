@@ -3,7 +3,7 @@
 namespace App\Managers;
 
 use App\Models\calendar;
-use App\Models\calendar_attendance;
+use App\Models\CalendarAttendance;
 
 class TimesheetManager
 {
@@ -16,7 +16,7 @@ class TimesheetManager
 
     public function getCalendarAttendance($id)
     {
-        $attendance = calendar_attendance::where('calendar_id', $id)->with('member')->get();
+        $attendance = CalendarAttendance::where('calendar_id', $id)->with('member')->get();
 
         $attendance = $attendance->sortBy('member.name');
         

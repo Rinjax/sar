@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class member_permission extends Model
+class MemberPermission extends Model
 {
     protected  $table = 'member_permissions';
     

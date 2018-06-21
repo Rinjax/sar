@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
-use App\Models\member_permission;
-use App\Models\permission;
+use App\Models\MemberPermission;
+use App\Models\Permission;
 use Illuminate\Http\Request;
-use App\Models\dog;
-use App\Models\member;
-use App\Models\member_role;
-use App\Models\roles;
-use App\Models\members_training_completed;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Dog;
+use App\Models\Member;
+use App\Models\MemberRole;
+use App\Models\Roles;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -25,8 +23,8 @@ class AdminController extends Controller
     public function index ()
     {
         //sort through a get available callsign for new members add
-        $activeId = member::all()->pluck('callsign')->toArray();
-        $roles = roles::all();
+        $activeId = Member::all()->pluck('callsign')->toArray();
+        $roles = Roles::all();
         $callsigns = config('sar.organisation.callsigns');
         $freeCallsigns = array_diff($callsigns, $activeId);
 
@@ -53,7 +51,7 @@ class AdminController extends Controller
         $this->memberManager->addMemberRoles($id, $request->rolesarray);
 
         if($request->includeDog == 'on'){
-            dog::firstOrCreate([
+            Dog::firstOrCreate([
                 'member_id' => $id,
                 'name' => $request->dogname,
                 'breed' => $request->breed,
@@ -71,18 +69,18 @@ class AdminController extends Controller
 
     public function permissionIndex()
     {
-        $permssions = permission::with('members')->get();
+        $permssions = Permission::with('members')->get();
         
         return view('admin.modifypermissions')->with(['permissions' => $permssions]);
     }
     
     public function getPermissionMembers($id)
     {
-        $permission = permission::where('id', $id)->with('members')->first();
+        $permission = Permission::where('id', $id)->with('members')->first();
 
         $permissionMembers = $permission->members->pluck('id')->toArray();
         
-        $members = member::where('active', 1)->select('id', 'name')->orderBy('name')->get();
+        $members = Member::where('active', 1)->select('id', 'name')->orderBy('name')->get();
 
         foreach($members as $k => $v){
             if(in_array($v->id, $permissionMembers)){
@@ -95,9 +93,9 @@ class AdminController extends Controller
 
     public function addPermissionMembers(Request $request)
     {
-        $member_ids = member::where('active', 1)->pluck('id')->toArray();
+        $member_ids = Member::where('active', 1)->pluck('id')->toArray();
 
-        $permission_ids = permission::pluck('id')->toArray();
+        $permission_ids = Permissions::pluck('id')->toArray();
 
         if(!in_array($request->members_list, $member_ids)){
             Session::flash('error', 'Invalid Member Entered');
@@ -109,7 +107,7 @@ class AdminController extends Controller
             return back();
         }
         
-        member_permission::updateOrCreate([
+        MemberPermission::updateOrCreate([
             'member_id' => $request->members_list,
             'permission_id' => $request->permission_id
         ]);
@@ -123,7 +121,7 @@ class AdminController extends Controller
 
         $ids = explode("_", $remove_ids);
 
-        member_permission::where('member_id', $ids[0])
+        MemberPermission::where('member_id', $ids[0])
             ->where('permission_id', $ids[1])
             ->delete();
 

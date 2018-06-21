@@ -245,39 +245,39 @@ class DatabaseSeeder extends Seeder
 
         DB::table('roles')->insert([
             [
-                'name' => 'admin'
+                'role' => 'admin'
             ],[
-                'name' => 'Assessor'
+                'role' => 'Assessor'
             ],[
-                'name' => 'Callout CoOrdinator'
+                'role' => 'Callout CoOrdinator'
             ],[
-                'name' => 'Chairman'
+                'role' => 'Chairman'
             ],[
-                'name' => 'Dog Handler'
+                'role' => 'Dog Handler'
             ],[
-                'name' => 'Equipment Officer'
+                'role' => 'Equipment Officer'
             ],[
-                'name' => 'Fund Raising Officer'
+                'role' => 'Fund Raising Officer'
             ],[
-                'name' => 'Medical Officer'
+                'role' => 'Medical Officer'
             ],[
-                'name' => 'Operational Training Officer'
+                'role' => 'Operational Training Officer'
             ],[
-                'name' => 'Search Planner'
+                'role' => 'Search Planner'
             ],[
-                'name' => 'Search Technician'
+                'role' => 'Search Technician'
             ],[
-                'name' => 'Secretary'
+                'role' => 'Secretary'
             ],[
-                'name' => 'Team Leader'
+                'role' => 'Team Leader'
             ],[
-                'name' => 'Technology Officer'
+                'role' => 'Technology Officer'
             ],[
-                'name' => 'Training Officer'
+                'role' => 'Training Officer'
             ]
         ]);
 
-        DB::table('locations')->insert([
+        DB::table('training_locations')->insert([
             [
                 'name' => 'Ambersham Common',
                 'gridRef' => 'SU 01340 19523',
@@ -332,6 +332,54 @@ class DatabaseSeeder extends Seeder
                 'postcode' => 'RH20 4HR',
                 'lat' => '50.926487',
                 'lng' => '-0.490225'
+            ]
+        ]);
+
+        DB::table('calendar_types')->insert([
+            [
+                'name' => 'Training',
+                'type_id' => 0,
+            ],[
+                'name' => 'Mock Assessments',
+                'type_id' => 1,
+            ],[
+                'name' => 'Fund Raising',
+                'type_id' => 2,
+            ]
+        ]);
+
+        DB::table('assessment_types')->insert([
+            [
+                'name' => 'L2 Day Mock',
+                'type_id' => 0,
+            ],[
+                'name' => 'L2 Night Mock',
+                'type_id' => 1,
+            ],[
+                'name' => 'L3 Day Mock',
+                'type_id' => 2,
+            ],[
+                'name' => 'L3 Night Mock',
+                'type_id' => 3,
+            ]
+        ]);
+
+        DB::table('member_roles')->insert([
+            [
+                'member_id' => 1,
+                'roles_id' => 9
+            ]
+        ]);
+
+        DB::table('permissions')->insert([
+            [
+                'permission' => 'dev',
+                'permission' => 'admin',
+                'permission' => 'dog',
+                'permission' => 'dev',
+                'permission' => 'dev',
+                'permission' => 'dev',
+
             ]
         ]);
     }

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\member;
+use App\Models\Member;
 use Illuminate\Http\Request;
-use App\Models\dog;
+use App\Models\Dog;
 
 
 class DashboardController extends Controller
 {
     public function index ()
     {
-        $members = member::where('active', 1)->orderBy('name')->get();
+        $members = Member::where('active', 1)->orderBy('firstname')->orderBy('surname')->get();
         
-        $dogs = dog::where('active',1)->orderBy('name')->get();
+        $dogs = Dog::where('active',1)->orderBy('name')->get();
         
         return view('dashboard')->with(['members' => $members, 'dogs' => $dogs]);
     }

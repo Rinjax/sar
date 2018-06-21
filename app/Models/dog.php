@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class dog extends Model
+class Dog extends Model
 {
     protected $table = 'dogs';
     
@@ -14,7 +14,7 @@ class dog extends Model
     
     public function assessments(){
         //returns all assessments for a dog
-        return $this->hasMany('\App\Models\dog_assessments');
+        return $this->hasMany('\App\Models\DogAssessments');
     }
     
 }

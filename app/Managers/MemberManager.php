@@ -3,8 +3,8 @@
 namespace App\Managers;
 
 use App\Models\calendar;
-use \App\Models\member;
-use \App\Models\member_role;
+use \App\Models\Member;
+use \App\Models\Member_role;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class MemberManager
          * Creates the new records for a member and return the new member's id
          */
         
-        $member = member::firstOrCreate([
+        $member = Member::firstOrCreate([
             'name' => $name,
             'contact' => $contact,
             'email' => $email,
@@ -30,7 +30,7 @@ class MemberManager
     public function addMemberRoles($id, array $roles)
     {
         foreach($roles as $role_id){
-            member_role::firstOrCreate([
+            MemberRole::firstOrCreate([
                 'member_id' => $id,
                 'roles_id' => $role_id,
             ]);
@@ -43,7 +43,7 @@ class MemberManager
     {
         if($id == null) $id = Auth::id();
         
-        return  member::where('id', $id)->with('roles', 'assets')->first();
+        return  Member::where('id', $id)->with('roles', 'assets')->first();
     }
 
 

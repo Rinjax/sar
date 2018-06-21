@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class member extends Authenticatable
+class Member extends Authenticatable
 {
     use Notifiable;
     
@@ -31,11 +31,11 @@ class member extends Authenticatable
     
     
     public function roles(){
-        return $this->belongsToMany('App\Models\roles','member_role')->select('role')->orderBy('role');
+        return $this->belongsToMany('App\Models\Roles','member_roles')->select('role')->orderBy('role');
     }
 
     public function permissions(){
-        return $this->belongsToMany('App\Models\permission','member_permissions')->select('permission')->orderBy('permission');
+        return $this->belongsToMany('App\Models\Permission','member_permissions')->select('permission')->orderBy('permission');
     }
     
     public function hasRole($roleName)
@@ -70,17 +70,13 @@ class member extends Authenticatable
 
     public function dog()
     {
-        return $this->hasOne('App\Models\dog');
+        return $this->hasOne('App\Models\Dog');
     }
-
-    public function cpdTraining()
-    {
-        return $this->hasManyThrough('App\Models\cpd_training', 'App\Models\calendar_attendance', 'member_id', 'calendar_id', 'id', 'calendar_id');
-    }
+    
 
     public function assets()
     {
-        return $this->hasMany('App\Models\asset');
+        return $this->hasMany('App\Models\Asset');
     }
     
 }

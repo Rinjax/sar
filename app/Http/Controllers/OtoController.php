@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\dog;
+use App\Models\Dog;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +11,7 @@ class OtoController extends Controller
 {
     public function index ()
     {
-        $dogs = \App\Models\dog::orderBy('name')->get();
+        $dogs = \App\Models\Dog::orderBy('name')->get();
 
         foreach ($dogs as $dog){
             $st = new Carbon($dog->started);

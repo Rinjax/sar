@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class roles extends Model
+class Roles extends Model
 {
     protected $table = 'roles';
     protected $hidden = ['pivot',];
@@ -19,7 +19,7 @@ class roles extends Model
     
     public function users(){
         //returns all users assigned to a peticular role
-        return $this->belongsToMany('App\Models\member','member_role')->orderBy('name');
+        return $this->belongsToMany('App\Models\Member','MemberRole')->orderBy('name');
     }
         
 }

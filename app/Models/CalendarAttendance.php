@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class calendar_attendance extends Model
+class CalendarAttendance extends Model
 {
     protected $table = 'calendar_attendance';
 
@@ -13,7 +13,7 @@ class calendar_attendance extends Model
 
     public function member()
     {
-        return $this->belongsTo('App\Models\member')->orderBy('name');
+        return $this->belongsTo('App\Models\Member')->orderBy('name');
     }
     
     

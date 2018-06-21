@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
 use App\Managers\StatsManager;
-use App\Models\roles;
+use App\Models\Roles;
 use Illuminate\Http\Request;
-use App\Models\member;
+use App\Models\Member;
 use App\Models\training_location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -75,7 +75,7 @@ class ProfileController extends Controller
         ]);
 
             $num = $request->input('newMob');
-            $member = \App\Models\member::where('id', Auth::id()) -> first();
+            $member = \App\Models\Member::where('id', Auth::id()) -> first();
             $member->contact = $num;
             $member->save();
             Session::flash('success', 'Contact number updated');

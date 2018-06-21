@@ -2,8 +2,8 @@
 
 namespace App\Managers;
 
-use App\Models\dog;
-use App\Models\member;
+use App\Models\Dog;
+use App\Models\Member;
 use Carbon\Carbon;
 
 class SeedManager
@@ -12,7 +12,7 @@ class SeedManager
     {
         $email = str_replace(' ', '.', $name) . '@searchdogssussex.com';
         
-        member::create([
+        Member::create([
             'name' => $name,
             'contact' => '07777777777',
             'email' => $email,
@@ -23,7 +23,7 @@ class SeedManager
     public function addDog($name)
     {
 
-        dog::create([
+        Dog::create([
             'name' => $name,
             'member_id' => 1,
             'breed' => 'Border Collie',

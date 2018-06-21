@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Managers\CalendarManager;
 use App\Managers\TimesheetManager;
-use App\Models\calendar;
-use App\Models\calendar_attendance;
-use App\Models\dog_assessments;
-use App\Models\permission;
-use App\Models\training_location;
+use App\Models\Calendar;
+use App\Models\CalendarAttendance;
+use App\Models\DogAssessment;
+use App\Models\Permission;
+use App\Models\TrainingLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Models\member;
+use App\Models\Member;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +42,7 @@ class CalendarController extends Controller
     public function index()
     {
         $bookButton = $this->calendarManager->allowBookMock();
-        $locations = training_location::all();
+        $locations = TrainingLocation::all();
 
         $data = [
             'bookButton' => $bookButton,
@@ -50,7 +50,7 @@ class CalendarController extends Controller
 
         ];
 
-        $assessors2 = permission::where('permission', 'Mock Assessor')->first()->members()->get();
+        $assessors2 = Permission::where('permission', 'Mock Assessor')->first()->members()->get();
 
         $data['assessors2'] = $assessors2->except(Auth::id());
         
@@ -97,11 +97,11 @@ class CalendarController extends Controller
     public function modifyEvent($id)
     {
 
-        $event = calendar::where('id', (int)$id )->with('location')->with('attendance')->firstOrFail();
+        $event = Calendar::where('id', (int)$id )->with('location')->with('attendance')->firstOrFail();
 
-        $locations = training_location::all();
+        $locations = TrainingLocation::all();
 
-        $availableMembers = member::whereNotIn('name', $event->attendance->pluck('name'))->orderBy('name')->get();
+        $availableMembers = Member::whereNotIn('name', $event->attendance->pluck('name'))->orderBy('name')->get();
         
         $data = [
             'event' => $event,
@@ -143,7 +143,7 @@ class CalendarController extends Controller
         foreach ($request->except('_token','eventID') as $key => $val){
             if(!$val == null){
                 $e = explode('_',$key);
-                calendar_attendance::where([
+                CalendarAttendance::where([
                     ['member_id', $e[1]], ['calendar_id', $request->input('eventID')]
                 ])->update(['clock_'.$e[0] => $val]);
             }
@@ -162,7 +162,7 @@ class CalendarController extends Controller
 
         $member = Auth::user();
         
-        $assessment = dog_assessments::where('calendar_id', $id)->first();
+        $assessment = DogAssessment::where('calendar_id', $id)->first();
 
         if($assessment->assessor_2_id != null) return response()->json(['error' => true]);
 
@@ -170,7 +170,7 @@ class CalendarController extends Controller
 
         $assessment->save();
 
-        calendar_attendance::create([
+        CalendarAttendance::create([
             'calendar_id' => $id,
             'member_id' => $member->id
         ]);

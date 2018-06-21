@@ -17,6 +17,7 @@ class CreateCompetenciesTypesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
+            $table->integer('type_id');
         });
     }
 

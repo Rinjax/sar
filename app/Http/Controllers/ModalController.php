@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\training_location;
 use App\Models\user;
-use App\Models\roles;
+use App\Models\Roles;
 
 class ModalController extends Controller
 {

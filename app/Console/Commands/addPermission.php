@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\permission;
+use App\Models\Permissions;
 use Illuminate\Console\Command;
 
 class addPermission extends Command
@@ -40,7 +40,7 @@ class addPermission extends Command
     {
         $permission = $this->argument('permission');
 
-        permission::create([
+        Permissions::create([
             'permission' => $permission
         ]);
 
