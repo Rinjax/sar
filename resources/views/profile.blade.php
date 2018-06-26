@@ -16,12 +16,19 @@
 
         
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 @include('partial.profile.details-tile')
             </div>
 
 
             <div class="col-md-6">
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
                 @include('partial.profile.cpd-tiles')
             </div>
         </div>

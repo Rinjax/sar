@@ -105,7 +105,11 @@ Route::get('/mail', function(){
 
 Route::get('/jeff', function() {
 
-    return view('jeffform');
+    $m = new \App\Managers\MemberManager();
+
+    $mm = $m->getMember(1);
+
+    dd($mm->recentCompetencies());
 });
 
 

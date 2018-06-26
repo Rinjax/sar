@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Managers\MemberManager;
 use App\Managers\StatsManager;
-use App\Models\Roles;
 use Illuminate\Http\Request;
-use App\Models\Member;
 use App\Models\training_location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\Processors\SffwDates;
-use App\Processors\MemberStats;
 use ConsoleTVs\Charts\Facades\Charts;
 
 class ProfileController extends Controller
@@ -32,15 +28,7 @@ class ProfileController extends Controller
         
         $member = $this->memberManager->getMember();
         
-        $this->memberManager->getLatestCPDDate($member);
-
-        $member->waterDays = $this->memberManager->getCDPExpiryInDays($member->water, 1);
-        $member->firstaidDays = $this->memberManager->getCDPExpiryInDays($member->firstaid, 2);
-        $member->navsDays = $this->memberManager->getCDPExpiryInDays($member->navs, 1);
-        $member->fitnessDays = $this->memberManager->getCDPExpiryInDays($member->fitness, 1);
-
-        $member->percentYear = $this->statsManager->getTrainingYearAttendancePercent($member->id);
-        $member->percentMonth = $this->statsManager->getTrainingMonthAttendancePercent($member->id);
+        
 
         $chart = Charts::create('percentage', 'justgage')
             ->title('Attendance Yr')

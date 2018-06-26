@@ -376,11 +376,74 @@ class DatabaseSeeder extends Seeder
                 'permission' => 'dev',
                 'permission' => 'admin',
                 'permission' => 'dog',
-                'permission' => 'dev',
-                'permission' => 'dev',
-                'permission' => 'dev',
+                'permission' => 'calendar admin',
+                'permission' => 'location admin',
 
             ]
+        ]);
+
+        DB::table('competencies_types')->insert([
+            [
+                'name' => 'Search Technician',
+                'type_id' => 1
+            ],[
+                'name' => 'Fitness',
+                'type_id' => 2
+            ],[
+                'name' => 'Searcher Safety',
+                'type_id' => 3
+            ],[
+                'name' => 'Water Awareness',
+                'type_id' => 4
+            ],[
+                'name' => 'Searcher Skills',
+                'type_id' => 5
+            ],[
+                'name' => 'Misper Behaviour',
+                'type_id' => 6
+            ],[
+                'name' => 'Briefings',
+                'type_id' => 7
+            ],[
+                'name' => 'Crime Scenes',
+                'type_id' => 8
+            ],[
+                'name' => 'Basic Life Support',
+                'type_id' => 9
+            ],[
+                'name' => 'CasEvac / Man Handling',
+                'type_id' => 10
+            ],[
+                'name' => 'Navigation',
+                'type_id' => 11
+            ],[
+                'name' => 'Communications',
+                'type_id' => 12
+            ],[
+                'name' => 'Search Operations',
+                'type_id' => 13
+            ],[
+                'name' => 'Road Searching',
+                'type_id' => 14
+            ],[
+                'name' => 'Throw Line Techniques',
+                'type_id' => 15
+            ],[
+                'name' => 'Team Leader',
+                'type_id' => 16
+            ],[
+                'name' => 'Prep and Plan',
+                'type_id' => 17
+            ],[
+                'name' => 'Incident Management',
+                'type_id' => 18
+            ],[
+                'name' => 'Team Management',
+                'type_id' => 19
+            ],[
+                'name' => 'Annual Assessment',
+                'type_id' => 20
+            ],
         ]);
     }
 }

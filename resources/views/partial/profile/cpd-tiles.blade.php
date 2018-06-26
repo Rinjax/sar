@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-md-2">
         <div class="panel panel-primary">
             <div class="panel-body
             @if($member->navDays < 250 && $member->navDays > 100)cpd-panel-warning
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-md-2">
         <div class="panel panel-primary">
             <div class="panel-body
             @if($member->firstaidDays < 250 && $member->firstaidDays > 100)cpd-panel-warning
@@ -41,12 +41,7 @@
             </div>
         </div>
     </div>
-</div>
-
-
-
-<div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-md-2">
         <div class="panel panel-primary">
             <div class="panel-body
             @if($member->firnessDays < 250 && $member->fitnessDays > 100)cpd-panel-warning
@@ -67,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-md-2">
         <div class="panel panel-primary">
             <div class="panel-body
             @if($member->waterDays < 250 && $member->waterDays > 100)cpd-panel-warning
@@ -88,4 +83,10 @@
             </div>
         </div>
     </div>
+</div>
+
+
+
+<div class="row">
+
 </div>

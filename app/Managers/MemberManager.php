@@ -43,83 +43,14 @@ class MemberManager
     {
         if($id == null) $id = Auth::id();
         
-        return  Member::where('id', $id)->with('roles', 'assets')->first();
+        return  Member::find($id)->with('roles', 'assets')->first();
     }
 
-
-    public function getLatestCPDDate(member $member)
+    public function getRecentCompetencies()
     {
+        $mem = Member::find(1);
 
-        $format = 'd/m/Y';
-
-        $water = $member->cpdTraining->where('cpd_type', 'Water Safety')->last();
-
-        if($water){
-            $water = $water->calendar;
-            $t = new Carbon($water->start);
-            $t = $t->format($format);
-            $member->water = $t;
-        }else{
-            $member->water = 'Not Completed';
-        }
-
-        //dd($member);
-
-
-        ////////////////////////////////////////////////////////////////////////
-        $firstaid = $member->cpdTraining->where('cpd_type', 'First Aid')->last();
-
-        if($firstaid){
-            $firstaid = calendar::where('id', $firstaid->calendar_id)->select('start')->first();
-            $t = new Carbon($firstaid->start);
-            $t = $t->format($format);
-            $member->firstaid = $t;
-        }else{
-            $member->firstaid = 'Not Completed';
-        }
-
-        //////////////////////////////////////////////////////////////////////
-        $navs = $member->cpdTraining->where('cpd_type', 'Navs')->last();
-
-        if($navs){
-            $navs = calendar::where('id', $navs->calendar_id)->select('start')->first();
-            $t = new Carbon($navs->start);
-            $t = $t->format($format);
-            $member->navs = $t;
-        }else{
-            $member->navs = 'Not Completed';
-        }
-
-        //////////////////////////////////////////////////////////////////////
-        $fitness = $member->cpdTraining->where('cpd_type', 'Fitness')->last();
-
-        if($fitness){
-            $fitness = calendar::where('id', $fitness->calendar_id)->select('start')->first();
-            $t = new Carbon($fitness->start);
-            $t = $t->format($format);
-            $member->fitness = $t;
-        }else{
-            $member->fitness = 'Not Completed';
-        }
-        
-        return $member;
-    }
-
-    public function getCDPExpiryInDays($date, $years=0)
-    {
-       
-       if($date != 'Not Completed'){
-           $date = Carbon::createFromFormat('d/m/Y', $date)->addYears($years);
-
-           $currentDate = Carbon::now();
-
-           return $currentDate->diffInDays($date, false);
-       }else{
-           return 0;
-       }
-
-
-
+        $mem->competencies->unique('type_id')->get();
     }
 
    

@@ -28,8 +28,12 @@ class Member extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'gid', 'pivot', 'gavatar'
     ];
-    
-    
+
+
+    public function fullname()
+    {
+        return $this->firstname . ' ' . $this->surname;
+    }
     public function roles(){
         return $this->belongsToMany('App\Models\Roles','member_roles')->select('role')->orderBy('role');
     }
@@ -77,6 +81,19 @@ class Member extends Authenticatable
     public function assets()
     {
         return $this->hasMany('App\Models\Asset');
+    }
+
+    public function competencies()
+    {
+        return $this->hasMany('App\Models\Competency')
+            ->leftJoin('calendar', 'competencies.calendar_id', '=', 'calendar.id')
+            ->select('competencies.type_id', 'member_id', 'start as created_at', 'competencies.notes');
+    }
+
+    public function recentCompetencies()
+    {
+        return $this->competencies()->orderBy('start', 'desc')->groupBy('type_id')->get();
+        //return $this->competencies->unique('type_id')->latest();
     }
     
 }
