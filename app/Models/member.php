@@ -83,17 +83,106 @@ class Member extends Authenticatable
         return $this->hasMany('App\Models\Asset');
     }
 
-    public function competencies()
+    public function competencySearchTec()
     {
-        return $this->hasMany('App\Models\Competency')
-            ->leftJoin('calendar', 'competencies.calendar_id', '=', 'calendar.id')
-            ->select('competencies.type_id', 'member_id', 'start as created_at', 'competencies.notes');
+        return $this->hasMany('App\Models\CompetencySearchTechnician');
     }
 
-    public function recentCompetencies()
+    public function competencyFitness()
     {
-        return $this->competencies()->orderBy('start', 'desc')->groupBy('type_id')->get();
-        //return $this->competencies->unique('type_id')->latest();
+        return $this->hasMany('App\Models\CompetencyFitness');
     }
+
+    public function competencySearcherSafety()
+    {
+        return $this->hasMany('App\Models\CompetencySearcherSafety');
+    }
+
+    public function competencyWater()
+    {
+        return $this->hasMany('App\Models\CompetencyWaterAwareness');
+    }
+
+    public function competencySearcherSkills()
+    {
+        return $this->hasMany('App\Models\CompetencySearcherSkill');
+    }
+
+    public function competencyMisper()
+    {
+        return $this->hasMany('App\Models\CompetencyMisperBehaviour');
+    }
+
+    public function competencyBriefings()
+    {
+        return $this->hasMany('App\Models\CompetencyBriefing');
+    }
+
+    public function competencyCrimeScenes()
+    {
+        return $this->hasMany('App\Models\CompetencyCrimeScene');
+    }
+
+    public function competencyBLS()
+    {
+        return $this->hasMany('App\Models\CompetencyBLS');
+    }
+
+    public function competencyEvac()
+    {
+        return $this->hasMany('App\Models\CompetencyEvacuation');
+    }
+
+    public function competencyNav()
+    {
+        return $this->hasMany('App\Models\CompetencyNavigation');
+    }
+
+    public function competencyComms()
+    {
+        return $this->hasMany('App\Models\CompetencyRadioComm');
+    }
+
+    public function competencySearchOps()
+    {
+        return $this->hasMany('App\Models\CompetencySearchOperation');
+    }
+
+    public function competencyRoad()
+    {
+        return $this->hasMany('App\Models\CompetencyRoad');
+    }
+
+    public function competencyThrowLines()
+    {
+        return $this->hasMany('App\Models\CompetencyThrowLine');
+    }
+
+    public function competencyTeamLeader()
+    {
+        return $this->hasMany('App\Models\CompetencyTeamLeader');
+    }
+
+    public function competencyPlanPrep()
+    {
+        return $this->hasMany('App\Models\CompetencyPlanPrep');
+    }
+
+    public function competencyIncidentMgt()
+    {
+        return $this->hasMany('App\Models\CompetencyIncidentManagement');
+    }
+
+    public function competencyTeamMgt()
+    {
+        return $this->hasMany('App\Models\CompetencyTeamManagement');
+    }
+    public function competencyAnnualAssmt()
+    {
+        return $this->hasMany('App\Models\CompetencyAnnualAssessment');
+    }
+
+
+
     
 }

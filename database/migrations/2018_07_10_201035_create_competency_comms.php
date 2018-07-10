@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompetenciesTypesTable extends Migration
+class CreateCompetencyComms extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCompetenciesTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('competencies_types', function (Blueprint $table) {
+        Schema::create('competency_radio_comms', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('member_id');
+            $table->integer('calendar_id');
+
             $table->timestamps();
-            $table->string('name');
-            $table->integer('type_id');
+
         });
     }
 
@@ -28,6 +30,6 @@ class CreateCompetenciesTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competencies_types');
+        Schema::dropIfExists('competency_radio_comms');
     }
 }

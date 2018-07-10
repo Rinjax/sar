@@ -49,6 +49,8 @@ class ProfileController extends Controller
             ->width(0)
             ->loader(false);
 
+        dd($member);
+
         return view ('profile')->with(['member' => $member, 'chart' => $chart, 'chart2' => $chart2]);
     }
 
