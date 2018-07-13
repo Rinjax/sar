@@ -9,4 +9,9 @@ class CompetencyBLS extends Model
     protected $table = 'competency_basic_life_support';
 
     protected $guarded = ['id'];
+
+    public function calendar()
+    {
+        return $this->belongsTo('App\Models\Calendar');
+    }
 }

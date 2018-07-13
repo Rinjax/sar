@@ -150,7 +150,7 @@ class Member extends Authenticatable
 
     public function competencyRoad()
     {
-        return $this->hasMany('App\Models\CompetencyRoad');
+        return $this->hasMany('App\Models\CompetencyRoadSearch');
     }
 
     public function competencyThrowLines()

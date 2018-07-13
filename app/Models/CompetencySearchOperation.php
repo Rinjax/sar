@@ -9,4 +9,9 @@ class CompetencySearchOperation extends Model
     protected $table = 'competency_search_operations';
 
     protected $guarded = ['id'];
+
+    public function calendar()
+    {
+        return $this->belongsTo('App\Models\Calendar');
+    }
 }

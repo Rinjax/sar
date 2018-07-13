@@ -9,4 +9,9 @@ class CompetencyBriefing extends Model
     protected $table = 'competency_briefings';
 
     protected $guarded = ['id'];
+
+    public function calendar()
+    {
+        return $this->belongsTo('App\Models\Calendar');
+    }
 }

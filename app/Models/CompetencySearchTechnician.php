@@ -9,4 +9,9 @@ class CompetencySearchTechnician extends Model
     protected $table = 'competency_search_technician';
 
     protected $guarded = ['id'];
+
+    public function calendar()
+    {
+        return $this->belongsTo('App\Models\Calendar');
+    }
 }
