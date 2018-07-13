@@ -43,15 +43,29 @@ class MemberManager
     {
         if($id == null) $id = Auth::id();
         
-        return  Member::find($id)->with('roles', 'assets')->first();
+        return  Member::find($id)->with('roles')
+            ->with('assets')
+            ->with('competencySearchTec')
+            ->with('competencyFitness')
+            ->with('competencySearcherSafety')
+            ->with('competencyWater')
+            ->with('competencySearcherSkills')
+            ->with('competencyMisper')
+            ->with('competencyBriefings')
+            ->with('competencyCrimeScenes')
+            ->with('competencyBLS')
+            ->with('competencyEvac')
+            ->with('competencyNav')
+            ->with('competencyComms')
+            ->with('competencySearchOps')
+            ->with('competencyRoad')
+            ->with('competencyThrowLines')
+            ->with('competencyTeamLeader')
+            ->with('competencyPlanPrep')
+            ->with('competencyIncidentMgt')
+            ->with('competencyTeamMgt')
+            ->with('competencyAnnualAssmt')
+            ->first();
     }
-
-    public function getRecentCompetencies()
-    {
-        $mem = Member::find(1);
-
-        $mem->competencies->unique('type_id')->get();
-    }
-
    
 }

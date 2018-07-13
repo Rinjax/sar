@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CompetencySearchTechnician extends Model
 {
-    //
+    protected $table = 'competency_search_technician';
+
+    protected $guarded = ['id'];
 }

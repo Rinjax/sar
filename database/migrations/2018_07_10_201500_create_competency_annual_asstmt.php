@@ -13,7 +13,7 @@ class CreateCompetencyAnnualAsstmt extends Migration
      */
     public function up()
     {
-        Schema::create('competency_annual_assessment', function (Blueprint $table) {
+        Schema::create('competency_annual_assessments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('member_id');
             $table->integer('calendar_id');
