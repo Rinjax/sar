@@ -3,6 +3,7 @@
 namespace App\Managers;
 
 use App\Models\calendar;
+use App\Models\CompetencySearchTechnician;
 use \App\Models\Member;
 use \App\Models\Member_role;
 use Carbon\Carbon;
@@ -43,8 +44,8 @@ class MemberManager
     {
         if($id == null) $id = Auth::id();
         
-        return  Member::find($id)->with('roles')
-            ->with('assets')
+        return  Member::find($id)->with('getRecentCompetencySearchTec')
+            /*->with('assets')
             ->with('competencySearchTec')
             ->with('competencyFitness')
             ->with('competencySearcherSafety')
@@ -64,8 +65,19 @@ class MemberManager
             ->with('competencyPlanPrep')
             ->with('competencyIncidentMgt')
             ->with('competencyTeamMgt')
-            ->with('competencyAnnualAssmt')
+            ->with('competencyAnnualAssmt')*/
             ->first();
+
+    }
+
+    protected function getRecentCompetencySearchTec($id)
+    {
+        $competency = CompetencySearchTechnician::where('member_id', $id)->join('calendar', 'calendar_id', '=', 'calendar.id')
+            ->orderBy('calendar.start', 'desc')
+            ->limit(1)
+            ->get();
+
+        return $competency;
     }
    
 }

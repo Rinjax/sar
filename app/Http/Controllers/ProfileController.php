@@ -27,8 +27,9 @@ class ProfileController extends Controller
     public function index (){
         
         $member = $this->memberManager->getMember();
-        
-        
+
+        dd($member);
+
 
         $chart = Charts::create('percentage', 'justgage')
             ->title('Attendance Yr')
@@ -49,7 +50,6 @@ class ProfileController extends Controller
             ->width(0)
             ->loader(false);
 
-        dd($member);
 
         return view ('profile')->with(['member' => $member, 'chart' => $chart, 'chart2' => $chart2]);
     }

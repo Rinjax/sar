@@ -182,6 +182,14 @@ class Member extends Authenticatable
         return $this->hasMany('App\Models\CompetencyAnnualAssessment');
     }
 
+    public function getRecentCompetencySearchTec()
+    {
+        return $this->competencySearchTec->where('member_id', $this->id)->join('calendar', 'calendar_id', '=', 'calendar.id')
+            ->orderBy('calendar.start', 'desc')
+            ->limit(1)
+            ->first();
+    }
+
 
 
     
