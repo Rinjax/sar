@@ -105,11 +105,18 @@ Route::get('/mail', function(){
 
 Route::get('/jeff', function() {
 
-    $m = new \App\Managers\MemberManager();
+    $g = new \Google_Client();
+    $g->useApplicationDefaultCredentials();
+    $g->setScopes([Google_Service_Calendar::CALENDAR]);
+    $g->setSubject('steve.temple@searchdogssussex.com');
 
-    $mm = $m->getMember(1);
+    $s = new Google_Service_Calendar($g);
 
-    dd($mm->recentCompetencies());
+    $e = $s->events->quickAdd('primary', 'Training at Duncton on August 23rd 10am');
+
+    dd($e);
+
+
 });
 
 
